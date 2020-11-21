@@ -1,7 +1,16 @@
 @startuml
 
-class BossController{
 
+package View{
+
+}
+
+package Controller{
+
+}
+
+package Model{
+    
 }
 
 @enduml
