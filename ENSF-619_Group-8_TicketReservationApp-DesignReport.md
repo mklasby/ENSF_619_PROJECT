@@ -12,24 +12,81 @@
 <div style="page-break-after: always;"></div>
 
 # Conceptual Class Design Diagram
-![Conceptual Class Diagram](UseCaseDiagram.png)
-
+![Conceptual Class Diagram](./ConceptualUML/ClassUMLAttributesMethods.png)
 
 <div style="page-break-after: always;"></div>
 
 # Detailed Class Design Diagram
+![Detailed Class Diagram](./DetailedUML/DetailedClassDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 # Sequence Diagrams
 
+## Use Case: Refund Ticket - By: Victor Tuah Kumi
+![Refund Ticket Use Case](./SequenceDiagrams/SequenceRefundTicket.png)
+<div style="page-break-after: always;"></div>
+
+## Use Case: Select Ticket - By: Patrick Kwan
+![Select Ticket](./SequenceDiagrams/SequenceSelectTicket.png)
+<div style="page-break-after: always;"></div>
+
+## Use Case: Checkout - By: Oluwapelumi Laditan
+![Checkout](./SequenceDiagrams/SequenceCheckout.png)
+<div style="page-break-after: always;"></div>
+
+## Use Case: Register User - By: Michael Lasby
+![Register User](./SequenceDiagrams/SequenceRegisterUser.png)
+
 <div style="page-break-after: always;"></div>
 
 # State Transition Diagrams
+## Ticket 
+![Ticket Transition](./StateTransition/TicketStateTransition.png)
 
+## Payment
+![Ticket Transition](./StateTransition/PaymentStateTransition.png)
 <div style="page-break-after: always;"></div>
 
+
 # Activity Diagrams
+
+## Register Account
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+## Pay Annual
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+## Login
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+## Select Ticket
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+## Checkout
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+## Refund Ticket
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+## Issue Movie News
+![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+<div style="page-break-after: always;"></div>
+
+Checkout
+Select Ticket
+Register Account
+Login
+CancelTicket
+Pay Annual
+Issue Movie News
+
 
 <div style="page-break-after: always;"></div>
 
