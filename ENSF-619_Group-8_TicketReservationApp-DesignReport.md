@@ -28,7 +28,7 @@
 <div style="page-break-after: always;"></div>
 
 ## Use Case: Select Ticket - By: Patrick Kwan
-![Select Ticket](./SequenceDiagrams/SequenceSelectTicket.png)
+![Select Ticket](./SequenceDiagrams/SequenceSelectTicketwithGUI.png)
 <div style="page-break-after: always;"></div>
 
 ## Use Case: Checkout - By: Oluwapelumi Laditan
@@ -37,7 +37,6 @@
 
 ## Use Case: Register User - By: Michael Lasby
 ![Register User](./SequenceDiagrams/SequenceRegisterUser.png)
-
 <div style="page-break-after: always;"></div>
 
 # State Transition Diagrams
@@ -52,45 +51,38 @@
 # Activity Diagrams
 
 ## Register Account
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Register Account](./ActivityDiagrams/RegisterUserActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Pay Annual
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Pay Annual](./ActivityDiagrams/PayAnnualActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Login
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Login](./ActivityDiagrams/LoginActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Select Ticket
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Select Ticket](./ActivityDiagrams/SelectTicketActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Checkout
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Register Account](./ActivityDiagrams/CheckoutActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Refund Ticket
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Refund Ticket](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Issue Movie News
 ![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
-Checkout
-Select Ticket
-Register Account
-Login
-CancelTicket
-Pay Annual
-Issue Movie News
-
 
 <div style="page-break-after: always;"></div>
 
 # Package Diagram
+![Package Diagram](./PackageDiagram/PackageDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
