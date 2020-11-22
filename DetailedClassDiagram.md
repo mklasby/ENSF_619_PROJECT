@@ -7,9 +7,11 @@ package View{
         class GUI{
             -views: HashMap<String, View>
             -container: JPanel
+            -userStatus: JLabel
             +GUI()
             +getContainer(): JPanel
-            +getView(key: String): View 
+            +getView(key: String): View
+            +getUserStatus(): JLabel
             +showView(key: String): void
         }
 
@@ -17,10 +19,10 @@ package View{
             -titleLabel: JLabel
             -menuButton: JButton
             -submitButton: JButton
-            -userStatus: JLabel
             +getPanel(): JPanel
-            +getUserStatus(): JLabel
             +registerActionListener(listener: ActionListener, component: JComponent)
+            +flashMessage()
+            +verifyInput()
         }
 
          class LoginView{
@@ -159,6 +161,7 @@ package View{
             +GUIController()
             +{static} main(args: String[]): void
             +getGUI(): GUI
+            +showView(view: String):void
             +login(userName: String, password: String): JsonObject
             +getMovieList(): JsonObject
             +selectMovie(name: String): JsonObject
@@ -291,7 +294,7 @@ package Controller{
         +getUser(userId: int): ResultSet
         +getRegisteredUserList(): ResultSet
         +updateRegisteredUserPayment(userId: int, cardNumber: int, cardType: char): boolean
-        +registerUser(name: String, password: String, cardType: String, cardNum: String, email: String): boolean
+        +registerUser(name: String, password: String, cardType: String, cardNum: String, email: String): void
         +getRegisteredUserEmails():ResultSet
         +getMovieList(): ResultSet
         +getMovie(movieName: String): ResultSet
