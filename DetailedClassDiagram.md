@@ -450,13 +450,15 @@ package UserModel{
         -password: String
     }
 
-    class RegularUser{
+    class UnregisteredUser{
         -email: String
     }
 
     class PaymentInfo{
         -cardNumber: int
-        -expiryDate: int
+        -cardType: String
+        -cardPin: int
+        
     }
 
     class PaymentManager{
@@ -478,6 +480,7 @@ package UserModel{
 
     class Coupon{
         -refundAmount: double
+        -expiryDate: int
     }
 
     class PayTicketFee{
