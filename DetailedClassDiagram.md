@@ -6,10 +6,10 @@ package View{
     class GUI{
         -views: HashMap<String, View>
         -container: JPanel
-
         +GUI()
         +getContainer(): JPanel
         +getView(key: String): View 
+        +showView(key: String): void
     }
 
     class GUIController{
@@ -76,6 +76,7 @@ package View{
         -passwordLabel: JLabel
         -nameLabel: JLabel
         -addressLabel: JLabel
+        -emailLabel: JLabel
         -cardNumLabel: JLabel
         -cardTypeLabel: JLabel
         -usernameField: JTextField
@@ -84,6 +85,7 @@ package View{
         -addressField: JTextField
         -cardNumField: JTextField
         -cardTypeField: JTextField
+        -emailField: JTextField
 
         +RegisterView()
         +getUsernameField(): JTextField
@@ -91,6 +93,7 @@ package View{
         +getAddressField(): JTextField
         +getCardNumberField(): JTextField
         +getCardTypeField(): JTextField
+        +getEmailField(): JTextField
     }
 
     class RegisterViewController{
@@ -172,6 +175,7 @@ package View{
         
         +SeatViewController(view: SeatView, guiController: GUIController)
         +getView(): SeatView
+        +paintSeats(seats: JsonObject): void
     }
 
     class PaymentView{
@@ -192,14 +196,20 @@ package View{
 
         +PaymentViewController(view: PaymentView, guiController: GUIController)
         +getView(): PaymentView
+        +flashMessage(message: JsonObject): void
+
     }
 
     class RefundView{
         -receiptLabel: JLabel
         -receiptField: JTextField
+        -ticketLabel: JLabel
+        -ticketField: JTextField
+        
 
         +RefundView()
         +getReceiptField(): JTextField
+        +getTicketField(): JTextField
     }
 
     class RefundViewController{
@@ -208,6 +218,7 @@ package View{
 
         +RefundViewController(view: RefundView, guiController: GUIController)
         +getView(): RefundView
+        +paintTicket(ticket: JsonObject): void
     }
 
     class MenuView {
