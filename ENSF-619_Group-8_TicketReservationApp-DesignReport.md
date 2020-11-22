@@ -4,7 +4,7 @@
 ### Submitted by: Victor Tuah Kumi, Patrick Kwan, Oluwapelumi Laditan, Michael Lasby
 
 # Use Case Diagram
-![Use case diagram](UseCaseDiagram.png)
+![Use case diagram](./UseCaseDiagram/UseCaseDiagram.png)
 <div style="page-break-after: always;"></div>
 
 # Scenarios and Candidate Objects (see next Page)
@@ -12,6 +12,8 @@
 <div style="page-break-after: always;"></div>
 
 # Conceptual Class Design Diagram
+![Conceptual Class Diagram](UseCaseDiagram.png)
+
 
 <div style="page-break-after: always;"></div>
 
