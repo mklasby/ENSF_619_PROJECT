@@ -22,6 +22,7 @@ package View{
         +login(userName: String, password: String): JsonObject
         +selectMovie(name: String): JsonObject
         +checkout(): JsonObject
+        +refundTicket(ticketId: number): JsonObject
         +registerUser(name: String, password: String, cardType: String, cardNum: String, ) 
 
     }
@@ -56,7 +57,6 @@ package View{
 
     class IssueNewsView{
         -uploadButton: JButton
-        -emailButton: JButton
         -newsTextArea: JTextArea
 
         +IssueNewsView()
