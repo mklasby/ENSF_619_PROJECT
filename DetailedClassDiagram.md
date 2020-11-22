@@ -5,16 +5,6 @@ package View{
 
     class GUI{
         -views: HashMap<String, View>
-        -issueNewsView: IssueNewsView
-        -registerView: RegisterView
-        -loginView: LoginView
-        -movieView: MovieView
-        -theatreView: TheatreView
-        -showtimeView: ShowtimeView
-        -seatView: SeatView
-        -paymentView: PaymentView
-        -refundView: RefundView
-        -mainView: MainView
         -container: JPanel
 
         +GUI()
@@ -58,8 +48,9 @@ package View{
     }
 
     class LoginViewController{
+        -guiController: GUIController
         -view: LoginView
-        +LoginViewController(view: LoginView)
+        +LoginViewController(view: LoginView, guiController: GUIController)
         +getView(): LoginView
     }
 
@@ -73,9 +64,10 @@ package View{
     }
 
     class IssueNewsController{
+        -guiController: GUIController
         -view: IssueNewsView
 
-        +IssueNewsController(view: IssueNewsView)
+        +IssueNewsController(view: IssueNewsView, guiController: GUIController)
         +getView(): IssueNewsView
     }
 
@@ -103,8 +95,9 @@ package View{
 
     class RegisterViewController{
         -view: RegisterView
+        -guiController: GUIController
 
-        +IssueNewsController(view: IssueNewsView)
+        +IssueNewsController(view: IssueNewsView, guiController: GUIController)
         +getView(): RegisterView      
     }
 
@@ -121,8 +114,9 @@ package View{
 
     class MovieViewController{
         -view: MovieView
+        -guiController: GUIController
         
-        +MovieViewController(view: MovieView)
+        +MovieViewController(view: MovieView, guiController: GUIController)
         +paintMovies(movies: JsonObject): void
     }
 
@@ -139,8 +133,9 @@ package View{
 
     class TheatreViewController {
         -view: TheatreView
+        -guiController: GUIController
 
-        +TheatreViewController(view: TheatreView)
+        +TheatreViewController(view: TheatreView, guiController: GUIController)
         +paintTheatres(theatres: JsonObject): void
     }
 
@@ -157,8 +152,9 @@ package View{
 
     class ShowtimeViewController{
         -view: ShowtimeView
+        -guiController: GUIController
 
-        +ShowtimeViewController(view: ShowtimeView)
+        +ShowtimeViewController(view: ShowtimeView, guiController: GUIController)
         +paintShowtimes(showtimes: JsonObject): void
     }
 
@@ -172,8 +168,9 @@ package View{
 
     class SeatViewController{
         -seat: SeatView
+        -guiController: GUIController
         
-        +SeatViewController(view: SeatView)
+        +SeatViewController(view: SeatView, guiController: GUIController)
         +getView(): SeatView
     }
 
@@ -191,8 +188,9 @@ package View{
 
     class PaymentViewController{
         -view: PaymentView
+        -guiController: GUIController
 
-        +PaymentViewController(view: PaymentView)
+        +PaymentViewController(view: PaymentView, guiController: GUIController)
         +getView(): PaymentView
     }
 
@@ -206,8 +204,9 @@ package View{
 
     class RefundViewController{
         -view: RefundView
+        -guiController: GUIController
 
-        +RefundViewController(view: RefundView)
+        +RefundViewController(view: RefundView, guiController: GUIController)
         +getView(): RefundView
     }
 
@@ -236,6 +235,7 @@ package View{
 
     class MenuViewController{
         -view: MenuViewController
+        -guiController: GUIController
         
         +MenuViewController(view: MenuView)
         +getView(): MenuViewController
