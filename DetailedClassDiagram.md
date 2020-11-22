@@ -274,6 +274,7 @@ package Controller{
         +selectShowTime(date: String): JsonObject
         +selectSeat(seatRow: int, seatCol: int): JsonObject
         +registerUser(name: String, password: String, cardType: String, cardNum: String, email: String) 
+        +refundTicket(receiptNum: int): JsonObject
         +checkout(): JsonObject
         +verifyPayment(cardType: char, cardNum: int, cardPin: int): JsonObject
         +payAnnual(userId: int): JsonObject
