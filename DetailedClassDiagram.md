@@ -263,9 +263,13 @@ package Controller{
         +browseMovie(): JsonObject
         +selectMovie(name: Movie): JsonObject
         +selectTheatre(theatreId: int): JsonObject
-        +selectShowTime(date: String)
-        +parseUser(user: ResultSet): JsonObject
+        +selectShowTime(date: String): JsonObject
+        +selectSeat(seatRow: int, seatCol: int): JsonObject
         +registerUser(user: JsonObject): JsonObject
+        +checkout(): JsonObject
+        +verifyPayment(cardType: char, cardNum: int, cardPin: int): JsonObject
+        +payAnnual(userId: int): JsonObject
+        +issueMovieNews(news: File): JsonObject
     }
 
     class FinancialController{
@@ -306,129 +310,184 @@ package Controller{
  
 package Model{
 
-class IssueNewsController{
-    -news:News
-    -isManager:Boolean
-    -issueNewsController(movieName:String, isManager:boolean)
-    -issueNews():Movie
+    package TheatreModel{
+        class IssueNewsController{
+            -news:News
+            -isManager:Boolean
+            -issueNewsController(movieName:String, isManager:boolean)
+            -issueNews():Movie
+            }
+
+        class News{
+            +News(movieName:String)
+        }
+
+
+        class BuildTicket{
+            -ticket:Ticket
+            +BuildTicket():void
+            +getTicket():JsonObject
+
+        }
+
+        class Ticket{
+            -movie:Movie
+            -theatre:Theatre
+            -showTime:ShowTime
+            -seat:Seat
+            +Ticket():void
+            +getMovie():Movie
+            +getTheatre():Theatre
+            +getShowTime():ShowTime
+            +getSeat():Seat
+            +setMovie(movie:Movie)
+            +setTheatre(theatre:Theatre)
+            +setShowTime(time:Date)
+            +setSeat(seat:Seat)
+            
+        }
+
+
+        class BrowseMovie{
+            -movieList: ArrayList<Movie>
+            -isRegUser: boolean 
+            +BrowseMovie(sqlSet: ResultSet, isRegUser: boolean)
+            -parseMovieList(sqlSet: ResultSet)
+            +getMovieList():JsonObject
+            +selectMovie(sqlMovie:ResultSet): Movie
+        }
+
+
+        class SelectTheatre{
+            -theatreList: ArrayList<Theatre>
+            +SelectTheatre(sqlSet: ResultSet)
+            -parseTheatreList(sqlSet: ResultSet)
+            +getTheatreList():JsonObject
+            +selectTheatre(sqlTheatre:ResultSet): Theatre
+        }
+
+        class SelectShowTime{
+            -showTimeList: ArrayList<ShowTime>
+            +SelectShowTime(sqlSet: ResultSet)
+            -parseShowTimeList(sqlSet: ResultSet):void
+            +getShowTimeList():JsonObject
+            +selectShowTime(sqlShowTime:ResultSet): ShowTime
+        }
+
+
+        class SelectSeat{
+            -showSeatList: ArrayList<Seat>
+            +SelectSeat(sqlSet: ResultSet)
+            -parseSeatList(sqlSet: ResultSet):void
+            +getSeatList():JsonObject
+            +selectSeat(sqlSeat:ResultSet): Seat
+        }
+            
+        class Movie{
+            -movieName: String
+            -moviePrice: double 
+            -earlyAccess: boolean
+            -theatreList: ArrayList<Theatre>
+            +getMovieName():String
+            +getMoviePrice():int
+            +getEarlyAccess(): boolean 
+            -setMovieName(name:String):void
+            -setMoviePrice(price:double):void
+            -setEarlyAccess(status:boolean):void
+        }
+
+        class Theatre{
+            -theatreName: String
+            +Theatre(theatreResultSet:ResultSet)
+            +getTheatreName():String
+            -setTheatreName(name:String):void
+        }
+
+        class ShowTime{
+            -time: Date
+            -earlyAccessMovie: boolean
+            -earlyAccessSeatsAvailable:boolean
+            -isFull: boolean
+            +ShowTime(showTimeResultSeat)
+            +getTime():Date
+            +getEarlyAccessMovie():boolean
+            +getEarlyAccessSeatsAvailable():boolean
+            +getIsFull():boolean
+            -setTime(tune: Date):void
+            -setEarlyAccessMovie(status: boolean ):void
+            -setEarlyAccessSeatsAvailable(status: boolean): void
+            -setIsFull(status: boolean): void
+        }
+
+
+        class Seat{
+            -seatStatus: boolean
+            -seatRow: int
+            -seatCol: int
+            -Seat(seatResultSet: ResultSet)
+            +getSeatRow():int
+            +getSeatCol():int
+            +getSeatStatus(): boolean
+            -setSeatRow(row: int):void
+            -setSeatCol(col: int ):void
+            -setSeatStatus(status: boolean): void
+        }
+        class User{
+            -ticket: Ticket
+            -paymentInfo: PaymentInfo
+        }
     }
 
-class News{
-    +News(movieName:String)
+package UserModel{
+    class RegisteredUser{
+        -name: String
+        -address: String 
+        -userName: String
+        -email: String
+        -password: String
+    }
+
+    class RegularUser{
+        -email: String
+    }
+
+    class PaymentInfo{
+        -cardNumber: int
+        -expiryDate: int
+    }
+
+    class PaymentManager{
+        -user: User
+        +payForTicket
+        +refundTicket(): void
+        +payAnnualFee(): void
+        +sendTickettoUser(): void
+        +sendReceipttoUser(): void
+    }
+
+    class Refund{
+        -ticketAmount: double
+        -receipt: RefundReceipt
+        -calculateRefund: double
+        +processRefund(): void
+        +createCoupon(): void
+    }
+
+    class Coupon{
+        -refundAmount: double
+    }
+
+    class PayTicketFee{
+        -amount: double
+        -receipt: TicketReciept
+    }
+
+    class PayAnnualFee{
+        -amount: double
+        -receipt: AnnualReceipt
+    }
 }
 
-
-class BuildTicket{
-	-ticket:Ticket
-	+BuildTicket():void
-	+getTicket():JsonObject
-
-}
-
-class Ticket{
-	-movie:Movie
-	-theatre:Theatre
-	-showTime:ShowTime
-	-seat:Seat
-	+Ticket():void
-	+getMovie():Movie
-	+getTheatre():Theatre
-	+getShowTime():ShowTime
-	+getSeat():Seat
-	+setMovie(movie:Movie)
-	+setTheatre(theatre:Theatre)
-	+setShowTime(time:Date)
-	+setSeat(seat:Seat)
-	
-}
-
-
-class BrowseMovie{
-	-movieList: ArrayList<Movie>
-	-isRegUser: boolean 
-	+BrowseMovie(sqlSet: ResultSet, isRegUser: boolean)
-	-parseMovieList(sqlSet: ResultSet)
-	+getMovieList():JsonObject
-	+selectMovie(sqlMovie:ResultSet): Movie
-}
-
-
-class SelectTheatre{
-	-theatreList: ArrayList<Theatre>
-	+SelectTheatre(sqlSet: ResultSet)
-	-parseTheatreList(sqlSet: ResultSet)
-	+getTheatreList():JsonObject
-	+selectTheatre(sqlTheatre:ResultSet): Theatre
-}
-
-class SelectShowTime{
-	-showTimeList: ArrayList<ShowTime>
-	+SelectShowTime(sqlSet: ResultSet)
-	-parseShowTimeList(sqlSet: ResultSet):void
-	+getShowTimeList():JsonObject
-	+selectShowTime(sqlShowTime:ResultSet): ShowTime
-}
-
-
-class SelectSeat{
-	-showSeatList: ArrayList<Seat>
-	+SelectSeat(sqlSet: ResultSet)
-	-parseSeatList(sqlSet: ResultSet):void
-	+getSeatList():JsonObject
-	+selectSeat(sqlSeat:ResultSet): Seat
-}
-    
-class Movie{
-	-movieName: String
-	-moviePrice: double 
-	-earlyAccess: boolean
-	-theatreList: ArrayList<Theatre>
-	+getMovieName():String
-	+getMoviePrice():int
-	+getEarlyAccess(): boolean 
-	-setMovieName(name:String):void
-	-setMoviePrice(price:double):void
-	-setEarlyAccess(status:boolean):void
-}
-
-class Theatre{
-	-threatreName: String
-	+Theatre(theatreResultSet:ResultSet)
-	+getTheatreName():String
-	-setTheatreName(name:String):void
-}
-
-class ShowTime{
-	-time: Date
-	-earlyAccessMovie: boolean
-	-earlyAccessSeatsAvailable:boolean
-	-isFull: boolean
-	+ShowTime(showTimeResultSeat)
-	+getTime():Date
-	+getEarlyAccessMovie():boolean
-	+getEarlyAccessSeatsAvailable():boolean
-	+getIsFull():boolean
-	-setTime(tune: Date):void
-	-setEarlyAccessMovie(status: boolean ):void
-	-setEarlyAccessSeatsAvaliable(status: boolean): void
-	-setIsFull(status: boolean): void
-}
-
-
-class Seat{
-	-seatStatus: boolean
-	-seatRow: int
-	-seatCol: int
-	-Seat(seatResultSet: ResultSet)
-	+getSeatRow():int
-	+getSeatCol():int
-	+getSeatStatus(): boolean
-	-setSeatRow(row: int):void
-	-setSeatCol(col: int ):void
-	-setSeatStatus(status: boolean): void
-
-   
-}
 
 }
 
