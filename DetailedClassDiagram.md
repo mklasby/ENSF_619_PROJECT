@@ -252,42 +252,48 @@ package View{
 
 package Controller{
 
-class FinancialController
+    class FinancialController{
+        +FinancialController()
+        +processPayment(paymentInfo: JsonObject): boolean 
+        +processRefund(paymentInfo: JsonObject): boolean
+    }
 
-class FinancialModel{
-- paymentInfoList: ArrayList<payment>
-+ FinancialModel()
-+ addPaymentInfo(paymentInfo:PaymentInfo): void
-+ verifyPaymentInfo(paymentInfo:PaymentInfo):boolean
-}
+    class FinancialModel{
+        +FinancialModel()
+        +processPayment(int cardNum, int cardPin, double amount): boolean 
+        +processRefund(int cardNum, int cardPin, double amount): boolean
+        + addPaymentInfo(paymentInfo:PaymentInfo): void
+        + verifyPaymentInfo(paymentInfo:PaymentInfo):boolean
+    }
 
-class DataBaseController{
+    class DataBaseController{
 
-+alterMovie(seat:Seat):void
-+getMovieList():ResultSet
+        -connection: Connection
+        -{static}connectionInfo: String
+        -{static}username: String
+        -{static}password: String
 
-+alterTheatre(theatre:Theatre):void
-+getTheatreList():ResultSet
+        +alterMovie(seat:Seat):void
+        +getMovieList():ResultSet
 
-+alterShowTime(showTime:ShowTime):void
-+getShowTimeList():ResultSet
+        +alterTheatre(theatre:Theatre):void
+        +getTheatreList():ResultSet
 
-+alterSeat(seat:Seat):void
-+getSeatList():ResultSet
+        +alterShowTime(showTime:ShowTime):void
+        +getShowTimeList():ResultSet
 
-+insertRegisteredUser(registeredUser:RegisteredUser):void
-+alterRegisteredUser(registeredUser:RegisteredUser):void
-+searchRegisteredUser(registeredUser:RegisteredUser):ResultSet
-+getRegisteredEmails():ResultSet
+        +alterSeat(seat:Seat):void
+        +getSeatList():ResultSet
 
-+insertTicket(ticket:Ticket):void
-+deleteTicket(ticket:Ticket):void
-+searchTicket(registeredUser:RegisteredUser):ResultSet
+        +insertRegisteredUser(registeredUser:RegisteredUser):void
+        +alterRegisteredUser(registeredUser:RegisteredUser):void
+        +searchRegisteredUser(registeredUser:RegisteredUser):ResultSet
+        +getRegisteredEmails():ResultSet
 
-
-
-}
-
+        +insertTicket(ticket:Ticket):void
+        +deleteTicket(ticket:Ticket):void
+        +searchTicket(registeredUser:RegisteredUser):ResultSet
+    }
 }
 
 package Model{

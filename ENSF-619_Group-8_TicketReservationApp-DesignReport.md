@@ -4,7 +4,7 @@
 ### Submitted by: Victor Tuah Kumi, Patrick Kwan, Oluwapelumi Laditan, Michael Lasby
 
 # Use Case Diagram
-![Use case diagram](FILLMEIN.png)
+![Use case diagram](UseCaseDiagram.png)
 <div style="page-break-after: always;"></div>
 
 # Scenarios and Candidate Objects (see next Page)
