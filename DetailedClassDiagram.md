@@ -167,7 +167,7 @@ package View{
             +selectSeat(seatRow: int, seatCol: int)
             +checkout(): JsonObject
             +refundTicket(ticketId: number): JsonObject
-            +registerUser(name: String, password: String, cardType: String, cardNum: String, ) 
+            +registerUser(name: String, password: String, cardType: String, cardNum: String, email: String) 
         }
 
         class LoginViewController{
@@ -192,6 +192,7 @@ package View{
             +IssueNewsController(view: IssueNewsView, guiController: GUIController)
             +getView(): RegisterView      
             +actionPerformed(e: ActionEvent): void
+            +verifyInput(): boolean
         }
 
         class MovieViewController{
@@ -269,7 +270,7 @@ package Controller{
         +selectTheatre(theatreId: int): JsonObject
         +selectShowTime(date: String): JsonObject
         +selectSeat(seatRow: int, seatCol: int): JsonObject
-        +registerUser(user: JsonObject): JsonObject
+        +registerUser(name: String, password: String, cardType: String, cardNum: String, email: String) 
         +checkout(): JsonObject
         +verifyPayment(cardType: char, cardNum: int, cardPin: int): JsonObject
         +payAnnual(userId: int): JsonObject
@@ -290,6 +291,7 @@ package Controller{
         +getUser(userId: int): ResultSet
         +getRegisteredUserList(): ResultSet
         +updateRegisteredUserPayment(userId: int, cardNumber: int, cardType: char): boolean
+        +registerUser(name: String, password: String, cardType: String, cardNum: String, email: String): boolean
         +getRegisteredUserEmails():ResultSet
         +getMovieList(): ResultSet
         +getMovie(movieName: String): ResultSet
