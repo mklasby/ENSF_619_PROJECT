@@ -4,6 +4,7 @@
 package View{
 
     class GUI{
+        -views: HashMap<String, View>
         -issueNewsView: IssueNewsView
         -registerView: RegisterView
         -loginView: LoginView
@@ -15,8 +16,10 @@ package View{
         -refundView: RefundView
         -mainView: MainView
         -container: JPanel
+
         +GUI()
         +getContainer(): JPanel
+        +getView(key: String): View 
     }
 
     class GUIController{
@@ -33,64 +36,212 @@ package View{
 
     }
 
-    class LoginView{
+    abstract class View{
         -titleLabel: JLabel
+        -menuButton: JButton
+        -submitButton: JButton
+        -userStatus: JLabel
+        +getPanel(): JPanel
+        +getUserStatus(): JLabel
+        +registerActionListener(listener: ActionListener, component: JComponent)
+    }
+
+    class LoginView{
         -usernameLabel: JLabel
         -passwordLabel: JLabel
         -usernameField: JTextField
         -passwordField: JTextField
-        -submitButton: JButton
-        -view: JPanel
 
         +LoginView()
-        +getUsernameField(): String
-        +getPasswordField(): String
+        +getUsernameField(): JTextField
+        +getPasswordField(): JTextField
     }
 
     class LoginViewController{
-
+        -view: LoginView
+        +LoginViewController(view: LoginView)
+        +getView(): LoginView
     }
 
+    class IssueNewsView{
+        -uploadButton: JButton
+        -emailButton: JButton
+        -newsTextArea: JTextArea
+
+        +IssueNewsView()
+        +getNewsTextArea(): JTextArea
+    }
 
     class IssueNewsController{
+        -view: IssueNewsView
 
+        +IssueNewsController(view: IssueNewsView)
+        +getView(): IssueNewsView
+    }
+
+    class RegisterView{
+        -usernameLabel: JLabel
+        -passwordLabel: JLabel
+        -nameLabel: JLabel
+        -addressLabel: JLabel
+        -cardNumLabel: JLabel
+        -cardTypeLabel: JLabel
+        -usernameField: JTextField
+        -passwordField: JTextField
+        -nameField: JTextField
+        -addressField: JTextField
+        -cardNumField: JTextField
+        -cardTypeField: JTextField
+
+        +RegisterView()
+        +getUsernameField(): JTextField
+        +getNameField(): JTextField
+        +getAddressField(): JTextField
+        +getCardNumberField(): JTextField
+        +getCardTypeField(): JTextField
     }
 
     class RegisterViewController{
+        -view: RegisterView
 
+        +IssueNewsController(view: IssueNewsView)
+        +getView(): RegisterView      
     }
 
+    class MovieView{
+        -movieLabel: JLabel
+        -movieTextArea: JTextArea
+        -selectionLabel: JLabel
+        -selectionField: JTextField
+
+        +MovieView()
+        +getSelectionField(): JTextField
+        +getTextArea(): JTextArea
+    }
 
     class MovieViewController{
+        -view: MovieView
+        
+        +MovieViewController(view: MovieView)
+        +paintMovies(movies: JsonObject): void
+    }
 
+    class TheatreView{
+        -theatreLabel: JLabel
+        -theatreTextArea: JTextArea
+        -selectionLabel: JLabel
+        -selectionField: JTextField
+
+        +TheatreView()
+        +getSelectionField(): JTextField
+        +getTextArea(): JTextArea
     }
 
     class TheatreViewController {
+        -view: TheatreView
 
+        +TheatreViewController(view: TheatreView)
+        +paintTheatres(theatres: JsonObject): void
+    }
+
+    class ShowtimeView{
+        -showtimeLabel: JLabel
+        -showtimeTextArea: JTextArea
+        -selectionLabel: JLabel
+        -selectionField: JTextField
+
+        +ShowtimeView()
+        +getSelectionField(): JTextField
+        +getTextArea(): JTextArea
     }
 
     class ShowtimeViewController{
+        -view: ShowtimeView
 
+        +ShowtimeViewController(view: ShowtimeView)
+        +paintShowtimes(showtimes: JsonObject): void
+    }
+
+    class SeatView{
+        -seatLabel: JLabel
+        -seats: HashMap<int[], JButton>
+
+        +SeatView()
+        +getSeats(): HashMap<int[], JButton>
     }
 
     class SeatViewController{
         -seat: SeatView
         
+        +SeatViewController(view: SeatView)
+        +getView(): SeatView
+    }
 
-        +SeatViewController(seat: SeatView)
-        +getGui(): GUI
+    class PaymentView{
+        -cardNumLabel: JLabel
+        -cardTypeLabel: JLabel
+        -cardNumField: JTextField
+        -cardTypeField: JTextField
+
+        +PaymentView()
+        +getCardNumberField(): JTextField
+        +getCardTypeField(): JTextField
 
     }
 
-    class SeatView{
-        -seats: HashMap<Integer, Seat>
-        -seatButtons: HashMap<Integer, Seat>
+    class PaymentViewController{
+        -view: PaymentView
+
+        +PaymentViewController(view: PaymentView)
+        +getView(): PaymentView
+    }
+
+    class RefundView{
+        -receiptLabel: JLabel
+        -receiptField: JTextField
+
+        +RefundView()
+        +getReceiptField(): JTextField
+    }
+
+    class RefundViewController{
+        -view: RefundView
+
+        +RefundViewController(view: RefundView)
+        +getView(): RefundView
+    }
+
+    class MenuView {
+        -loginLabel: JLabel
+        -selectMovieLabel: JLabel
+        -checkoutLabel: JLabel
+        -registerUserLabel: JLabel
+        -refundLabel: JLabel
+        -payAnnualLabel: JLabel
+        -issueNewsLabel: JLabel
+        -logoutLabel: JLabel
+        -loginButton:JButton
+        -selectMovieButton:JButton
+        -checkoutLabel:JButton
+        -registerUserButton:JButton
+        -refundButton:JButton
+        -payAnnualButton:JButton
+        -issueNewsButton: JButton
+        -logoutButton: JButton
+
+        +MenuView()
+        +setRegisteredView(): void
+        +setManagerView(): void
+    }
+
+    class MenuViewController{
+        -view: MenuViewController
         
-        +SeatView()
-
-        +setSeats()
-
-
+        +MenuViewController(view: MenuView)
+        +getView(): MenuViewController
+        +setRegisteredView(): void
+        +setManagerView(): void
+        +setBasicView(): void
     }
 
 
