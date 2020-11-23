@@ -63,7 +63,7 @@
 <div style="page-break-after: always;"></div>
 
 ## Select Ticket
-![Select Ticket](./ActivityDiagrams/SelectTicketActivityDiagram.png)
+![Select Ticket](./ActivityDiagrams/TicketSelectActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Checkout
@@ -71,11 +71,11 @@
 <div style="page-break-after: always;"></div>
 
 ## Refund Ticket
-![Refund Ticket](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Refund Ticket](./ActivityDiagrams/RefundTicketActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Issue Movie News
-![Register Account](./ActivityDiagrams/RegisterAccountActivityDiagram.png)
+![Issue Movie News](./ActivityDiagrams/IssueNewsActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 
@@ -87,7 +87,7 @@
 <div style="page-break-after: always;"></div>
 
 # Deployment Diagram
-
+![Deployment Diagram](./DeploymentDiagram/DeploymentDiagram.png)
 
 
 

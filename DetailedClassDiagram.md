@@ -309,6 +309,7 @@ package Controller{
         +insertTicket(ticket: JsonObject): void
         +getReceipt(receiptId: int): ResultSet
         +returnTicket(receiptId: int): void
+        +insertReceipt(receipt: JsonObject): void
     }
 }
  
