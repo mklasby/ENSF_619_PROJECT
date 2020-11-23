@@ -444,12 +444,21 @@ package Model{
     }
 
 package UserModel{
+    class UserManager{
+        -user: User
+        +getUser()
+        +userIsRegistered(): boolean
+
+    }
+
+
     class RegisteredUser{
         -name: String
         -address: String 
         -userName: String
         -email: String
         -password: String
+        -hasPaidDues: boolean
     }
 
     class UnregisteredUser{
@@ -468,32 +477,32 @@ package UserModel{
         -cardNumber: int
         -cardType: String
         -cardPin: int
-        
     }
 
     class PaymentManager{
         -user: User
-        +payForTicket(): JsonObject
-        +refundTicket(): JsonObject
+        +payForTicket(ticket: Ticket): JsonObject
+        +refundTicket(ticketReceipt: ResultSet): JsonObject
         +payAnnualFee(): JsonObject
     }
 
-    class Refund{
+    class RefundTicket{
         -ticketAmount: double
         -receipt: RefundReceipt
-        -calculateRefund: double
-        +processRefund(): void
-        +createCoupon(): void
+        -couponRequired: boolean
+        +RefundTicket(ticketReceipt: ResultSet, couponRequired: boolean)
+        +getReceipt(ticketReceipt: Result, couponRequired: boolean)
     }
 
     class Coupon{
         -refundAmount: double
-        -expiryDate: int
+        -expiryDate: Date
     }
 
     class PayTicketFee{
+        +PayTicketFee(ticketId: int, amount: Double)
         -amount: double
-        -receipt: TicketReciept
+        -receipt: TicketReceipt
     }
 
     class PayAnnualFee{
@@ -503,20 +512,20 @@ package UserModel{
 
     class Receipt{
         receiptNum: int
-        amountPaid: double
-
+        amount: double
     }
 
     class RefundReceipt{
-        ticketNumber: int
+        -ticketNumber: int
+        -coupon: Coupon
     }
 
     class TicketReceipt{
-        ticketNumber: int
+        -ticketNumber: int
     }
 
     class AnnualReceipt{
-        - year: int
+        -year: int
     }
 }
 

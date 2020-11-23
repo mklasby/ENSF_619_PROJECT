@@ -21,13 +21,13 @@ See `./lib/UseCaseDiagram/UseCaseDiagram.png`
 # Conceptual Class Design Diagram (see next page)
 See `./lib/ConceptualUML/ClassUMLAttributesMethods.png`
 
-![Conceptual Class Diagram](./ConceptualUML/ClassUMLAttributesMethods_rotated.png)
+<!-- ![Conceptual Class Diagram](./ConceptualUML/ClassUMLAttributesMethods_rotated.png) -->
 <div style="page-break-after: always;"></div>
 
 # Detailed Class Design Diagram (see next page)
 See `./lib/DetailedUML/DetailedClassDiagram.png`
 
-![Detailed Class Diagram](./DetailedUML/DetailedClassDiagram.png)
+<!-- ![Detailed Class Diagram](./DetailedUML/DetailedClassDiagram.png) -->
 <div style="page-break-after: always;"></div>
 
 # Sequence Diagrams (see next 4 pages)
@@ -61,7 +61,11 @@ See `./lib/StateTransition/TicketStateTransition.png`
 
 ![Ticket Transition](./StateTransition/TicketStateTransition.png)
 
+<div style="page-break-after: always;"></div>
+
 ## Payment
+See `./lib/StateTransition/PaymentStateTransition.png`
+
 ![Ticket Transition](./StateTransition/PaymentStateTransition.png)
 <div style="page-break-after: always;"></div>
 
@@ -69,42 +73,55 @@ See `./lib/StateTransition/TicketStateTransition.png`
 # Activity Diagrams
 
 ## Register Account
+See `./lib/ActivityDiagrams/RegisterUserActivityDiagram.png)`
+
 ![Register Account](./ActivityDiagrams/RegisterUserActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Pay Annual
+See `./lib/ActivityDiagrams/RegisterUserActivityDiagram.png)`
+
 ![Pay Annual](./ActivityDiagrams/PayAnnualActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Login
+See `./lib/ActivityDiagrams/LoginActivityDiagram.png)`
+
 ![Login](./ActivityDiagrams/LoginActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Select Ticket
+See `./lib/ActivityDiagrams/TicketSelectActivityDiagram.png)`
+
 ![Select Ticket](./ActivityDiagrams/TicketSelectActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Checkout
+See `./lib/ActivityDiagrams/CheckoutActivityDiagram.png)`
+
 ![Register Account](./ActivityDiagrams/CheckoutActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Refund Ticket
+See `./lib/ActivityDiagrams/RefundTicketActivityDiagram.png)`
+
 ![Refund Ticket](./ActivityDiagrams/RefundTicketActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
 ## Issue Movie News
+See `./lib/ActivityDiagrams/IssueNewsActivityDiagram.png)`
+
 ![Issue Movie News](./ActivityDiagrams/IssueNewsActivityDiagram.png)
 <div style="page-break-after: always;"></div>
 
-
-<div style="page-break-after: always;"></div>
-
 # Package Diagram
+See `./lib/PackageDiagram/PackageDiagram.png)`
 ![Package Diagram](./PackageDiagram/PackageDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 # Deployment Diagram
+See `./lib/PackageDiagram/DeploymentDiagram.png)`
 ![Deployment Diagram](./DeploymentDiagram/DeploymentDiagram.png)
 
 
