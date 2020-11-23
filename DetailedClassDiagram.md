@@ -456,6 +456,14 @@ package UserModel{
         -email: String
     }
 
+    class Manager{
+        -name: String
+        -address: String 
+        -userName: String
+        -email: String
+        -password: String
+    }
+
     class PaymentInfo{
         -cardNumber: int
         -cardType: String
@@ -465,11 +473,9 @@ package UserModel{
 
     class PaymentManager{
         -user: User
-        +payForTicket
-        +refundTicket(): void
-        +payAnnualFee(): void
-        +sendTickettoUser(): void
-        +sendReceipttoUser(): void
+        +payForTicket(): JsonObject
+        +refundTicket(): JsonObject
+        +payAnnualFee(): JsonObject
     }
 
     class Refund{
@@ -493,6 +499,24 @@ package UserModel{
     class PayAnnualFee{
         -amount: double
         -receipt: AnnualReceipt
+    }
+
+    class Receipt{
+        receiptNum: int
+        amountPaid: double
+
+    }
+
+    class RefundReceipt{
+        ticketNumber: int
+    }
+
+    class TicketReceipt{
+        ticketNumber: int
+    }
+
+    class AnnualReceipt{
+        - year: int
     }
 }
 
