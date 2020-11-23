@@ -21,7 +21,7 @@ package View{
             -submitButton: JButton
             +getPanel(): JPanel
             +registerActionListener(listener: ActionListener, component: JComponent)
-            +flashMessage()
+            +flashMessage(e: ActionEvent): void
             +verifyInput()
         }
 
@@ -303,7 +303,7 @@ package Controller{
         +getTheatre(movieName: String, theatreId: int): ResultSet
         +getShowTimeList(): ResultSet
         +getShowtime(movieName: String, theatreId: int, showtimeDate: date): ResultSet
-        -updateShowtimeAvailability(): void
+        -updateShowtimeAvailability(ticket: JsonObject): void
         +getSeatList(): ResultSets
         +getSeat(movieName: String, theatreId: int, showtimeDate: Date, seatNum: int): ResultSet
         +insertTicket(ticket: JsonObject): void
@@ -492,6 +492,7 @@ package UserModel{
         -couponRequired: boolean
         +RefundTicket(ticketReceipt: ResultSet, couponRequired: boolean)
         +getReceipt(ticketReceipt: Result, couponRequired: boolean)
+        +addCoupon(): void
     }
 
     class Coupon{
