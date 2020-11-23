@@ -8,55 +8,51 @@ Please note that some of these diagrams are best viewed as image / pdf files. Th
 
 For page-break free viewing, we recommend viewing this report as a markdown file in your preferred markdown viewer. See `./ENSF-619_Group-8_TicketReservationApp-DesignReport.md`. 
 
+<div style="page-break-after: always;"></div>
 
 # Use Case Diagram
 See `./lib/UseCaseDiagram/UseCaseDiagram.png`
 ![Use case diagram](./UseCaseDiagram/UseCaseDiagram.png)
 <div style="page-break-after: always;"></div>
 
-# Scenarios and Candidate Objects (see next Page)
-
+# Scenarios and Candidate Objects (see next page)
 <div style="page-break-after: always;"></div>
 
-# Conceptual Class Design Diagram
+# Conceptual Class Design Diagram (see next page)
 See `./lib/ConceptualUML/ClassUMLAttributesMethods.png`
 
 ![Conceptual Class Diagram](./ConceptualUML/ClassUMLAttributesMethods_rotated.png)
 <div style="page-break-after: always;"></div>
 
-# Detailed Class Design Diagram
+# Detailed Class Design Diagram (see next page)
 See `./lib/DetailedUML/DetailedClassDiagram.png`
 
 ![Detailed Class Diagram](./DetailedUML/DetailedClassDiagram.png)
 <div style="page-break-after: always;"></div>
 
-# Sequence Diagrams
-
+# Sequence Diagrams (see next 4 pages)
 ## Use Case: Refund Ticket - By: Victor Tuah Kumi
 See `./lib/SequenceDiagrams/SequenceRefundTicket.png`
 
-![Refund Ticket Use Case](./SequenceDiagrams/SequenceRefundTicket.png)
-<div style="page-break-after: always;"></div>
+<!-- ![Refund Ticket Use Case](./SequenceDiagrams/SequenceRefundTicket.png)
+<div style="page-break-after: always;"></div> -->
 
-# Sequence Diagrams Continued
 ## Use Case: Select Ticket - By: Patrick Kwan
 See `./lib/SequenceDiagrams/SelectTicketRefundTicket.png`
-
+<!-- 
 ![Select Ticket](./SequenceDiagrams/SequenceSelectTicketwithGUI.png)
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"></div> -->
 
-# Sequence Diagrams Continued
 ## Use Case: Checkout - By: Oluwapelumi Laditan
 See `./lib/SequenceDiagrams/SequenceCheckout.png`
 
-![Checkout](./SequenceDiagrams/SequenceCheckout.png)
-<div style="page-break-after: always;"></div>
+<!-- ![Checkout](./SequenceDiagrams/SequenceCheckout.png)
+<div style="page-break-after: always;"></div> -->
 
-# Sequence Diagrams Continued
 ## Use Case: Register User - By: Michael Lasby
 See `./lib/SequenceDiagrams/SequenceRegisterUser.png`
 
-![Register User](./SequenceDiagrams/SequenceRegisterUser.png)
+<!-- ![Register User](./SequenceDiagrams/SequenceRegisterUser.png) -->
 <div style="page-break-after: always;"></div>
 
 # State Transition Diagrams
