@@ -3,7 +3,14 @@
 ### Submitted on: November 22, 2020
 ### Submitted by: Victor Tuah Kumi, Patrick Kwan, Oluwapelumi Laditan, Michael Lasby
 
+### README: 
+Please note that some of these diagrams are best viewed as image / pdf files. These diagrams are included in the enclosed `./lib/` folder and file path names are included below. 
+
+For page-break free viewing, we recommend viewing this report as a markdown file in your preferred markdown viewer. See `./ENSF-619_Group-8_TicketReservationApp-DesignReport.md`. 
+
+
 # Use Case Diagram
+See `./lib/UseCaseDiagram/UseCaseDiagram.png`
 ![Use case diagram](./UseCaseDiagram/UseCaseDiagram.png)
 <div style="page-break-after: always;"></div>
 
@@ -12,35 +19,50 @@
 <div style="page-break-after: always;"></div>
 
 # Conceptual Class Design Diagram
-![Conceptual Class Diagram](./ConceptualUML/ClassUMLAttributesMethods.png)
+See `./lib/ConceptualUML/ClassUMLAttributesMethods.png`
 
+![Conceptual Class Diagram](./ConceptualUML/ClassUMLAttributesMethods_rotated.png)
 <div style="page-break-after: always;"></div>
 
 # Detailed Class Design Diagram
-![Detailed Class Diagram](./DetailedUML/DetailedClassDiagram.png)
+See `./lib/DetailedUML/DetailedClassDiagram.png`
 
+![Detailed Class Diagram](./DetailedUML/DetailedClassDiagram.png)
 <div style="page-break-after: always;"></div>
 
 # Sequence Diagrams
 
 ## Use Case: Refund Ticket - By: Victor Tuah Kumi
+See `./lib/SequenceDiagrams/SequenceRefundTicket.png`
+
 ![Refund Ticket Use Case](./SequenceDiagrams/SequenceRefundTicket.png)
 <div style="page-break-after: always;"></div>
 
+# Sequence Diagrams Continued
 ## Use Case: Select Ticket - By: Patrick Kwan
+See `./lib/SequenceDiagrams/SelectTicketRefundTicket.png`
+
 ![Select Ticket](./SequenceDiagrams/SequenceSelectTicketwithGUI.png)
 <div style="page-break-after: always;"></div>
 
+# Sequence Diagrams Continued
 ## Use Case: Checkout - By: Oluwapelumi Laditan
+See `./lib/SequenceDiagrams/SequenceCheckout.png`
+
 ![Checkout](./SequenceDiagrams/SequenceCheckout.png)
 <div style="page-break-after: always;"></div>
 
+# Sequence Diagrams Continued
 ## Use Case: Register User - By: Michael Lasby
+See `./lib/SequenceDiagrams/SequenceRegisterUser.png`
+
 ![Register User](./SequenceDiagrams/SequenceRegisterUser.png)
 <div style="page-break-after: always;"></div>
 
 # State Transition Diagrams
 ## Ticket 
+See `./lib/StateTransition/TicketStateTransition.png`
+
 ![Ticket Transition](./StateTransition/TicketStateTransition.png)
 
 ## Payment
