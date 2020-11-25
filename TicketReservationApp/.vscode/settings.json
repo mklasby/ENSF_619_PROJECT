@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/mklasby/Documents/meng/619/Project/ENSF_619_PROJECT/TicketReservationApp/**/*.jar"
+    ]
+}
