@@ -42,7 +42,14 @@ public class MovieViewController extends ViewController implements MessageConsta
 
     public void submit() {
         try {
-            Message response = guiController.selectMovie((JSONObject) movies.get(selectedIdx));
+            JSONObject movie = movies.getJSONObject(selectedIdx);
+            Message response = guiController.selectMovie(movie);
+            if (isErrorMessage(response)) {
+                return;
+            } else {
+                view.flashSuccessMessage("Success, please select a threatre...");
+                view.display("theatrePanel");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
