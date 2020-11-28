@@ -1,4 +1,4 @@
-package TheatreModel;
+package Model.TheatreModel;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

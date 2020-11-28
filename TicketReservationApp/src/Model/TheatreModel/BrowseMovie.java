@@ -18,11 +18,12 @@ public class BrowseMovie implements MessageConstants {
 			Movie thisMovie = new Movie(allMovies);
 			movieList.add(thisMovie);
 		} while (allMovies.next());
-		ArrayList<String> movieData = new ArrayList<String>();
+		// ArrayList<String> movieData = new ArrayList<String>();
+		JSONArray movieData = new JSONArray();
 		for (Movie movie : movieList) {
-			movieData.add(movie.toString());
+			movieData.put(movie.toString());
 		}
-		Message response = new Message(OK, movieData.toString());
+		Message response = new Message(OK, movieData);
 		return response;
 	}
 
