@@ -1,8 +1,10 @@
 package View.ViewControllers;
 
+import Controller.*;
 import CommonMessage.Message;
 
 public class GuiController {
+    public BossController boss = new BossController();
     public boolean isRegistered = false;
     public boolean isManager = false;
 
@@ -30,6 +32,7 @@ public class GuiController {
         this.isManager = isManager;
     }
 
-    public Message login(String fieldText, String fieldText2) {
+    public Message login(String username, String password) {
+        return boss.login(username, password);
     }
 }
