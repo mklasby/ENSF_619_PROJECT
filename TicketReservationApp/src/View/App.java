@@ -17,8 +17,8 @@ public class App {
         MovieView movieView = new MovieView(gui, "moviePanel");
         MovieViewController movieViewController = new MovieViewController(movieView, guiController);
 
-        // MenuView menu = new MenuView();
-        // MenuController menuController = new MenuController(gui, "menuPanel");
+        TheatreView theatreView = new TheatreView(gui, "menuPanel");
+        TheatreViewController theatreView = new TheatreViewController(theatreView, guiController);
 
         // MenuView menu = new MenuView();
         // MenuController menuController = new MenuController(gui, "menuPanel");

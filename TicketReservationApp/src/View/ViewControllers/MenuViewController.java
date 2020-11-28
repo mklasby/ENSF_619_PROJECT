@@ -25,7 +25,7 @@ public class MenuViewController extends ViewController {
             if (cmd == "login") {
                 view.display("loginPanel");
             } else if (cmd == "selectMovie") {
-                view.display("selectMovePanel");
+                view.display("moviePanel");
             } else if (cmd == "checkout") {
                 view.display("checkoutPanel");
             } else if (cmd == "registerUser") {

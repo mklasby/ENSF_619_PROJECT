@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import java.awt.event.*;
 
 public class MovieViewController extends ViewController implements MessageConstants {
@@ -40,7 +41,12 @@ public class MovieViewController extends ViewController implements MessageConsta
     }
 
     public void submit() {
-        guiController.selectMovie(movies.get(selectedIdx));
+        try {
+            Message response = guiController.selectMovie((JSONObject) movies.get(selectedIdx));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public class ButtonListener implements ActionListener {

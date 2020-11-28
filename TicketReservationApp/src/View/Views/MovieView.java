@@ -49,7 +49,7 @@ public class MovieView extends SubView implements MessageConstants, ViewConstant
         mainPanel.add(scrollPane, c);
 
         c.insets = new Insets(3, 3, 3, 3); // top, right, bottom, left;
-        c.gridx = 2;
+        c.gridy = 2;
         submitButton = new JButton("Submit");
         submitButton.setActionCommand("submit");
         submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);

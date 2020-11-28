@@ -48,7 +48,8 @@ public class GuiController {
         return null;
     }
 
-    public void selectMovie(JSONObject movie) {
-        boss.selectMovie(movie);
+    public Message selectMovie(JSONObject movie) {
+        Message response = boss.selectMovie(movie);
+        return response;
     }
 }

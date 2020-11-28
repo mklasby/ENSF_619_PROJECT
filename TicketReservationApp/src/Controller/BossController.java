@@ -22,6 +22,7 @@ public class BossController implements MessageConstants {
         // TODO: check if user is permitted to book this movie, return ERROR if not
         // TODO: If user can select ticket, return OK message.
         // TODO: Create ticket object and add this movie to it.
+        return new Message(OK, "Movie selected!");
     }
 
 }
