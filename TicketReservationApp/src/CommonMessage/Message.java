@@ -1,4 +1,4 @@
-package View.ViewControllers;
+package CommonMessage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,9 +12,9 @@ import org.json.JSONObject;
  */
 public class Message extends JSONObject implements MessageConstants {
     public String status;
-    public String data;
+    public Object data;
 
-    public Message(String status, String data) {
+    public Message(String status, Object data) {
         super();
         this.status = status;
         this.data = data;

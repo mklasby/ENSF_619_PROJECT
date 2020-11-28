@@ -1,15 +1,15 @@
-package View.ViewControllers;
+package CommonMessage;
 
 public interface MessageConstants {
     // STATUS
-    static String STATUS = "STATUS";
+    static String STATUS = "STATUS"; // KEY
     static String ERROR = "ERROR"; // Error in
     static String OK = "OK";
 
     // DATA
-    static String DATA = "DATA"; // key type
+    static String DATA = "DATA"; // KEY
 
-    static String QUIT = "QUIT"; // key type
+    static String QUIT = "QUIT"; // KEY
 
     // // Message Types
     // static String MESSAGE_TYPE = "MESSAGE_TYPE";
