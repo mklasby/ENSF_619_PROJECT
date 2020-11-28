@@ -69,7 +69,7 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
 
         c.gridy = 5;
         logoutButton = new JButton("Logout");
-        logoutButton.setActionCommand("Logout");
+        logoutButton.setActionCommand("logout");
         logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(logoutButton, c);
 
