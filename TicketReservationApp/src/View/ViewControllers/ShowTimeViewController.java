@@ -10,22 +10,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.awt.event.*;
 
-public class TheatreViewController extends ViewController implements MessageConstants {
+public class ShowTimeViewController extends ViewController implements MessageConstants {
     int selectedIdx = -1;
-    JSONArray theatres;
+    JSONArray showTimes;
 
-    public TheatreViewController(SubView view, GuiController guiController) {
+    public ShowTimeViewController(SubView view, GuiController guiController) {
         super(view, guiController);
-        getTheatreList();
-
+        getShowTimeList();
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
     }
 
-    private void getTheatreList() {
-        JSONObject theatreMessage = guiController.getTheatreList();
+    private void getShowTimeList() {
+        Message showTimeMessage = guiController.getTheatreList();
         try {
-            theatres = theatreMessage.getJSONArray(DATA);
+            showTimes = showTimeMessage.getJSONArray(DATA);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -51,8 +50,8 @@ public class TheatreViewController extends ViewController implements MessageCons
 
     public void submit() {
         try {
-            JSONObject theatre = theatres.getJSONObject(selectedIdx);
-            Message response = guiController.selectTheatre(theatre);
+            JSONObject showTime = showTimes.getJSONObject(selectedIdx);
+            Message response = guiController.selectShowTime(showTime);
             if (isErrorMessage(response)) {
                 return;
             } else {

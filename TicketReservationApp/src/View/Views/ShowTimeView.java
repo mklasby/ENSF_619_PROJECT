@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
-public class TheatreView extends SubView implements MessageConstants, ViewConstants {
+public class ShowTimeView extends SubView implements MessageConstants, ViewConstants {
     private JLabel mainLabel;
     private JList resultsList;
     private JButton submitButton;
 
-    public TheatreView(Gui gui, String mainPanelKey) {
+    public ShowTimeView(Gui gui, String mainPanelKey) {
         super(gui, mainPanelKey);
         buildMainPanel();
         registerButtons();
@@ -25,7 +25,7 @@ public class TheatreView extends SubView implements MessageConstants, ViewConsta
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        mainLabel = new JLabel("Please select a theatre from the list below:");
+        mainLabel = new JLabel("Please select a showtime from the list below:");
         mainLabel.setFont(SUBTITLE_FONT);
         mainLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         c.gridx = 0;

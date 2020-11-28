@@ -8,7 +8,6 @@ import CommonMessage.MessageConstants;
 
 public class MovieView extends SubView implements MessageConstants, ViewConstants {
     private JLabel mainLabel;
-    private JLabel moviesLabel;
     private JList resultsList;
     private JButton submitButton;
 

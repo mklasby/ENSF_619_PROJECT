@@ -44,12 +44,27 @@ public class GuiController {
         boss.logoutUser();
     }
 
-    public JSONArray getMovieList() {
-        return null;
+    public Message getMovieList() {
+        Message response = boss.getMovieList();
+        return response;
     }
 
     public Message selectMovie(JSONObject movie) {
         Message response = boss.selectMovie(movie);
+        return response;
+    }
+
+    public Message getTheatreList() {
+        return boss.getTheatreList();
+    }
+
+    public Message selectTheatre(JSONObject theatre) {
+        Message response = boss.selectTheatre(theatre);
+        return response;
+    }
+
+    public Message selectShowTime(JSONObject showTime) {
+        Message response = boss.selectShowTime(showTime);
         return response;
     }
 }
