@@ -1,6 +1,10 @@
 package View.ViewControllers;
 
 import Controller.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import CommonMessage.Message;
 
 public class GuiController {
@@ -34,5 +38,18 @@ public class GuiController {
 
     public Message login(String username, String password) {
         return boss.login(username, password);
+    }
+
+    public void logout() {
+        boss.logoutUser();
+    }
+
+    public JSONArray getMovieList() {
+        return null;
+    }
+
+    public Message selectMovie(JSONObject movie) {
+        Message response = boss.selectMovie(movie);
+        return response;
     }
 }

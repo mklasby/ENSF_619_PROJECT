@@ -25,13 +25,14 @@ public class MenuViewController extends ViewController {
             if (cmd == "login") {
                 view.display("loginPanel");
             } else if (cmd == "selectMovie") {
-                view.display("selectMovePanel");
+                view.display("moviePanel");
             } else if (cmd == "checkout") {
                 view.display("checkoutPanel");
             } else if (cmd == "registerUser") {
                 view.display("registerUserPanel");
             } else if (cmd == "logout") {
-                view.display("logoutPanel");
+                logout();
+
             } else if (cmd == "payAnnual") {
                 view.display("payAnnualPanel");
             } else if (cmd == "issueMovieNews") {
@@ -59,6 +60,14 @@ public class MenuViewController extends ViewController {
     @Override
     protected HashMap<String, JTextField> getInfoFields() {
         return null;
+    }
+
+    public void logout() {
+        guiController.logout();
+        MenuView thiView = (MenuView) view;
+        thiView.setToUserView();
+        view.flashSuccessMessage("You have logged out. Returning to Main Menu...");
+        view.display();
     }
 
     @Override

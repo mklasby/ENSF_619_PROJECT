@@ -1,7 +1,8 @@
+package View;
+
 import View.Views.*;
 import View.ViewControllers.*;
 import Controller.*;
-import Model.*;
 
 public class App {
     public static void main(String[] args) {
@@ -13,11 +14,11 @@ public class App {
         LoginView loginView = new LoginView(gui, "loginPanel");
         LoginViewController loginViewController = new LoginViewController(loginView, guiController);
 
-        // MenuView menu = new MenuView();
-        // MenuController menuController = new MenuController(gui, "menuPanel");
+        MovieView movieView = new MovieView(gui, "moviePanel");
+        MovieViewController movieViewController = new MovieViewController(movieView, guiController);
 
-        // MenuView menu = new MenuView();
-        // MenuController menuController = new MenuController(gui, "menuPanel");
+        TheatreView theatreView = new TheatreView(gui, "menuPanel");
+        TheatreViewController theatreView = new TheatreViewController(theatreView, guiController);
 
         // MenuView menu = new MenuView();
         // MenuController menuController = new MenuController(gui, "menuPanel");

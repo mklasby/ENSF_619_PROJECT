@@ -69,7 +69,7 @@ public class LoginView extends SubView implements MessageConstants, ViewConstant
         clearFieldsButton = new JButton("Clear Fields");
         clearFieldsButton.setActionCommand("clearFields");
         clearFieldsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(passwordField, c);
+        mainPanel.add(clearFieldsButton, c);
 
         c.gridx = 1;
         submitButton = new JButton("Submit");
