@@ -18,7 +18,6 @@ public class BrowseMovie implements MessageConstants {
 			Movie thisMovie = new Movie(allMovies);
 			movieList.add(thisMovie);
 		} while (allMovies.next());
-		// ArrayList<String> movieData = new ArrayList<String>();
 		JSONArray movieData = new JSONArray();
 		for (Movie movie : movieList) {
 			movieData.put(movie.toString());
