@@ -8,6 +8,8 @@ public interface MessageConstants {
 
     // DATA
     static String DATA = "DATA"; // KEY
+    static String REGISTERED = "REGISTERED";
+    static String MANAGER = "MANAGER";
 
     static String QUIT = "QUIT"; // KEY
 
