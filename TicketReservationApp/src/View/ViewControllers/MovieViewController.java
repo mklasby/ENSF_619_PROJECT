@@ -16,10 +16,19 @@ public class MovieViewController extends ViewController implements MessageConsta
 
     public MovieViewController(SubView view, GuiController guiController) {
         super(view, guiController);
-        movies = guiController.getMovieList();
+        getMovieList();
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
 
+    }
+
+    private void getMovieList() {
+        Message movieMessage = guiController.getMovieList();
+        try {
+            movies = movieMessage.getJSONArray(DATA);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -47,7 +56,7 @@ public class MovieViewController extends ViewController implements MessageConsta
             if (isErrorMessage(response)) {
                 return;
             } else {
-                view.flashSuccessMessage("Success, please select a threatre...");
+                view.flashSuccessMessage("Success, please select a theatre...");
                 view.display("theatrePanel");
             }
         } catch (JSONException e) {

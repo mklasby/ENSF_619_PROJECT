@@ -25,4 +25,27 @@ public class BossController implements MessageConstants {
         return new Message(OK, "Movie selected!");
     }
 
+    public Message getMovieList() {
+        // TODO: Return OK with list of movies as JSONArray in DATA
+        return null;
+    }
+
+    public Message getTheatreList() {
+        // TODO: Return OK with list of theatres as JSONArray in DATA
+        return null;
+    }
+
+    public Message selectTheatre(JSONObject theatre) {
+        // TODO: Return OK message
+        // TODO: Add theatre to ticket
+        return new Message(OK, "Theatre Selected!");
+    }
+
+    public Message selectShowTime(JSONObject showTime) {
+        // TODO: Return ok if seats remain available ?
+        // TODO: Add showtime to ticket
+        //
+        return new Message(OK, "Showtime selected!");
+    }
+
 }
