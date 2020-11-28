@@ -109,7 +109,7 @@ public class DatabaseController implements Password {
 		try {
 			String query = "SELECT TheatreName FROM HOSTED_BY AS H WHERE H.MovieName = ?";
 			pStat = jdbc_connection.prepareStatement(query);
-			pStat.setString(1, MovieName);
+			pStat.setString(1, movieName);
 			resultSet = pStat.executeQuery();
 			
 			return resultSet;
@@ -163,13 +163,13 @@ public class DatabaseController implements Password {
 	
 	//Dont really need this????????
 	
-	public ResultSet searchTicket(String MovieName, String TheatreName, int ShowTimeID, int SeatNumber) {
+	public ResultSet searchTicket(String movieName, String theatreName, int ShowTimeID, int SeatNumber) {
 		
 		try {
 			String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
 			pStat = jdbc_connection.prepareStatement(query);
-			pStat.setString(1, MovieName);
-			pStat.setString(1, TheatreName);
+			pStat.setString(1, movieName);
+			pStat.setString(1, theatreName);
 			resultSet = pStat.executeQuery();
 			return resultSet;
 			
@@ -185,10 +185,9 @@ public class DatabaseController implements Password {
 	public ResultSet getRegisteredUser(String userName) {
 		
 		try {
-			String query = "SELECT  SeatNumber, T.isSeatReserved FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
+			String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
 			pStat = jdbc_connection.prepareStatement(query);
 			pStat.setString(1, userName);
-			pStat.setString(1, TheatreName);
 			resultSet = pStat.executeQuery();
 			return resultSet;
 			
@@ -201,15 +200,86 @@ public class DatabaseController implements Password {
 		
 	}
 	
-	public 
+	
+	public ResultSet getVoucher(String userName) {
+		
+		try {
+			String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
+			pStat = jdbc_connection.prepareStatement(query);
+			pStat.setString(1, userName);
+			resultSet = pStat.executeQuery();
+			return resultSet;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	
 	
+	public ResultSet getVoucher(int voucherID) {
+		
+		try {
+			String query = "SELECT * FROM Voucher WHERE VoucherID = ? ";
+			pStat = jdbc_connection.prepareStatement(query);
+			pStat.setInt(1, voucherID);
+			resultSet = pStat.executeQuery();
+			return resultSet;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	public ResultSet deactivateVoucher(int voucherID) {
+		
+		try {
+			String query = "UPDATE VOUCHER SET isVoucherActive = 0 WHERE VoucherID = ?";
+			pStat = jdbc_connection.prepareStatement(query);
+			pStat.setInt(1, voucherID);
+			resultSet = pStat.executeQuery();
+			return resultSet;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	public ResultSet getReceipt(int receiptID) {
+		
+		try {
+			//String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID = ? AND V.VoucherID = R.VoucherID";
+			String query = "SELECT * FROM RECEIPT AS R WHERE ReceiptID = ?";
+			pStat = jdbc_connection.prepareStatement(query);
+			pStat.setInt(1, receiptID);
+			resultSet = pStat.executeQuery();
+			return resultSet;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	
 	
 	public void main(String args) {
 		
 		DatabaseController dbCtrl = new DatabaseController();
-		dbCtrl = 
+		
 		
 	}
 	
