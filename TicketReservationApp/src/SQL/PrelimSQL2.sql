@@ -2,10 +2,21 @@ DROP DATABASE IF EXISTS ticketRegistrationDatabase;
 CREATE DATABASE ticketRegistrationDatabase; 
 USE ticketRegistrationDatabase;
 
-DROP TABLE IF EXISTS MOVIE;
+DROP TABLE IF EXISTS CREDIT_INFORMATION;
+CREATE TABLE CREDIT_INFORMATION (
+  CreditCardNumber    	int not null,
+  CreditCardType		varchar(25),
+  primary key (CreditCardNumber)
+  
+);
+INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (9999,"D");
+INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (8888,"M");
+INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (7777,"V");
+
 
 /*Supplier doesnt have phone number silly
 */
+DROP TABLE IF EXISTS MOVIE;
 CREATE TABLE MOVIE (
   MovieName    	  		varchar(25) not null,
   IsEarlyAccess 		boolean,
@@ -24,7 +35,8 @@ CREATE TABLE THEATRE (
   primary key (TheatreName)
 );
 
-INSERT INTO THEATRE (TheatreName ,Address) VALUES ("Country Hills Theatres", "Somewhere");
+INSERT INTO THEATRE (TheatreName ,Address) VALUES ("Country Hills Theatres", "Somewhere in Calgary");
+
 
 
 DROP TABLE IF EXISTS HOSTED_BY;
@@ -38,6 +50,7 @@ CREATE TABLE HOSTED_BY (
 
 INSERT INTO HOSTED_BY (TheatreName ,MovieName) VALUES ("Country Hills Theatres", "Die Hard");
 INSERT INTO HOSTED_BY (TheatreName ,MovieName) VALUES ("Country Hills Theatres", "Rambo III");
+
 
 DROP TABLE IF EXISTS SHOWTIME;
 CREATE TABLE SHOWTIME (
@@ -110,25 +123,29 @@ INSERT INTO TICKET (TicketID, SeatNumber, IsSeatReserved, ShowTimeID, TheatreNam
 DROP TABLE IF EXISTS REGISTERED_USERS;
 CREATE TABLE REGISTERED_USERS (
   isMembershipPaid      		boolean,
+  UserType						varchar(25),
   Username						varchar(25),
   UserPassword					varchar(25),
-  FirstName      				varchar(25),
-  LastName      				varchar(25),
+  Name      					varchar(25),
   Email      					varchar(25),
   CreditCardNumber      		int,
 
-  PRIMARY KEY (Username)
+  PRIMARY KEY (Username),
+  FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 
-INSERT INTO REGISTERED_USERS (isMembershipPaid, Username, UserPassword, FirstName, LastName, Email, CreditCardNumber  ) VALUES (True, 'user' ,'password', 'Sylvester', 'Stallone', 'realrambo@hotmail.com', 9999 ) ;
+INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber  ) VALUES (True, 'R', 'user' ,'password', 'Sylvester Stallone', 'realrambo@hotmail.com', 9999 ) ;
+INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber  ) VALUES (Null, 'M', 'admin' ,'admin', 'Big Boy', 'bigboy@hotmail.com', 8888 ) ;
 
 DROP TABLE IF EXISTS VOUCHER;
 CREATE TABLE VOUCHER (
   VoucherID				int,
   VoucherValue			double,
+  VoucherExpiraryDate	date,
+  VoucherActive			boolean,
   PRIMARY KEY (VoucherID)
 );
-INSERT INTO VOUCHER (VoucherID, VoucherValue) VALUES (1, 8.99);
+INSERT INTO VOUCHER (VoucherID, VoucherValue, VoucherExpiraryDate, VoucherActive) VALUES (1, 8.99, '2009-01-01 10:40:00',True);
 
 
 DROP TABLE IF EXISTS RECEIPT;
@@ -140,8 +157,10 @@ CREATE TABLE RECEIPT (
   VoucherID					int,
   Price						double,
 
-  PRIMARY KEY (ReceiptID)
-
+  PRIMARY KEY (ReceiptID),
+  FOREIGN KEY (TicketID) REFERENCES TICKET(TicketID),
+  FOREIGN KEY (VoucherID) REFERENCES VOUCHER(VoucherID),
+  FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (1, 'Ticket' , 1, 9999, null, 8.99) ;
 
@@ -155,7 +174,8 @@ CREATE TABLE TICKET_PURCHASES (
 
   PRIMARY KEY (TicketID, CreditCardNumber, ReceiptID),
   FOREIGN KEY (TicketID) REFERENCES TICKET(TicketID),
-  FOREIGN KEY (ReceiptID) REFERENCES RECEIPT(ReceiptID)
+  FOREIGN KEY (ReceiptID) REFERENCES RECEIPT(ReceiptID),
+  FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO TICKET_PURCHASES (PurchaseID, TicketID, VoucherID, CreditCardNumber, ReceiptID  ) VALUES (1, 1 , null, 9999, 1) ;
 

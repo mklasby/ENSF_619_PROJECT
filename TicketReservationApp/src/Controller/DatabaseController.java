@@ -104,10 +104,10 @@ public class DatabaseController implements Password {
 		
 	}
 	
-	public ResultSet getTheatreList(String MovieName) {
+	public ResultSet getTheatreList(String movieName) {
 		
 		try {
-			String query = "SELECT ThreatreName FROM HOSTED_BY WHERE MovieName = ?";
+			String query = "SELECT TheatreName FROM HOSTED_BY AS H WHERE H.MovieName = ?";
 			pStat = jdbc_connection.prepareStatement(query);
 			pStat.setString(1, MovieName);
 			resultSet = pStat.executeQuery();
@@ -123,13 +123,13 @@ public class DatabaseController implements Password {
 
 	}
 	
-	public ResultSet getShowTimeList(String MovieName, String TheatreName) {
+	public ResultSet getShowTimeList(String movieName, String theatreName) {
 		
 		try {
-			String query = "SELECT * FROM SHOWTIME AS ST, SHOWINGS AS SW WHERE SW.MovieName = ? AND SW.TheatreName = ? AND SW.ShowTimeID = ST.ShowTimeID  ";
+			String query = "SELECT  ST.ShowTimeID, ST.StartTime, ST.EndTime FROM SHOWTIME AS ST, SHOWINGS AS SW WHERE SW.MovieName = ? AND SW.TheatreName = ? AND SW.ShowTimeID = ST.ShowTimeID";
 			pStat = jdbc_connection.prepareStatement(query);
-			pStat.setString(1, MovieName);
-			pStat.setString(1, TheatreName);
+			pStat.setString(1, movieName);
+			pStat.setString(1, theatreName);
 			resultSet = pStat.executeQuery();
 			return resultSet;
 			
@@ -143,9 +143,30 @@ public class DatabaseController implements Password {
 		
 	}
 	
-	public ResultSet getShowTimeList(String MovieName, String TheatreName, int ShowTimeID) {
+	public ResultSet getSeats(String movieName, String theatreName, int showTimeID) {
 		try {
-			String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND ShowTimeID = ?  ";
+			String query = "SELECT  T.SeatNumber, T.isSeatReserved FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
+			pStat = jdbc_connection.prepareStatement(query);
+			pStat.setString(1, movieName);
+			pStat.setString(1, theatreName);
+			resultSet = pStat.executeQuery();
+			return resultSet;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	//Dont really need this????????
+	
+	public ResultSet searchTicket(String MovieName, String TheatreName, int ShowTimeID, int SeatNumber) {
+		
+		try {
+			String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
 			pStat = jdbc_connection.prepareStatement(query);
 			pStat.setString(1, MovieName);
 			pStat.setString(1, TheatreName);
@@ -161,33 +182,35 @@ public class DatabaseController implements Password {
 		
 	}
 	
-	
-	
-	
-	public ResultSet getToolList() {
+	public ResultSet getRegisteredUser(String userName) {
 		
 		try {
-			//String tableName  = "TOOL";
-			//String query = "SELECT * FROM " + tableName + " WHERE ToolID IS NOT NULL";
-			String query = "SELECT T.ToolID, T.Name AS 'ToolName', T.Type AS 'ToolType', T.Quantity, T.Price, T.SupplierID, "
-					+ "S.Name as 'SupplierName', S.Type AS 'SupplierType', S.Address, S.Cname, S.PhoneNum, "
-					+ "I.ImportTax, E.PowerType "
-					+ "FROM SUPPLIER as S, TOOL as T "
-					+ "LEFT JOIN INTERNATIONAL as I USING (SupplierID) "
-					+ "LEFT JOIN ELECTRICAL as E USING (ToolID) "
-					+ "WHERE T.SupplierID = S.SupplierID "
-					+ "ORDER BY T.ToolID;";
-			
-			
-			
+			String query = "SELECT  SeatNumber, T.isSeatReserved FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
 			pStat = jdbc_connection.prepareStatement(query);
+			pStat.setString(1, userName);
+			pStat.setString(1, TheatreName);
 			resultSet = pStat.executeQuery();
 			return resultSet;
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
+		
+	}
+	
+	public 
+	
+	
+	
+	
+	public void main(String args) {
+		
+		DatabaseController dbCtrl = new DatabaseController();
+		dbCtrl = 
+		
 	}
 	
 	
