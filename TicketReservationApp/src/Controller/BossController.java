@@ -1,5 +1,6 @@
 package Controller;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import CommonMessage.Message;
@@ -46,6 +47,12 @@ public class BossController implements MessageConstants {
         // TODO: Add showtime to ticket
         //
         return new Message(OK, "Showtime selected!");
+    }
+
+    public JSONArray getSeatList() {
+        // TODO: Return ok if seat selection is good, error otherwise
+        // TODO: Add selected seat to ticket
+        return null;
     }
 
 }

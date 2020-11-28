@@ -22,21 +22,22 @@ public class MenuViewController extends ViewController {
             String cmd = e.getActionCommand();
             System.out.print(cmd);
 
-            if (cmd == "login") {
+            if (cmd.equals("login")) {
                 view.display("loginPanel");
-            } else if (cmd == "selectMovie") {
+            } else if (cmd.equals("selectMovie")) {
                 view.display("moviePanel");
-            } else if (cmd == "checkout") {
+            } else if (cmd.equals("checkout")) {
                 view.display("checkoutPanel");
-            } else if (cmd == "registerUser") {
+            } else if (cmd.equals("registerUser")) {
                 view.display("registerUserPanel");
-            } else if (cmd == "logout") {
+            } else if (cmd.equals("logout")) {
                 logout();
-
-            } else if (cmd == "payAnnual") {
+            } else if (cmd.equals("payAnnual")) {
                 view.display("payAnnualPanel");
-            } else if (cmd == "issueMovieNews") {
+            } else if (cmd.equals("issueMovieNews")) {
                 view.display("issueMovieNewsPanel");
+            } else if (cmd.equals("refund")) {
+                view.display("refundView");
             }
         }
 

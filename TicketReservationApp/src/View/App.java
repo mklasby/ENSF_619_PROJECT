@@ -14,11 +14,27 @@ public class App {
         LoginView loginView = new LoginView(gui, "loginPanel");
         LoginViewController loginViewController = new LoginViewController(loginView, guiController);
 
-        MovieView movieView = new MovieView(gui, "moviePanel");
-        MovieViewController movieViewController = new MovieViewController(movieView, guiController);
+        // MovieView movieView = new MovieView(gui, "moviePanel");
+        // MovieViewController movieViewController = new MovieViewController(movieView,
+        // guiController);
 
-        TheatreView theatreView = new TheatreView(gui, "theatrePanel");
-        TheatreViewController theatreView = new TheatreViewController(theatreView, guiController);
+        // TheatreView theatreView = new TheatreView(gui, "theatrePanel");
+        // TheatreViewController theatreViewController = new
+        // TheatreViewController(theatreView, guiController);
+
+        // ShowTimeView showTimeView = new ShowTimeView(gui, "showTimePanel");
+        // ShowTimeViewController showTimeViewController = new
+        // ShowTimeViewController(showTimeView, guiController);
+
+        // SeatView seatView = new SeatView(gui, "seatPanel");
+        // SeatViewController seatViewController = new SeatViewController(seatView,
+        // guiController);
+        // seatView.display("seatPanel");
+        // gui.display();
+
+        // TODO:
+        PaymentView paymentView = new PaymentView(gui, "paymentView");
+        PaymentViewController paymentViewController = new PaymentViewController(paymentView, guiController);
 
         // MenuView menu = new MenuView();
         // MenuController menuController = new MenuController(gui, "menuPanel");
@@ -31,7 +47,6 @@ public class App {
         // CustomerController custCtrl = new CustomerController(custView, clientCtrl);
         // InventoryView invView = new InventoryView(gui, "inventoryPanel");
         // InventoryController invCtrl = new InventoryController(invView, clientCtrl);
-        gui.display();
 
     }
 }

@@ -67,4 +67,12 @@ public class GuiController {
         Message response = boss.selectShowTime(showTime);
         return response;
     }
+
+    public JSONArray getSeatList() {
+        return boss.getSeatList();
+    }
+
+    public Message selectSeat(JSONObject seat) {
+        return null;
+    }
 }

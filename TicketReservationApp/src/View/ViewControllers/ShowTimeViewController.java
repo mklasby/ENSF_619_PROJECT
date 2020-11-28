@@ -55,8 +55,8 @@ public class ShowTimeViewController extends ViewController implements MessageCon
             if (isErrorMessage(response)) {
                 return;
             } else {
-                view.flashSuccessMessage("Success, please select a showtime...");
-                view.display("showtimePanel");
+                view.flashSuccessMessage("Success, please select a seat...");
+                view.display("seatPanel");
             }
         } catch (JSONException e) {
             e.printStackTrace();
