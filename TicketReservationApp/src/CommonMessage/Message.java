@@ -48,7 +48,7 @@ public class Message extends JSONObject implements MessageConstants {
         this.status = status;
     }
 
-    public String getData() {
+    public Object getData() {
         return this.data;
     }
 

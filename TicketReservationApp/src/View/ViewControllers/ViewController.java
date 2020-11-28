@@ -1,5 +1,6 @@
 package View.ViewControllers;
 
+import CommonMessage.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.awt.Dimension;
@@ -32,13 +33,13 @@ public abstract class ViewController implements MessageConstants {
         this.guiController = guiController;
     }
 
-    ViewController(GuiController guiController, SubView view) {
+    ViewController(SubView view, GuiController guiController) {
         this.guiController = guiController;
         this.view = view;
     }
 
-    protected void registerGuiMenuButton(String key) {
-        view.registerGuiMenuButton(menuListener, key);
+    protected void registerGuiMenuButton(ActionListener listener) {
+        view.registerGuiMenuButton(listener);
     }
 
     protected boolean areFieldsEmpty() {
@@ -75,6 +76,4 @@ public abstract class ViewController implements MessageConstants {
     protected abstract boolean areInfoFieldsEmpty();
 
     protected abstract void clearInfoFields();
-
-    protected abstract void registerListeners();
 }

@@ -119,6 +119,10 @@ public abstract class SubView {
         gui.setPanel(mainPanelKey);
     }
 
+    public void display(String key) {
+        gui.setPanel(key);
+    }
+
     public void flashErrorMessage(String error) {
         JOptionPane.showMessageDialog(mainPanel, error, "ERROR!", JOptionPane.ERROR_MESSAGE);
     }
@@ -184,7 +188,7 @@ public abstract class SubView {
         }
     }
 
-    public void registerGuiMenuButton(ActionListener menuListener, String key) {
+    public void registerGuiMenuButton(ActionListener menuListener) {
         gui.registerMainMenuButton(menuListener);
     }
 
@@ -198,7 +202,7 @@ public abstract class SubView {
         this.fields = fields;
     }
 
-    // Use this method to build main pasnel
+    // Use this method to build main panel
     protected abstract void buildMainPanel();
 
     // Use these methods to register each sub views components with SubView
