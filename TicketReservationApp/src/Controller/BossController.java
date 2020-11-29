@@ -228,8 +228,9 @@ public class BossController implements MessageConstants {
     	ResultSet resultSet = databaseController.getReceipt(ticketNum);
     	if(resultSet == null) {// if receipt is not found
     		return new Message(ERROR, "Ticket Number not Found");
+    		
     	}else {
-    		if(databaseController.getTicket().getStartTime()-whatever time is it now < 72 hours) {
+    		if(databaseController.getTicket(ticketNum).getStartTime()-whatever time is it now < 72 hours) {
     			return new Message(ERROR, "Sorry, no refunds within 72 hours of showtime");
     		}
     		

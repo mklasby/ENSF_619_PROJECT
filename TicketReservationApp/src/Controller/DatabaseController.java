@@ -223,14 +223,14 @@ public class DatabaseController implements Password {
 
 	}
 
-	public ResultSet getReceipt(int receiptID) {
+	public ResultSet getReceipt(int ticketID) {
 
 		try {
 			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
 			// ? AND V.VoucherID = R.VoucherID";
-			String query = "SELECT * FROM RECEIPT AS R WHERE ReceiptID = ?";
+			String query = "SELECT * FROM RECEIPT WHERE TicketID = ?";
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, receiptID);
+			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
 			return resultSet;
 
@@ -240,6 +240,80 @@ public class DatabaseController implements Password {
 		}
 		return null;
 
+	}
+	
+	public ResultSet setReceipt(int receiptID, String receiptType, int ticketID, int creditCardNumber, int voucherID, double price ) {
+		
+		 ///ah wait did david add date to receipt?? maybe we can move that to the registered user as some sort of expirary date or something and not store it on the table
+		try {
+			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
+			// ? AND V.VoucherID = R.VoucherID";
+			String query = "INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (?, ? , ?, ?, ?, ?)";
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, receiptID);
+			stmt.setString(2, receiptType);
+			stmt.setInt(3, ticketID);
+			stmt.setInt(4, creditCardNumber);
+			stmt.setInt(5, voucherID);
+			stmt.setDouble(6, price);
+			resultSet = stmt.executeQuery();
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+
+	}
+	
+	//ARgh we need functions for setting up your purchase history as well.
+	
+	public ResultSet deleteReceipt(int ticketID) {
+		
+		try {
+			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
+			// ? AND V.VoucherID = R.VoucherID";
+			String query = "DELETE FROM RECEIPT WHERE TicketID = ?"; //cascade delete voucher i think?
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, ticketID);
+			resultSet = stmt.executeQuery();
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+		
+	}
+	
+	public ResultSet getTicket(int ticketID) {
+		try {
+			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
+			// ? AND V.VoucherID = R.VoucherID";
+			String query = "SELECT * FROM TICKET AS T, SHOWTIME AS S, THREATRE AS TH, MOVIE AS M, SEATS AS S WHERE S.ShowTimeID = T.ShowTimeID AND  TH.TheatreName =  T.TheatreName AND "
+					+ " M.MovieName = T.MovieName AND S.SeatNumber = T.SeatNumber AND T.TicketID = ?"; //cascade delete voucher i think?
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, ticketID);
+			resultSet = stmt.executeQuery();
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	public ResultSet resetTicket(int ticketID ) {
+		
+		
 	}
 	
 	public ResultSet getRegisteredUser(String userName) {
