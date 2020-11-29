@@ -50,9 +50,11 @@ public class BossController implements MessageConstants {
 
                 if (user.getString("UserType").equals("M")) {
                     userManager.setUser(userManager.parseUserSQL(user));
+                    userManager.setIsRegistered(true);
                     return new Message(OK, "Manager");
                 } else {
                     userManager.setUser(userManager.parseUserSQL(user));
+                    userManager.setIsRegistered(true);
                     return new Message(OK, "Registered");
 
                 }
@@ -67,7 +69,6 @@ public class BossController implements MessageConstants {
     }
 
     public void logoutUser() {
-        // TODO: Reset user status to normal user
         userManager.logoutUser();
     }
 
@@ -289,6 +290,7 @@ public class BossController implements MessageConstants {
     }
 
     public void payAnnual() {
+        // TODO: Add logic to check if we have already paid?
         // TODO: add annual payment to cart, no need to return message. This call can
         // only be invoked after log in (guarded on front end already, no need to check
         // here)

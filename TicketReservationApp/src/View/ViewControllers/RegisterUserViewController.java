@@ -45,7 +45,13 @@ public class RegisterUserViewController extends ViewController implements Messag
             String name = view.getFieldText("name");
             String address = view.getFieldText("address");
             String email = view.getFieldText("email");
-            Integer cardNum = Integer.parseInt(view.getFieldText("cardNum"));
+            Integer cardNum;
+            try {
+                cardNum = Integer.parseInt(view.getFieldText("cardNum"));
+            } catch (NumberFormatException e) {
+                view.flashErrorMessage("ERROR: Card number must be an integer!");
+                return;
+            }
             String cardType = view.getComboBox("cardTypeComboBox").getSelectedItem().toString();
 
             Message response = guiController.registerNewUser(username, password, name, address, email, cardNum,

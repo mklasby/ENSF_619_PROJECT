@@ -76,4 +76,12 @@ public abstract class ViewController implements MessageConstants {
     protected abstract boolean areInfoFieldsEmpty();
 
     protected abstract void clearInfoFields();
+
+    protected void clearLists() {
+        HashMap<String, JList> lists = view.getLists();
+        for (String key : lists.keySet()) {
+            DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
+            listModel.clear();
+        }
+    }
 }

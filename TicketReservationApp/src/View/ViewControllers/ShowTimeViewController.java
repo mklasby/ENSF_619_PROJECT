@@ -79,6 +79,7 @@ public class ShowTimeViewController extends ViewController implements MessageCon
                 view.flashSuccessMessage("Success, please select a seat...");
                 nextController.getSeatList();
                 view.display("seatPanel");
+                clearLists();
             }
         } catch (JSONException e) {
             e.printStackTrace();

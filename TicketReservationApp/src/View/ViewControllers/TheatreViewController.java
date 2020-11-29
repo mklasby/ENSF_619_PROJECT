@@ -75,6 +75,7 @@ public class TheatreViewController extends ViewController implements MessageCons
                 view.flashSuccessMessage("Success, please select a showtime...");
                 nextController.getShowTimes();
                 view.display("showTimePanel");
+                clearLists();
             }
         } catch (JSONException e) {
             e.printStackTrace();
