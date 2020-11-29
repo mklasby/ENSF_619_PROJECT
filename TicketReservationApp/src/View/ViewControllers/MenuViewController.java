@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import javax.swing.*;
 import javax.swing.event.*;
+
+import CommonMessage.Message;
+
 import java.awt.event.*;
 import View.Views.*;
 
@@ -38,11 +41,20 @@ public class MenuViewController extends ViewController {
             } else if (cmd.equals("logout")) {
                 logout();
             } else if (cmd.equals("payAnnual")) {
-                guiController.payAnnual();
+                payAnnual();
             } else if (cmd.equals("issueNews")) {
                 view.display("issueMovieNewsPanel");
             } else if (cmd.equals("refund")) {
                 view.display("refundPanel");
+            }
+        }
+
+        private void payAnnual() {
+            Message response = guiController.payAnnual();
+            if (isErrorMessage(response){
+                return;
+            } else{
+                view.flashSuccessMessage(response.getString(DATA));
             }
         }
     }

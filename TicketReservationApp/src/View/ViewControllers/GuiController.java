@@ -134,7 +134,7 @@ public class GuiController implements MessageConstants {
         return boss.registerNewUser(false, "R", username, password, name, address, email, cardNum);
     }
 
-    public void payAnnual() {
-        boss.payAnnual();
+    public Message payAnnual() {
+        return boss.payAnnual();
     }
 }

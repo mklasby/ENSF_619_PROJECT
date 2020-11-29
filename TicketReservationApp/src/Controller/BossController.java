@@ -290,10 +290,12 @@ public class BossController implements MessageConstants {
         return new Message(OK, String.format("Success, %s uploaded and emailed to all registered users!", fieldText));
     }
 
-    public void payAnnual() {
-        // TODO: Add logic to check if we have already paid?
-        // TODO: add annual payment to cart, no need to return message. This call can
+    public Message payAnnual() {
+        // TODO: Add logic to check if we have already paid? return STATUS=ERROR if so?
+        // TODO: add annual payment to cart. This call can
         // only be invoked after log in (guarded on front end already, no need to check
         // here)
+        cart.addAnnualFee(new AnnualFee());
+        return new Message(OK, "Success, annual dues added to cart");
     }
 }
