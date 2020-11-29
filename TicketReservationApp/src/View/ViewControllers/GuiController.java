@@ -86,10 +86,9 @@ public class GuiController implements MessageConstants {
     }
 
     public Message registerNewUser(String username, String password, String name, String address, String email,
-            String cardNum, String cardType) {
-        Message response = boss.registerNewUser(username, password, name, address, email, cardNum, cardType);
+            int cardNum, String cardType) {
+        Message response = boss.registerNewUser(false, "R", username, password, name, address, email, cardNum);
         return response;
-
     }
 
     public boolean isRefundValid(int ticketNum) {
@@ -134,5 +133,10 @@ public class GuiController implements MessageConstants {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Message registerNewUser(String username, String password, String name, String address, String email,
+            Integer cardNum, String cardType) {
+        return null;
     }
 }

@@ -162,10 +162,10 @@ public class RegisterUserView extends SubView implements MessageConstants, ViewC
         fields = new HashMap<String, JTextField>();
         fields.put("username", userNameField);
         fields.put("password", passwordField);
-        fields.put("nameField", nameField);
-        fields.put("addressField", addressField);
-        fields.put("emailField", emailField);
-        fields.put("cardNumField", cardNumField);
+        fields.put("name", nameField);
+        fields.put("address", addressField);
+        fields.put("email", emailField);
+        fields.put("cardNum", cardNumField);
     }
 
     @Override

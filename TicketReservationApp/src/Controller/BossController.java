@@ -217,7 +217,7 @@ public class BossController implements MessageConstants {
     }
 
     public Message registerNewUser(boolean isMemberPaid, String userType, String username, String userPassword,
-            String name, String email, int creditCardNumber) {
+            String name, String address, String email, int creditCardNumber) {
         // TODO: return OK if successful, return ERROR If username already exists of if
         // supplied type are bad
 
@@ -225,8 +225,8 @@ public class BossController implements MessageConstants {
         if (resultSet != null) {
             return new Message(ERROR, "Username already exists");
         }
-        resultSet = databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email,
-                creditCardNumber); // No matter what happens this shouldnt bounce!
+        resultSet = databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, address,
+                email, creditCardNumber); // No matter what happens this shouldnt bounce!
         return new Message(OK, userManager.parseUserSQL(resultSet)); // wait shuold i return the user or should i just
                                                                      // say "New User has been registered"
 
@@ -262,19 +262,19 @@ public class BossController implements MessageConstants {
     	}
 
     }
-    
 
-    public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name, String email,
-            int creditCardNumber, String creditCardType) {
-    	
-    	ResultSet resultSet = databaseController.getRegisteredUser(username);
-    	if(resultSet == null) {//username exists send error.
-    		return new Message(ERROR, "Username already exist, please choose another one!");
-    	}else {
-    		resultSet = databaseController.registerMyUser(isMemberPaid, userType, username, password, name, email, creditCardNumber, creditCardType);
-    		return new Message(OK, resultSet);
- 
-    	}
+    public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name,
+            String email, int creditCardNumber, String creditCardType) {
+
+        ResultSet resultSet = databaseController.getRegisteredUser(username);
+        if (resultSet == null) {// username exists send error.
+            return new Message(ERROR, "Username already exist, please choose another one!");
+        } else {
+            resultSet = databaseController.registerMyUser(isMemberPaid, userType, username, password, name, email,
+                    creditCardNumber, creditCardType);
+            return new Message(OK, resultSet);
+
+        }
 
     }
 

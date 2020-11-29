@@ -45,7 +45,7 @@ public class RegisterUserViewController extends ViewController implements Messag
             String name = view.getFieldText("name");
             String address = view.getFieldText("address");
             String email = view.getFieldText("email");
-            String cardNum = view.getFieldText("cardNum");
+            Integer cardNum = Integer.parseInt(view.getFieldText("cardNum"));
             String cardType = view.getComboBox("cardTypeComboBox").getSelectedItem().toString();
 
             Message response = guiController.registerNewUser(username, password, name, address, email, cardNum,

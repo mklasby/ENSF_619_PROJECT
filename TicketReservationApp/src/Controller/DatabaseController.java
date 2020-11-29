@@ -403,17 +403,17 @@ public class DatabaseController implements Password {
 		return null;
 
 	}
-	
+
 	public ResultSet registerMyUser(boolean isMemberPaid, String userType, String username, String userPassword,
 			String name, String email, int creditCardNumber, String creditCardType) {
 
-			this.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email, creditCardNumber);
-			this.setCreditInformation(creditCardNumber, creditCardType);
-			resultSet = this.getRegisteredUser(username);
-			return resultSet;
-		
+		this.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email, creditCardNumber);
+		this.setCreditInformation(creditCardNumber, creditCardType);
+		resultSet = this.getRegisteredUser(username);
+		return resultSet;
+
 	}
-	
+
 	public ResultSet getCreditInformation(int creditCardNumber) {
 
 		try {
@@ -471,5 +471,10 @@ public class DatabaseController implements Password {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ResultSet setRegisteredUser(boolean isMemberPaid, String userType, String username, String userPassword,
+			String name, String address, String email, int creditCardNumber) {
+		return null;
 	}
 }
