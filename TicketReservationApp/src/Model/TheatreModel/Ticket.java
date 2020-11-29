@@ -5,10 +5,10 @@ public class Ticket {
 	private Theatre theatre;
 	private ShowTime showTime;
 	private Seat seat;
-	private User owner;                            //user and ticket should be 2 way association
+	//private User owner;                            //user and ticket should be 2 way association
 	
-	public Ticket(User owner) {                   //from state ticket state transition
-		setOwner(owner);
+	public Ticket(Movie selectedMovie) {                   //from state ticket state transition
+		this.setMovie(selectedMovie);
 	}
 	public Movie getMovie() {
 		return movie;
@@ -34,10 +34,12 @@ public class Ticket {
 	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}
+	/*
 	public User getOwner() {
 		return owner;
 	}
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
+	*/
 }

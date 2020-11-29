@@ -1,5 +1,6 @@
 package Controller;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.json.JSONException;
@@ -12,6 +13,7 @@ import CommonMessage.Message;
 import CommonMessage.MessageConstants;
 import Model.TheatreModel.*;
 import Model.UserModel.*;
+import Model.PaymentModel.*;
 
 public class BossController implements MessageConstants {
 
@@ -20,9 +22,7 @@ public class BossController implements MessageConstants {
     private DatabaseController databaseController;
     private FinancialController financialController;
     private Cart cart;
-    public BossController() {
-        user = new UserManager();
-    }
+
     
     public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart, UserManager userManager) {
     	this.databaseController = databaseController;
@@ -35,69 +35,39 @@ public class BossController implements MessageConstants {
         // TODO: Return STATUS=ERROR if login fails
         // TODO: Return STATUS=OK and DATA="MANAGER"
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
-<<<<<<< HEAD
-
-        // first search for it
-        DatabaseController db = new DatabaseController();
-        User user = new User(db.getRegisteredUser(username));
-
-        // check if there is a match if not error
-        if (user == null) { // There is no user with that name
-            return new Message(ERROR, "This username does not exists");
-        } else {
-            if (user.getPassword().equals(password)) {// the username and password exist you can log in!
-
-                if (user.getUserType() == "M") {
-                    UserManager.setUser(user);
-                    return new Message(OK, "MANAGER");
-                } else {
-                    UserManager.setUser(user);
-                    return new Message(OK, "REGISTERED");
-                }
-
-            } else {
-
-            }
-
-        }
-
-        // then check if the passwords match
-
-        // make sure you indicate the type!
-
-=======
+    	ResultSet user = databaseController.getRegisteredUser(username);
     	
-    	// first search for it
-    	User user = new User(databaseController.getRegisteredUser(username));
     	
-    	//check if there is a match if not error
+    	
     	if(user == null) { //There is no user with that name
     		return new Message(ERROR, "This username does not exists");
-    	}else {
-    		if(user.getPassword().equals(password)) {//the username and password exist you can log in!
-    			
-    			if(user.getUserType() == "M") {
-    				UserManager.setUser(user);
-    				return new Message(OK, "MANAGER");
-    			}else {
-    				UserManager.setUser(user);
-    				return new Message(OK, "REGISTERED")
-    			}
-    				
-    			}else {
-    			
-    		}
-    		
     	}
+		try {
+			if(!user.getString("UserPassword").equals(password)) {//the username and password exist you can log in!
+				//UserManager.setUser(user); // Here SEND THE RESULT SET TO GET FIXED
+				return new Message(ERROR, "Password does not match");
+
+
+			}else {	
+				
+				if(user.getString("UserType").equals("M")) {
+					return new Message(OK, "Manager");
+				}else {
+					return new Message(OK, "Registered");
+					
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	
     	
-    	//then check if the passwords match
-    	
-    	//make sure you indicate the type!
-    	
-    	
->>>>>>> a24382b964ad0e4ace7501d7304c29e12732b504
-        return new Message(OK, REGISTERED);
     }
+    		
+
+      
 
     public void logoutUser() {
         // TODO: Reset user status to normal user
@@ -111,11 +81,11 @@ public class BossController implements MessageConstants {
 
         try {
             Movie selectedMovie = new Movie(movie);
-            ticket = new Ticket(user);
+            ticket = new Ticket(selectedMovie);
             // Check if the movie is early access
             if (selectedMovie.isEarlyAccess() == true) {
                 // Check if the user is registered.
-                if (user.isRegistered() == true) {
+                if (userManager.isRegistered() == true) {
                     ticket.setMovie(selectedMovie);
 
                 } else {
@@ -137,7 +107,7 @@ public class BossController implements MessageConstants {
         // TODO: Return OK with list of movies as JSONArray in DATA
         BrowseMovie bm = new BrowseMovie();
         try {
-            Message message = bm.getMovieList(db.getMoviesList());
+            Message message = bm.getMovieList(databaseController.getMoviesList());
             return message;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -149,52 +119,62 @@ public class BossController implements MessageConstants {
 
     public Message getTheatreList() {
         // TODO: Return OK with list of theatres as JSONArray in DATA
-<<<<<<< HEAD
-        DatabaseController db = new DatabaseController();
         SelectTheatre st = new SelectTheatre();
-=======
+        Message message = st.getTheatreList(databaseController.getTheatreList(ticket.getMovie().getMovieName()));
+		return message;
 
-        SelectTheatre st = new SelectThreatre();
->>>>>>> a24382b964ad0e4ace7501d7304c29e12732b504
-
-        try {
-            Message message = st.getTheatreList(db.getTheatreList(ticket.getMovie().getMovieName()));
-            return message;
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     public Message selectTheatre(JSONObject theatre) {
         // TODO: Return OK message
         // TODO: Add theatre to ticket
-    	Theatre theatre = new Theatre(theatre);
-       	ticket.setTheatre(selectTheatre);  	
-        return new Message(OK, "Theatre Selected!");
+    	
+		try {
+			Theatre selectedTheatre;
+			selectedTheatre = new Theatre(theatre);
+		   	ticket.setTheatre(selectedTheatre);  	
+	        return new Message(OK, "Theatre Selected!");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		return null;
     }
 
     public Message getShowTimeList() {
         // TODO: Return OK with list of theatres as JSONArray in DATA
-    	DatabaseController db = new DatabaseController();
     	SelectShowTime sst = new SelectShowTime();
     	
     	try {
-			Message message = stt.getShowTimeList(db.getShowTimeList(ticket.getMovie().getMovieName(),
+			Message message = sst.getShowTimeList(databaseController.getShowTimeList(ticket.getMovie().getMovieName(),
 																	ticket.getTheatre().getTheatreName()));
 			return message;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+    	
+    	return null;
+    	
+    }
 
     public Message selectShowTime(JSONObject showTime) {
         // TODO: Return OK and set this ticket to this showtime
-    	ShowTime selectShowTime = new ShowTime(showTime);
-    	ticket.setShowTime(selectShowTime);
-    	return new Message(OK, "ShowTime Selected!");
-
+    	
+		try {
+			ShowTime selectShowTime;
+			selectShowTime = new ShowTime(showTime);
+			ticket.setShowTime(selectShowTime);
+			return new Message(OK, "ShowTime Selected!");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+    	
+    	
     }
 
     public Message getSeatList() {
@@ -203,7 +183,7 @@ public class BossController implements MessageConstants {
         // TODO: Return ERROR if all seats full?
         SelectSeat ss = new SelectSeat();
         try {
-            Message message = ss.getSeatList(db.getSeatList(ticket.getMovie().getMovieName(),
+            Message message = ss.getSeatList(databaseController.getSeatList(ticket.getMovie().getMovieName(),
                     ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID()));
             return message;
         } catch (SQLException e) {
