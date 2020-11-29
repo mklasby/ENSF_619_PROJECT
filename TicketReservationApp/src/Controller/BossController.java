@@ -298,4 +298,18 @@ public class BossController implements MessageConstants {
         cart.addAnnualFee(new AnnualFee());
         return new Message(OK, "Success, annual dues added to cart");
     }
+
+    public Message processPayment(String email, int cardNum, String cardType) {
+        if (cardType.equals("Voucher")) {
+            if (!databaseController.isValidVoucher(cardNum)) {
+                return new Message(ERROR, "Voucher number not found!");
+            }
+        }
+        if (financialController.checkPaymentData(cardType, cardNum)) {
+            // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
+            cart.payAll();
+            return new Message(OK, "Success! Thank you for your business!");
+        }
+        return null;
+    }
 }

@@ -43,7 +43,13 @@ public class PaymentViewController extends ViewController implements MessageCons
             return;
         } else {
             String email = view.getFieldText("email");
-            String cardNum = view.getFieldText("cardNum");
+            int cardNum;
+            try {
+                cardNum = Integer.parseInt(view.getFieldText("cardNum"));
+            } catch (NumberFormatException e) {
+                view.flashErrorMessage("Please enter credit card info as an Integer!");
+                return;
+            }
             String cardType = view.getComboBox("cardTypeComboBox").getSelectedItem().toString();
 
             Message response = guiController.processPayment(email, cardNum, cardType);

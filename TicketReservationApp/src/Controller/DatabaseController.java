@@ -477,4 +477,8 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 		}
 	}
+
+	public boolean isValidVoucher(int cardNum) {
+		return false;
+	}
 }

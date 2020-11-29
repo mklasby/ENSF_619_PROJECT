@@ -5,6 +5,8 @@ import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import org.json.JSONException;
+
 import CommonMessage.Message;
 
 import java.awt.event.*;
@@ -51,10 +53,14 @@ public class MenuViewController extends ViewController {
 
         private void payAnnual() {
             Message response = guiController.payAnnual();
-            if (isErrorMessage(response){
+            if (isErrorMessage(response)) {
                 return;
-            } else{
-                view.flashSuccessMessage(response.getString(DATA));
+            } else {
+                try {
+                    view.flashSuccessMessage(response.getString(DATA));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
