@@ -40,11 +40,10 @@ public class BossController implements MessageConstants {
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
         ResultSet user = databaseController.getRegisteredUser(username);
         System.out.print("hello world");
-
-        if (user == null) { // There is no user with that name
-            return new Message(ERROR, "This username does not exists");
-        }
         try {
+            if (user == null) { // There is no user with that name
+                return new Message(ERROR, "This username does not exists");
+            }
             if (!user.getString("UserPassword").equals(password)) {// the username and password exist you can log in!
                 // UserManager.setUser(user); // Here SEND THE RESULT SET TO GET FIXED
                 return new Message(ERROR, "Password does not match");

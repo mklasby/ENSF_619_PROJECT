@@ -17,6 +17,7 @@ public class SelectTheatre implements MessageConstants {
 	}
 
 	public SelectTheatre(ResultSet result) {
+		theatreList = new ArrayList<Theatre>();
 		try {
 			do {
 				Theatre thisTheatre = new Theatre(result);

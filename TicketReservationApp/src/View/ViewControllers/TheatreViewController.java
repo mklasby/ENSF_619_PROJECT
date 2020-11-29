@@ -37,7 +37,7 @@ public class TheatreViewController extends ViewController implements MessageCons
         for (int i = 0; i < theatres.length(); i++) {
             try {
                 JSONObject theatre = theatres.getJSONObject(i);
-                String name = theatre.getString("movieName");
+                String name = theatre.getString("theatreName");
                 String prettyString = String.format("%10s", name);
                 listModel.add(i, prettyString);
             } catch (JSONException e) {
