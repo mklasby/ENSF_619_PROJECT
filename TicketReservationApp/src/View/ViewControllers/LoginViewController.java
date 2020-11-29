@@ -52,7 +52,7 @@ public class LoginViewController extends ViewController implements MessageConsta
             } else {
                 view.flashSuccessMessage("Success, you have logged in. Returning to main menu...");
                 try {
-                    if (response.get(DATA).equals("manager")) {
+                    if (response.get(DATA).equals("Manager")) {
                         guiController.setIsManager(true);
                         guiController.setIsRegistered(false);
                     } else {
