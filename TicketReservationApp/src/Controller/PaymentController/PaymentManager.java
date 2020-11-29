@@ -14,9 +14,11 @@ import org.json.JSONArray;
 public class PaymentManager {
 	private User user;
 	private Cart cart;
+	private JSONArray reply;
 	
 	public PaymentManager(User user) {
 		setUser(user);
+		reply = null;
 	}
 	
 	//give back a list of ticket id
@@ -35,23 +37,27 @@ public class PaymentManager {
 		return reply;
 	}
 
-	public JSONArray payForTicket(){
-		JSONArray reply = new JSONArray();
+	public void payForTicket(){
 		for (Ticket t : cart.getCartOfTickets()) {
 			PayTicketFee ticketPayment = new PayTicketFee(t,user.getPaymentInfo().getCardNumber());
 			Receipt thisReceipt = ticketPayment.getTheReceipt();
 			reply.put(thisReceipt);
 		}
-		return reply;
+
 		// send ticket to user email
 		// send receipt to user email
     }
 
     public JSONArray payForAll(){
-		JSONArray temp = null;
+
 		if(!cart.getCartOfTickets().isEmpty()){
-			temp = payForTicket();
+			payForTicket();
 		}
+		if (cart.getAnnualFee()!= null){
+			AnnualReceipt annualreceipt = payAnnualFee((RegisteredUser) user, cart.getAnnualFee());
+			reply.put(annualreceipt);
+		}
+		return reply;
 	}
 
     public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee){
