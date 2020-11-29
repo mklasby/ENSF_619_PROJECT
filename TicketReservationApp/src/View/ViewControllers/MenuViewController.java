@@ -8,9 +8,11 @@ import java.awt.event.*;
 import View.Views.*;
 
 public class MenuViewController extends ViewController {
+    PaymentViewController nextController;
 
-    public MenuViewController(SubView view, GuiController guiController) {
+    public MenuViewController(SubView view, PaymentViewController nextController, GuiController guiController) {
         super(view, guiController);
+        this.nextController = nextController;
         view.registerGuiMenuButton(new MenuListener());
         view.registerButtonListener(new ButtonListener());
     }
@@ -27,6 +29,7 @@ public class MenuViewController extends ViewController {
             } else if (cmd.equals("selectMovie")) {
                 view.display("moviePanel");
             } else if (cmd.equals("checkout")) {
+                setUpPaymentPanel();
                 view.display("paymentPanel");
             } else if (cmd.equals("registerUser")) {
                 view.display("registerUserPanel");
@@ -60,6 +63,12 @@ public class MenuViewController extends ViewController {
     @Override
     protected HashMap<String, JTextField> getInfoFields() {
         return null;
+    }
+
+    public void setUpPaymentPanel() {
+        nextController.setCartInfo(guiController.getCartInfo());
+        nextController.setPaymentInfo(guiController.getPaymentInfo());
+
     }
 
     public void logout() {
