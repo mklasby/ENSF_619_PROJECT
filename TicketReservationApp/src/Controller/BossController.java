@@ -20,6 +20,7 @@ public class BossController implements MessageConstants {
 	private Ticket ticket;
 	private UserManager user;
 	
+	
 
 	
 	public BossController() {
