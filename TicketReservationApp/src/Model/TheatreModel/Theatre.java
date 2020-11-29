@@ -29,7 +29,7 @@ public class Theatre extends JSONObject {
 	}
 
 	public Theatre(JSONObject jsonObj) throws JSONException {
-		theatreName = jsonObj.getString("TheatreName");
+		theatreName = jsonObj.getString("theatreName");
 		putFields();
 	}
 

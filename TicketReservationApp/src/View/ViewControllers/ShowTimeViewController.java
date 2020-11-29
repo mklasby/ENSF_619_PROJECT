@@ -40,9 +40,8 @@ public class ShowTimeViewController extends ViewController implements MessageCon
         for (int i = 0; i < showTimes.length(); i++) {
             try {
                 JSONObject showTime = showTimes.getJSONObject(i);
-                String date = showTime.get("date").toString();
                 String time = showTime.get("startTime").toString();
-                String prettyString = String.format("%10s, %10s", date, time);
+                String prettyString = String.format("%10s", time);
 
                 listModel.add(i, prettyString);
             } catch (JSONException e) {

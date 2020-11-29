@@ -28,8 +28,7 @@ public class SelectTheatre implements MessageConstants {
 		}
 	}
 
-	public Message getTheatreList(ResultSet allTheatres, boolean isRegUser) throws SQLException {
-		setIsRegUser(isRegUser);
+	public Message getTheatreList(ResultSet allTheatres) throws SQLException {
 		do {
 			Theatre thisTheatre = new Theatre(allTheatres);
 			theatreList.add(thisTheatre);
@@ -54,14 +53,6 @@ public class SelectTheatre implements MessageConstants {
 		this.theatreList = theatreList;
 	}
 
-	public boolean isRegUser() {
-		return isRegUser;
-	}
-
-	public void setIsRegUser(boolean isRegUser) {
-		this.isRegUser = isRegUser;
-	}
-
 	private Theatre parseTheatreList(String theatreName) { // How is the connection? we already have the array of movies
 		for (Theatre theatreObj : theatreList) { // Changed signature
 			if (theatreObj.getTheatreName().equals(theatreName))
@@ -73,9 +64,5 @@ public class SelectTheatre implements MessageConstants {
 	public Theatre selectTheatre(String theatreName) { // original signature selectMovie(ResultSet movie)
 		Theatre theatre = parseTheatreList(theatreName);
 		return theatre;
-	}
-
-	public Message getTheatreList(ResultSet theatreList2) {
-		return null;
 	}
 }

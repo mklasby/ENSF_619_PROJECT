@@ -123,7 +123,7 @@ public class DatabaseController implements Password {
 			String query = "SELECT  ST.ShowTimeID, ST.StartTime, ST.EndTime FROM SHOWTIME AS ST, SHOWINGS AS SW WHERE SW.MovieName = ? AND SW.TheatreName = ? AND SW.ShowTimeID = ST.ShowTimeID";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, movieName);
-			stmt.setString(1, theatreName);
+			stmt.setString(2, theatreName);
 			resultSet = stmt.executeQuery();
 			resultSet.next();
 			return resultSet;

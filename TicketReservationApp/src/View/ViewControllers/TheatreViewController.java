@@ -17,6 +17,7 @@ public class TheatreViewController extends ViewController implements MessageCons
 
     public TheatreViewController(SubView view, ShowTimeViewController nextController, GuiController guiController) {
         super(view, guiController);
+        this.nextController = nextController;
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
     }
@@ -73,7 +74,7 @@ public class TheatreViewController extends ViewController implements MessageCons
             } else {
                 view.flashSuccessMessage("Success, please select a showtime...");
                 nextController.getShowTimes();
-                view.display("showtimePanel");
+                view.display("showTimePanel");
             }
         } catch (JSONException e) {
             e.printStackTrace();
