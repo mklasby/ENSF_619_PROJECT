@@ -2,6 +2,7 @@ package Controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
 import org.json.JSONException;
 
@@ -46,6 +47,7 @@ public class BossController implements MessageConstants {
                 return new Message(ERROR, "Password does not match");
 
             } else {
+            	
 
                 if (user.getString("UserType").equals("M")) {
                     return new Message(OK, "Manager");
@@ -195,15 +197,33 @@ public class BossController implements MessageConstants {
             String cardNum, String cardType) {
         // TODO: return OK if successful, return ERROR If username already exists of if
         // supplied type are bad
+    	
+    	ResultSet resultSet = databaseController.getRegisteredUser(username);
+    	if(resultSet!=null) {
+    		return new Message(ERROR,"Username already exists");
+    	}
+    	
+    	
 
         return null;
     }
 
-    public Message refundTicket(int ticketNum) {
+    public Message refundTicket(int ticketNum) { //hold up ticket num != receipt num can still make it work tho
         // TODO: Return OK if refund is processed with description of Voucher or refund
         // TODO: Return ERROR with DATA == "Sorry, no refunds within 72 hours of a
         // showtime!" OR
         // DATA == "Ticket Number not found"
-        return null;
+    	ResultSet resultSet = databaseController.getReceipt(ticketNum);
+    	if(resultSet == null) {// if receipt is not found
+    		return new Message(ERROR, "Ticket Number not Found");
+    	}else {
+    		if(databaseController.getTicket().getStartTime()-whatever time is it now < 72 hours) {
+    			return new Message(ERROR, "Sorry, no refunds within 72 hours of showtime");
+    		}
+    		
+    		RefundReceipt refundReceipt = PaymentManager.refund(????);
+    		return new Message(OK, refundReceipt);
+    	}
+
     }
 }

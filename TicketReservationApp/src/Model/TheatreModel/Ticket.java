@@ -1,11 +1,26 @@
 package Model.TheatreModel;
 
-public class Ticket {
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+
+import org.json.JSONObject;
+
+public class Ticket extends JSONObject{
 	private Movie movie;
 	private Theatre theatre;
 	private ShowTime showTime;
 	private Seat seat;
 	//private User owner;                            //user and ticket should be 2 way association
+	
+	//do we need this even?
+	public Ticket(ResultSet allTickets) {
+		// oh jeez i remember doing this now, I need to bascially do an sql query
+		// where we left join a bunch of tables, but basically have enough columns
+		// to create the movie theatre show time and seats!! 
+	}
+	
 	
 	public Ticket(Movie selectedMovie) {                   //from state ticket state transition
 		this.setMovie(selectedMovie);

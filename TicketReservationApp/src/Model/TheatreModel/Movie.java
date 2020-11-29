@@ -40,6 +40,7 @@ public class Movie extends JSONObject {
 		movieName = jsonObj.getString("movieName");
 		moviePrice = jsonObj.getDouble("moviePrice");
 		isEarlyAccess = jsonObj.getBoolean("isEarlyAccess");
+		putFields();//did we miss this?
 	}
 
 	private void setMoviePrice(double moviePrice) {
