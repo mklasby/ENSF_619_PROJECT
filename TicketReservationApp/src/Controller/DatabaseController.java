@@ -313,6 +313,23 @@ public class DatabaseController implements Password {
 	
 	public ResultSet resetTicket(int ticketID ) {
 		
+				try {
+					// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
+					// ? AND V.VoucherID = R.VoucherID";
+					String query = "UPDATE TICKET SET (IsSeatReserved, Paid) VALUES (FALSE, FALSE) WHERE TicketID = ? "; // pick; //cascade delete voucher i think?
+					
+					stmt = conn.prepareStatement(query);
+					stmt.setInt(1, ticketID);
+					stmt.executeUpdate();
+					resultSet = getTicket(ticketID);
+					return resultSet;
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return null;
+		
 		
 	}
 	
