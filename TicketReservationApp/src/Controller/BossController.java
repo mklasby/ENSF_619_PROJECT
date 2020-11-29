@@ -51,12 +51,15 @@ public class BossController implements MessageConstants {
             } else {
 
                 if (user.getString("UserType").equals("M")) {
+                	userManager.setUser(userManager.parseUserSQL(user));
                     return new Message(OK, "Manager");
                 } else {
+                	userManager.setUser(userManager.parseUserSQL(user));
                     return new Message(OK, "Registered");
 
                 }
             }
+            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

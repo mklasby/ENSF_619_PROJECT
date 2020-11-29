@@ -106,7 +106,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, movieName);
 			resultSet = stmt.executeQuery();
-
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -125,6 +125,7 @@ public class DatabaseController implements Password {
 			stmt.setString(1, movieName);
 			stmt.setString(1, theatreName);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -142,6 +143,7 @@ public class DatabaseController implements Password {
 			stmt.setString(1, movieName);
 			stmt.setString(1, theatreName);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -162,6 +164,7 @@ public class DatabaseController implements Password {
 			stmt.setString(1, movieName);
 			stmt.setString(1, theatreName);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -180,6 +183,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -196,6 +200,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, voucherID);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -213,6 +218,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, voucherID);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -232,6 +238,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -257,6 +264,7 @@ public class DatabaseController implements Password {
 			stmt.setInt(5, voucherID);
 			stmt.setDouble(6, price);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -280,6 +288,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -301,6 +310,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -342,6 +352,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -384,6 +395,7 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, creditCardNumber);
 			resultSet = stmt.executeQuery();
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {
