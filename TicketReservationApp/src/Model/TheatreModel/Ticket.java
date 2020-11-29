@@ -1,4 +1,4 @@
-package TheatreModel;
+package Model.TheatreModel;
 
 public class Ticket {
 	private Movie movie;
@@ -6,6 +6,7 @@ public class Ticket {
 	private ShowTime showTime;
 	private Seat seat;
 	private User owner;                            //user and ticket should be 2 way association
+	
 	public Ticket(User owner) {                   //from state ticket state transition
 		setOwner(owner);
 	}

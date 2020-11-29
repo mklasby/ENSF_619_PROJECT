@@ -1,4 +1,4 @@
-package TheatreModel;
+package Model.TheatreModel;
 
 public class User {
 
