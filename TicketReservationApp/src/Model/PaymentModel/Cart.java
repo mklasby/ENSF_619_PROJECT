@@ -11,28 +11,27 @@ import Model.TheatreModel.Ticket;
 public class Cart extends JSONObject {
 	private ArrayList<Ticket> cartOfTickets;
 	private AnnualFee annualFee;
-	
+
 	public Cart() {
 		setCartOfTickets(new ArrayList<Ticket>());
 		annualFee = null;
 		putFields();
 	}
-	
 
 	public JSONArray getCart() {
-		
-		JSONArray reply = new JSONArray(); 
+
+		JSONArray reply = new JSONArray();
 		for (Ticket t : cartOfTickets) {
 			reply.put(t.toString());
 		}
-		
-		if(annualFee!=null) {
+
+		if (annualFee != null) {
 			reply.put(annualFee.toString());
 		}
-		
+
 		return reply;
 	}
-	
+
 	private void putFields() {
 		try {
 			put("cartOfTickets", cartOfTickets);
@@ -41,20 +40,18 @@ public class Cart extends JSONObject {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public void addTicketToCart(Ticket ticket) {
-				
+
 		this.cartOfTickets.add(ticket);
 	}
-	
-	public void addAnnualFee(AnnualFee annualFee){
-	if(this.annualFee == null) {
-		this.setAnnualFee(annualFee);
+
+	public void addAnnualFee(AnnualFee annualFee) {
+		if (this.annualFee == null) {
+			this.setAnnualFee(annualFee);
+		}
 	}
-	}
-	
-	
+
 	public ArrayList<Ticket> getCartOfTickets() {
 		return cartOfTickets;
 	}
@@ -70,8 +67,8 @@ public class Cart extends JSONObject {
 	public void setAnnualFee(AnnualFee annualFee) {
 		this.annualFee = annualFee;
 	}
-	
-	
-	
-	
+
+	public void clearCart() {
+	}
+
 }

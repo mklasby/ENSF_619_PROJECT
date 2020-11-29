@@ -70,6 +70,7 @@ public class BossController implements MessageConstants {
 
     public void logoutUser() {
         userManager.logoutUser();
+        cart.clearCart();
     }
 
     public Message selectMovie(JSONObject movie) {
