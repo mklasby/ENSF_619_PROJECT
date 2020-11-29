@@ -15,6 +15,8 @@ public class SelectSeat implements MessageConstants {
 	}
 	
 	public Message getSeatList(ResultSet allSeats) throws SQLException {
+		
+			boolean isFull = false;
 		do {
 			Seat thisSeat = new Seat(allSeats);
 			seatList.add(thisSeat);
@@ -34,6 +36,8 @@ public class SelectSeat implements MessageConstants {
 	public void setSeatList(ArrayList<Seat> seatList) {
 		this.seatList = seatList;
 	}
+	
+
 	
 	
 }
