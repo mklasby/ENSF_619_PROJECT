@@ -193,8 +193,7 @@ public class BossController implements MessageConstants {
 
     }
 
-    public Message registerNewUser(String username, String password, String name, String address, String email,
-            String cardNum, String cardType) {
+    public Message registerNewUser(boolean isMemberPaid, String userType, String username, String userPassword, String name, String email, int creditCardNumber) {
         // TODO: return OK if successful, return ERROR If username already exists of if
         // supplied type are bad
     	
@@ -202,6 +201,7 @@ public class BossController implements MessageConstants {
     	if(resultSet!=null) {
     		return new Message(ERROR,"Username already exists");
     	}
+    	databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email, creditCardNumber)
     	
     	
 

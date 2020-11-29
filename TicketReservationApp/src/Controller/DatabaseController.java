@@ -172,22 +172,6 @@ public class DatabaseController implements Password {
 
 	}
 
-	public ResultSet getRegisteredUser(String userName) {
-
-		try {
-			String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
-			stmt = conn.prepareStatement(query);
-			stmt.setString(1, userName);
-			resultSet = stmt.executeQuery();
-			return resultSet;
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-
-	}
 
 	public ResultSet getVoucher(String userName) {
 
@@ -256,6 +240,91 @@ public class DatabaseController implements Password {
 		}
 		return null;
 
+	}
+	
+	public ResultSet getRegisteredUser(String userName) {
+
+		try {
+			String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			resultSet = stmt.executeQuery();
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+	
+	public ResultSet setRegisteredUser(boolean isMemberPaid, String userType, String username, String userPassword, String name, String email, int creditCardNumber) {
+		
+		try {
+			String query = "INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber) VALUES (?, 'M', 'admin' ,'admin', 'Big Boy', 'bigboy@hotmail.com', 8888 )";
+			stmt = conn.prepareStatement(query);
+			stmt.setBoolean(1, isMemberPaid);
+			stmt.setString(2, userType);
+			stmt.setString(3, username);
+			stmt.setString(4, userPassword);
+			stmt.setString(5, Name);
+			stmt.setString(6, email);
+			stmt.setInt(7, creditCardNumber);
+			stmt.executeUpdate();
+			resultSet = getRegisteredUser(username);
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
+	public ResultSet getCreditInformation(int creditCardNumber) {
+		
+		try {
+			String query = "SELECT * FROM CREDIT_INFORMATION WHERE CreditCardNumber = ?";
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, creditCardNumber);
+			resultSet = stmt.executeQuery();
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
+	public ResultSet setCreditInformation(int creditCardNumber, String creditCardType) { // check up with mike to see where checking should happen.
+		;
+		try {
+			resultSet = getCreditInformation(creditCardNumber);
+			if(resultSet!=null) { // must decide if its okay to have more than one fk pointing at pk, IE do we deny multiple people from using the same credit info?
+				return null;
+			}
+			
+			String query = "INSERT INTO CREDIT_INFORMATION (CreditCardNumber, CreditCardType) VALUES (?,?)";
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, creditCardNumber);
+			stmt.setString(2, creditCardType);
+			stmt.executeUpdate();
+			resultSet = getCreditInformation(creditCardNumber);
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 
 	public static void main(String[] args) {
