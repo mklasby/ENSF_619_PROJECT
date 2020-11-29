@@ -10,17 +10,18 @@ import org.json.JSONObject;
 
 public class BrowseMovie implements MessageConstants {
 	private ArrayList<Movie> movieList;
-	//private boolean isRegUser;
+	// private boolean isRegUser;
 
 	public Message getMovieList(ResultSet allMovies) throws SQLException {
-		//setIsRegUser(isRegUser);
+		movieList = new ArrayList<Movie>();
+		// setIsRegUser(isRegUser);
 		do {
 			Movie thisMovie = new Movie(allMovies);
 			movieList.add(thisMovie);
 		} while (allMovies.next());
 		JSONArray movieData = new JSONArray();
 		for (Movie movie : movieList) {
-			movieData.put(movie.toString());
+			movieData.put(movie);
 		}
 		Message response = new Message(OK, movieData);
 		return response;
@@ -35,14 +36,10 @@ public class BrowseMovie implements MessageConstants {
 	}
 
 	/*
-	public boolean isRegUser() {
-		return isRegUser;
-	}
-
-	public void setIsRegUser(boolean isRegUser) {
-		this.isRegUser = isRegUser;
-	}
-	*/
+	 * public boolean isRegUser() { return isRegUser; }
+	 * 
+	 * public void setIsRegUser(boolean isRegUser) { this.isRegUser = isRegUser; }
+	 */
 
 	private Movie parseMovieList(String movieName) { // How is the connection? we already have the array of movies
 		for (Movie movieObj : movieList) { // Changed signature

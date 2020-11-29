@@ -8,9 +8,13 @@ import org.json.JSONObject;
 import CommonMessage.Message;
 
 public class GuiController {
-    public BossController boss = new BossController();
+    public BossController boss;
     public boolean isRegistered = false;
     public boolean isManager = false;
+
+    public GuiController(BossController boss) {
+        this.boss = boss;
+    }
 
     public boolean isIsRegistered() {
         return this.isRegistered;
@@ -68,7 +72,11 @@ public class GuiController {
         return response;
     }
 
-    public JSONArray getSeatList() {
+    public Message getShowTimeList() {
+        return boss.getShowTimeList();
+    }
+
+    public Message getSeatList() {
         return boss.getSeatList();
     }
 

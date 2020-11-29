@@ -38,7 +38,8 @@ public class MovieView extends SubView implements MessageConstants, ViewConstant
         c.insets = new Insets(3, 3, 10, 3); // top, right, bottom, left;
         c.gridy = 1;
         c.fill = GridBagConstraints.BOTH;
-        resultsList = new JList<String>();
+        DefaultListModel listModel = new DefaultListModel<String>();
+        resultsList = new JList<String>(listModel);
         resultsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         resultsList.setLayoutOrientation(JList.VERTICAL);
         resultsList.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));

@@ -23,51 +23,44 @@ public class BossController implements MessageConstants {
     private FinancialController financialController;
     private Cart cart;
 
-    
-    public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart, UserManager userManager) {
-    	this.databaseController = databaseController;
-    	this.financialController = financialController;
-    	this.cart = cart;
-    	this.userManager = userManager;
+    public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart,
+            UserManager userManager) {
+        this.databaseController = databaseController;
+        this.financialController = financialController;
+        this.cart = cart;
+        this.userManager = userManager;
     }
 
     public Message login(String username, String password) {
         // TODO: Return STATUS=ERROR if login fails
         // TODO: Return STATUS=OK and DATA="MANAGER"
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
-    	ResultSet user = databaseController.getRegisteredUser(username);
-    	
-    	
-    	
-    	if(user == null) { //There is no user with that name
-    		return new Message(ERROR, "This username does not exists");
-    	}
-		try {
-			if(!user.getString("UserPassword").equals(password)) {//the username and password exist you can log in!
-				//UserManager.setUser(user); // Here SEND THE RESULT SET TO GET FIXED
-				return new Message(ERROR, "Password does not match");
+        ResultSet user = databaseController.getRegisteredUser(username);
 
+        if (user == null) { // There is no user with that name
+            return new Message(ERROR, "This username does not exists");
+        }
+        try {
+            if (!user.getString("UserPassword").equals(password)) {// the username and password exist you can log in!
+                // UserManager.setUser(user); // Here SEND THE RESULT SET TO GET FIXED
+                return new Message(ERROR, "Password does not match");
 
-			}else {	
-				
-				if(user.getString("UserType").equals("M")) {
-					return new Message(OK, "Manager");
-				}else {
-					return new Message(OK, "Registered");
-					
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	
-    	
+            } else {
+
+                if (user.getString("UserType").equals("M")) {
+                    return new Message(OK, "Manager");
+                } else {
+                    return new Message(OK, "Registered");
+
+                }
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+
     }
-    		
-
-      
 
     public void logoutUser() {
         // TODO: Reset user status to normal user
@@ -108,6 +101,8 @@ public class BossController implements MessageConstants {
         BrowseMovie bm = new BrowseMovie();
         try {
             Message message = bm.getMovieList(databaseController.getMoviesList());
+            System.out.println(message.toString());
+
             return message;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -119,62 +114,63 @@ public class BossController implements MessageConstants {
 
     public Message getTheatreList() {
         // TODO: Return OK with list of theatres as JSONArray in DATA
-        SelectTheatre st = new SelectTheatre();
-        Message message = st.getTheatreList(databaseController.getTheatreList(ticket.getMovie().getMovieName()));
-		return message;
-
+        ResultSet result = databaseController.getTheatreList(ticket.getMovie().getMovieName());
+        // todo: SET ST THEATRE LIST BEFORE ASKING FOR ONE!
+        SelectTheatre st = new SelectTheatre(result);
+        JSONArray data = st.getTheatreList();
+        System.out.print(data.toString());
+        return new Message(OK, data);
     }
 
     public Message selectTheatre(JSONObject theatre) {
         // TODO: Return OK message
         // TODO: Add theatre to ticket
-    	
-		try {
-			Theatre selectedTheatre;
-			selectedTheatre = new Theatre(theatre);
-		   	ticket.setTheatre(selectedTheatre);  	
-	        return new Message(OK, "Theatre Selected!");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-		return null;
+
+        try {
+            Theatre selectedTheatre;
+            selectedTheatre = new Theatre(theatre);
+            ticket.setTheatre(selectedTheatre);
+            return new Message(OK, "Theatre Selected!");
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public Message getShowTimeList() {
         // TODO: Return OK with list of theatres as JSONArray in DATA
-    	SelectShowTime sst = new SelectShowTime();
-    	
-    	try {
-			Message message = sst.getShowTimeList(databaseController.getShowTimeList(ticket.getMovie().getMovieName(),
-																	ticket.getTheatre().getTheatreName()));
-			return message;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	return null;
-    	
+        SelectShowTime sst = new SelectShowTime();
+
+        try {
+            Message message = sst.getShowTimeList(databaseController.getShowTimeList(ticket.getMovie().getMovieName(),
+                    ticket.getTheatre().getTheatreName()));
+            return message;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
 
     public Message selectShowTime(JSONObject showTime) {
         // TODO: Return OK and set this ticket to this showtime
-    	
-		try {
-			ShowTime selectShowTime;
-			selectShowTime = new ShowTime(showTime);
-			ticket.setShowTime(selectShowTime);
-			return new Message(OK, "ShowTime Selected!");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-    	
-    	
+
+        try {
+            ShowTime selectShowTime;
+            selectShowTime = new ShowTime(showTime);
+            ticket.setShowTime(selectShowTime);
+            return new Message(OK, "ShowTime Selected!");
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return null;
+
     }
 
     public Message getSeatList() {
@@ -199,7 +195,7 @@ public class BossController implements MessageConstants {
             String cardNum, String cardType) {
         // TODO: return OK if successful, return ERROR If username already exists of if
         // supplied type are bad
-    	
+
         return null;
     }
 

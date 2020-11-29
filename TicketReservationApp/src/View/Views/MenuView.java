@@ -63,24 +63,30 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
         mainPanel.add(checkoutButton, c);
 
         c.gridy = 4;
+        refundButton = new JButton("Refund");
+        refundButton.setActionCommand("refund");
+        refundButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(refundButton, c);
+
+        c.gridy = 5;
         registerUserButton = new JButton("Register User");
         registerUserButton.setActionCommand("registerUser");
         registerUserButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(registerUserButton, c);
 
-        c.gridy = 5;
+        c.gridy = 6;
         logoutButton = new JButton("Logout");
         logoutButton.setActionCommand("logout");
         logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(logoutButton, c);
 
-        c.gridy = 6;
+        c.gridy = 7;
         payAnnualButton = new JButton("Pay Annual Membership Dues");
         payAnnualButton.setActionCommand("payAnnual");
         payAnnualButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(payAnnualButton, c);
 
-        c.gridy = 7;
+        c.gridy = 8;
         issueMovieNewsButton = new JButton("Issue Movie News");
         issueMovieNewsButton.setActionCommand("Issue Movie News");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -123,7 +129,7 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
         buttons.put("logoutButton", logoutButton);
         buttons.put("payAnnualButton", payAnnualButton);
         buttons.put("issueMovieNewsButton", issueMovieNewsButton);
-        buttons.put("refundButton", refundButton);
+
     }
 
     @Override

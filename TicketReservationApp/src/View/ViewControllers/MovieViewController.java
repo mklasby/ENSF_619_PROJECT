@@ -3,6 +3,7 @@ package View.ViewControllers;
 import java.util.HashMap;
 import CommonMessage.*;
 import View.Views.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import org.json.JSONArray;
@@ -13,13 +14,15 @@ import java.awt.event.*;
 public class MovieViewController extends ViewController implements MessageConstants {
     int selectedIdx = -1;
     JSONArray movies;
+    TheatreViewController nextController;
 
-    public MovieViewController(SubView view, GuiController guiController) {
+    public MovieViewController(SubView view, TheatreViewController nextController, GuiController guiController) {
         super(view, guiController);
+        this.nextController = nextController;
         getMovieList();
+        paintResults();
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
-
     }
 
     private void getMovieList() {
@@ -28,6 +31,18 @@ public class MovieViewController extends ViewController implements MessageConsta
             movies = movieMessage.getJSONArray(DATA);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void paintResults() {
+        HashMap<String, JList> lists = view.getLists();
+        DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
+        for (int i = 0; i < movies.length(); i++) {
+            try {
+                listModel.add(i, movies.get(i).toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -57,6 +72,7 @@ public class MovieViewController extends ViewController implements MessageConsta
                 return;
             } else {
                 view.flashSuccessMessage("Success, please select a theatre...");
+                nextController.getTheatreList();
                 view.display("theatrePanel");
             }
         } catch (JSONException e) {

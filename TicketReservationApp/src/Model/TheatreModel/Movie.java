@@ -10,23 +10,36 @@ import org.json.JSONObject;
 public class Movie extends JSONObject {
 	private String movieName;
 	private double moviePrice;
-	private boolean earlyAccess; // what is the point in a movie object having this
+	private boolean isEarlyAccess; // what is the point in a movie object having this
 	private ArrayList<Theatre> theatreList;
 
 	public Movie(String movieName, double moviePrice, boolean earlyAccess) {
 		setMovieName(movieName);
 		setMoviePrice(moviePrice);
 		setTheatreList(new ArrayList<Theatre>());
+		putFields();
+	}
+
+	private void putFields() {
+		try {
+			put("movieName", movieName);
+			put("moviePrice", moviePrice);
+			put("isEarlyAccess", isEarlyAccess);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Movie(ResultSet allMovies) throws SQLException {
 		this.movieName = allMovies.getString("MovieName");
-		this.earlyAccess = allMovies.getBoolean("earlyAccess");
+		this.isEarlyAccess = allMovies.getBoolean("IsEarlyAccess");
+		putFields();
 	}
-	
+
 	public Movie(JSONObject jsonObj) throws JSONException {
-		movieName = jsonObj.getString("MovieName");
-		earlyAccess = jsonObj.getBoolean("isEarlyName");
+		movieName = jsonObj.getString("movieName");
+		moviePrice = jsonObj.getDouble("moviePrice");
+		isEarlyAccess = jsonObj.getBoolean("isEarlyAccess");
 	}
 
 	private void setMoviePrice(double moviePrice) {
@@ -46,11 +59,11 @@ public class Movie extends JSONObject {
 	}
 
 	public boolean isEarlyAccess() {
-		return earlyAccess;
+		return isEarlyAccess;
 	}
 
 	public void setEarlyAccess(boolean earlyAccess) {
-		this.earlyAccess = earlyAccess;
+		this.isEarlyAccess = earlyAccess;
 	}
 
 	public ArrayList<Theatre> getTheatreList() {

@@ -18,9 +18,17 @@ public class SeatViewController extends ViewController {
 
     public SeatViewController(SubView view, GuiController guiController) {
         super(view, guiController);
-        seats = guiController.getSeatList();
-        setSeatStatus();
         view.registerButtonListener(new ButtonListener());
+    }
+
+    public void getSeatList() {
+        JSONObject seatMessage = guiController.getSeatList();
+        try {
+            seats = seatMessage.getJSONArray(DATA);
+            setSeatStatus();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setSeatStatus() {

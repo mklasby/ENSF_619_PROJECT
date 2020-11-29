@@ -6,14 +6,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SelectTheatre implements MessageConstants {
 	private ArrayList<Theatre> theatreList;
-	private boolean isRegUser;
 
 	public SelectTheatre() {
 
+	}
+
+	public SelectTheatre(ResultSet result) {
+		try {
+			do {
+				Theatre thisTheatre = new Theatre(result);
+				theatreList.add(thisTheatre);
+			} while (result.next());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Message getTheatreList(ResultSet allTheatres, boolean isRegUser) throws SQLException {
@@ -24,14 +35,18 @@ public class SelectTheatre implements MessageConstants {
 		} while (allTheatres.next());
 		JSONArray theatreData = new JSONArray();
 		for (Theatre theatre : theatreList) {
-			theatreData.put(theatre.toString());
+			theatreData.put(theatre);
 		}
 		Message response = new Message(OK, theatreData);
 		return response;
 	}
 
-	public ArrayList<Theatre> getTheatreList() {
-		return theatreList;
+	public JSONArray getTheatreList() {
+		JSONArray response = new JSONArray();
+		for (Theatre theatre : theatreList) {
+			response.put(theatre);
+		}
+		return response;
 	}
 
 	public void setTheatreList(ArrayList<Theatre> theatreList) {

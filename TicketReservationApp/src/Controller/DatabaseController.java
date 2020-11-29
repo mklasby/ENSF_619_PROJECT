@@ -88,7 +88,7 @@ public class DatabaseController implements Password {
 			String query = "SELECT * FROM MOVIE ORDER BY MovieName";
 			stmt = conn.prepareStatement(query);
 			resultSet = stmt.executeQuery();
-
+			resultSet.next();
 			return resultSet;
 
 		} catch (SQLException e) {

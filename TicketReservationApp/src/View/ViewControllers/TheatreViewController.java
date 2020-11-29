@@ -13,22 +13,23 @@ import java.awt.event.*;
 public class TheatreViewController extends ViewController implements MessageConstants {
     int selectedIdx = -1;
     JSONArray theatres;
+    ShowTimeViewController nextController;
 
-    public TheatreViewController(SubView view, GuiController guiController) {
+    public TheatreViewController(SubView view, ShowTimeViewController nextController, GuiController guiController) {
         super(view, guiController);
-        getTheatreList();
-
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
     }
 
-    private void getTheatreList() {
-        JSONObject theatreMessage = guiController.getTheatreList();
+    public void getTheatreList() {
+        Message theatreMessage = guiController.getTheatreList();
         try {
             theatres = theatreMessage.getJSONArray(DATA);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        // TODO
+        // view.getField("resultsList").setText()
     }
 
     @Override
@@ -57,12 +58,12 @@ public class TheatreViewController extends ViewController implements MessageCons
                 return;
             } else {
                 view.flashSuccessMessage("Success, please select a showtime...");
+                nextController.getShowTimes();
                 view.display("showtimePanel");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     public class ButtonListener implements ActionListener {

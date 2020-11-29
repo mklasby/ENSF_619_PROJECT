@@ -13,16 +13,16 @@ import java.awt.event.*;
 public class ShowTimeViewController extends ViewController implements MessageConstants {
     int selectedIdx = -1;
     JSONArray showTimes;
+    SeatViewController nextController;
 
-    public ShowTimeViewController(SubView view, GuiController guiController) {
+    public ShowTimeViewController(SubView view, SeatViewController nextController, GuiController guiController) {
         super(view, guiController);
-        getShowTimeList();
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
     }
 
-    private void getShowTimeList() {
-        Message showTimeMessage = guiController.getTheatreList();
+    public void getShowTimes() {
+        Message showTimeMessage = guiController.getShowTimeList();
         try {
             showTimes = showTimeMessage.getJSONArray(DATA);
         } catch (JSONException e) {
@@ -56,6 +56,7 @@ public class ShowTimeViewController extends ViewController implements MessageCon
                 return;
             } else {
                 view.flashSuccessMessage("Success, please select a seat...");
+                nextController.getSeatList();
                 view.display("seatPanel");
             }
         } catch (JSONException e) {
