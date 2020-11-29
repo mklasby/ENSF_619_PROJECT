@@ -139,7 +139,7 @@ public class DatabaseController implements Password {
 
 	}
 
-	public ResultSet getSeats(String movieName, String theatreName, int showTimeID) {
+	public ResultSet getSeatList(String movieName, String theatreName, int showTimeID) {
 		try {
 			String query = "SELECT  T.SeatNumber, T.isSeatReserved FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
 			stmt = conn.prepareStatement(query);
@@ -265,6 +265,8 @@ public class DatabaseController implements Password {
 
 	public static void main(String[] args) {
 		DatabaseController dbCtrl = new DatabaseController();
-		System.out.print("Hello world");
+		ResultSet resultset = dbCtrl.getMoviesList();
+	
+		System.out.print(r);
 	}
 }

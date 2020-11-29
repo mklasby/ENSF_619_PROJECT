@@ -12,9 +12,13 @@ import CommonMessage.Message;
 import CommonMessage.MessageConstants;
 import Model.TheatreModel.BrowseMovie;
 import Model.TheatreModel.Movie;
+import Model.TheatreModel.SelectSeat;
 import Model.TheatreModel.Ticket;
 import Model.TheatreModel.SelectTheatre;
+import Model.TheatreModel.Seat;
+import Model.TheatreModel.SelectSeat;
 import Model.UserModel.*;
+
 
 public class BossController implements MessageConstants {
 
@@ -156,10 +160,22 @@ public class BossController implements MessageConstants {
         return null;
     }
 
-    public JSONArray getSeatList() {
+    public Message getSeatList() {
+    //public JSONArray getSeatList() {
         // TODO: OK return all seats for this theatre, movie, showtime combo\
         // TODO: Return ERROR if all seats full?
+        DatabaseController db = new DatabaseController();
+        SelectSeat ss = new SelectSeat();
+        try {
+            Message message = ss.getSeatList(db.getSeatList(ticket.getMovie().getMovieName(), ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID()));
+            return message;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         return null;
+    	
     }
 
     public Message registerNewUser(String username, String password, String name, String address, String email,
