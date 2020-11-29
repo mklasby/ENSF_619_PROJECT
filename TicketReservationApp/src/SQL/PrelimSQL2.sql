@@ -2,18 +2,6 @@ DROP DATABASE IF EXISTS ticketRegistrationDatabase;
 CREATE DATABASE ticketRegistrationDatabase; 
 USE ticketRegistrationDatabase;
 
-DROP TABLE IF EXISTS CREDIT_INFORMATION;
-CREATE TABLE CREDIT_INFORMATION (
-  CreditCardNumber    	int not null,
-  CreditCardType		varchar(25),
-  primary key (CreditCardNumber)
-  
-);
-INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (9999,"D");
-INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (8888,"M");
-INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (7777,"V");
-
-
 /*Supplier doesnt have phone number silly
 */
 DROP TABLE IF EXISTS MOVIE;
@@ -24,8 +12,8 @@ CREATE TABLE MOVIE (
   
 );
 
-INSERT INTO MOVIE (MovieName ,IsEarlyAccess) VALUES ("Die Hard",true);
-INSERT INTO MOVIE (MovieName ,IsEarlyAccess) VALUES ("Rambo III",false);
+INSERT INTO MOVIE (MovieName, IsEarlyAccess) VALUES ("Die Hard",true);
+INSERT INTO MOVIE (MovieName, IsEarlyAccess) VALUES ("Rambo III",false);
 
 
 DROP TABLE IF EXISTS THEATRE;
@@ -130,8 +118,8 @@ CREATE TABLE REGISTERED_USERS (
   Email      					varchar(25),
   CreditCardNumber      		int,
 
-  PRIMARY KEY (Username),
-  FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
+  PRIMARY KEY (Username)
+ /* FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)*/
 );
 
 INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber  ) VALUES (True, 'R', 'user' ,'password', 'Sylvester Stallone', 'realrambo@hotmail.com', 9999 ) ;
@@ -146,6 +134,19 @@ CREATE TABLE VOUCHER (
   PRIMARY KEY (VoucherID)
 );
 INSERT INTO VOUCHER (VoucherID, VoucherValue, VoucherExpiraryDate, VoucherActive) VALUES (1, 8.99, '2009-01-01 10:40:00',True);
+
+DROP TABLE IF EXISTS CREDIT_INFORMATION;
+CREATE TABLE CREDIT_INFORMATION (
+  CreditCardNumber    	int not null,
+  CreditCardType		varchar(25),
+  Username				varchar(25),
+  PRIMARY KEY (CreditCardNumber),
+  FOREIGN KEY (Username) REFERENCES REGISTERED_USERS(Username)
+  
+);
+INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (9999,"D");
+INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (8888,"M");
+INSERT INTO CREDIT_INFORMATION ( CreditCardNumber, CreditCardType) VALUES (7777,"V");
 
 
 DROP TABLE IF EXISTS RECEIPT;

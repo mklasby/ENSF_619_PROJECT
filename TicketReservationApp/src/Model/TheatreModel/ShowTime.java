@@ -121,4 +121,13 @@ public class ShowTime extends JSONObject{
 	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
 	}
+	
+	
+	public static void main(String[] arg0) {
+		
+		
+		
+		
+		
+	}
 }	
