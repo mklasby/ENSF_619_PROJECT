@@ -7,7 +7,9 @@ import View.Views.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.awt.event.*;
 import CommonMessage.MessageConstants;
@@ -40,41 +42,59 @@ public class PaymentViewController extends ViewController implements MessageCons
             view.flashErrorMessage("Please enter info into all fields!");
             return;
         } else {
-            String username = view.getFieldText("username");
-            String password = view.getFieldText("password");
-            String name = view.getFieldText("name");
-            String address = view.getFieldText("address");
             String email = view.getFieldText("email");
             String cardNum = view.getFieldText("cardNum");
-            String cardType = view.getComboBox("toolTypeComboBox").getSelectedItem().toString();
+            String cardType = view.getComboBox("cardTypeComboBox").getSelectedItem().toString();
 
-            Message response = guiController.registerNewUser(username, password, name, address, email, cardNum,
-                    cardType);
-
+            Message response = guiController.processPayment(email, cardNum, cardType);
             if (isErrorMessage(response)) {
                 return;
             } else {
-                view.flashSuccessMessage("Success, you have logged in. Returning to main menu...");
-                try {
-                    if (response.get(DATA).equals("manager")) {
-                        guiController.setIsManager(true);
-                        guiController.setIsRegistered(false);
-                    } else {
-                        guiController.setIsRegistered(true);
-                        guiController.setIsManager(false);
-                    }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                guiController.setIsRegistered(true);
+                view.flashSuccessMessage(
+                        "Success, payment received. You have been emailed a copy of your Ticket and Receipt. Returning to main menu...");
                 view.clearFields();
                 view.display("menuPanel");
-
             }
 
         }
 
+    }
+
+    public void setCartInfo(JSONArray cartContents) {
+        HashMap<String, JList> lists = view.getLists();
+        DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
+        for (int i = 0; i < cartContents.length(); i++) {
+            try {
+                // TODO: Pretty print
+                listModel.add(i, cartContents.get(i).toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setPaymentInfo(JSONObject paymentInfo) {
+        try {
+            String cardNum = paymentInfo.getString("cardNum");
+            String cardType = paymentInfo.getString("cardType");
+            String email = paymentInfo.getString("email");
+            HashMap<String, JTextField> fields = view.getFields();
+            for (String key : fields.keySet()) {
+                if (key.equals("cardNumField")) {
+                    fields.get(key).setText(cardNum);
+                } else if (key.equals("email")) {
+                    fields.get(key).setText(cardNum);
+                }
+            }
+            JComboBox comboBox = view.getComboBox("cardTypeComboBox");
+            if (cardType.equals("Credit")) {
+                comboBox.setSelectedIndex(0);
+            } else {
+                comboBox.setSelectedIndex(1);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

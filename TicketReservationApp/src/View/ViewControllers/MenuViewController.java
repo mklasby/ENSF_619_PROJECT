@@ -27,7 +27,7 @@ public class MenuViewController extends ViewController {
             } else if (cmd.equals("selectMovie")) {
                 view.display("moviePanel");
             } else if (cmd.equals("checkout")) {
-                view.display("checkoutPanel");
+                view.display("paymentPanel");
             } else if (cmd.equals("registerUser")) {
                 view.display("registerUserPanel");
             } else if (cmd.equals("logout")) {
@@ -37,10 +37,9 @@ public class MenuViewController extends ViewController {
             } else if (cmd.equals("issueMovieNews")) {
                 view.display("issueMovieNewsPanel");
             } else if (cmd.equals("refund")) {
-                view.display("refundView");
+                view.display("refundPanel");
             }
         }
-
     }
 
     public class MenuListener implements ActionListener {
