@@ -7,7 +7,7 @@ public class PayTicketFee {
 	private TicketReceipt theReceipt;
 	
 	public PayTicketFee( Ticket theTicket) {
-		theReceipt = new TicketReceipt();
+		theReceipt = new TicketReceipt(theTicket.getTicketID());
 //		payForTicket(theTicket);
 	}
 	
