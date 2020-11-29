@@ -9,6 +9,7 @@ public class UserManager {
 	boolean isRegisteredUser;
 	
 	
+	
 	public UserManager() {
 		this.user = null;
 		isRegisteredUser = false;
@@ -18,6 +19,8 @@ public class UserManager {
     public void setUser(User user) {
     	this.user = user;
     }
+    
+    
     public void loginUser(ResultSet resultSetUser) { // i changed it so it not static anymore
     	
     	// I am assuming that the user to give to me is not null
@@ -40,6 +43,17 @@ public class UserManager {
 	public boolean isRegistered() {
 		// TODO Auto-generated method stub
 		return this.isRegisteredUser;
+	}
+	
+	
+	public User parseUserSQL(ResultSet resultSet) {
+		try {
+			return new User(resultSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

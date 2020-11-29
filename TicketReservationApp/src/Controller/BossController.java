@@ -10,6 +10,8 @@ import org.json.JSONArray;
 
 import org.json.JSONObject;
 
+import com.mysql.cj.protocol.Resultset;
+
 import CommonMessage.Message;
 import CommonMessage.MessageConstants;
 import Model.TheatreModel.*;
@@ -201,13 +203,23 @@ public class BossController implements MessageConstants {
     	if(resultSet!=null) {
     		return new Message(ERROR,"Username already exists");
     	}
-    	databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email, creditCardNumber)
-    	
-    	
+    	resultSet = databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email, creditCardNumber); //No matter what happens this shouldnt bounce!
+    	return new Message(OK, userManager.parseUserSQL(resultSet)); // wait shuold i return the user or should i just say "New User has been registered"
 
-        return null;
     }
+    
+    public Message getRegisteredUser(String username) {
+    	
 
+    		ResultSet resultSet= databaseController.getRegisteredUser(username); //this should have all user information along with payment information
+			if (resultSet == null) {
+				return new Message(ERROR,"Username does not exists!");	
+			}
+			return new Message(OK,userManager.parseUserSQL(resultSet));
+		
+    }
+    
+    
     public Message refundTicket(int ticketNum) { //hold up ticket num != receipt num can still make it work tho
         // TODO: Return OK if refund is processed with description of Voucher or refund
         // TODO: Return ERROR with DATA == "Sorry, no refunds within 72 hours of a

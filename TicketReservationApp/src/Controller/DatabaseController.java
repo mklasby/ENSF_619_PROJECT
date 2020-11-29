@@ -245,7 +245,9 @@ public class DatabaseController implements Password {
 	public ResultSet getRegisteredUser(String userName) {
 
 		try {
-			String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
+			//Readjust here to get your credit info as well.
+			//String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
+			String query =  "SELECT * FROM REGISTERED_USERS AS R , CREDIT_INFORMATION AS C WHERE R.Username = ? AND R.CreditCardNumber = C.CreditCardNumber";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			resultSet = stmt.executeQuery();
@@ -268,7 +270,7 @@ public class DatabaseController implements Password {
 			stmt.setString(2, userType);
 			stmt.setString(3, username);
 			stmt.setString(4, userPassword);
-			stmt.setString(5, Name);
+			stmt.setString(5, name);
 			stmt.setString(6, email);
 			stmt.setInt(7, creditCardNumber);
 			stmt.executeUpdate();
@@ -304,12 +306,7 @@ public class DatabaseController implements Password {
 	
 	public ResultSet setCreditInformation(int creditCardNumber, String creditCardType) { // check up with mike to see where checking should happen.
 		;
-		try {
-			resultSet = getCreditInformation(creditCardNumber);
-			if(resultSet!=null) { // must decide if its okay to have more than one fk pointing at pk, IE do we deny multiple people from using the same credit info?
-				return null;
-			}
-			
+		try {		
 			String query = "INSERT INTO CREDIT_INFORMATION (CreditCardNumber, CreditCardType) VALUES (?,?)";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, creditCardNumber);
