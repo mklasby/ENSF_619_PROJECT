@@ -102,7 +102,7 @@ public class DatabaseController implements Password {
 	public ResultSet getTheatreList(String movieName) {
 
 		try {
-			String query = "SELECT TheatreName FROM HOSTED_BY AS H WHERE H.MovieName = ?";
+			String query = "SELECT * FROM HOSTED_BY AS H WHERE H.MovieName = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, movieName);
 			resultSet = stmt.executeQuery();
@@ -174,7 +174,6 @@ public class DatabaseController implements Password {
 		return null;
 
 	}
-
 
 	public ResultSet getVoucher(String userName) {
 
@@ -248,10 +247,13 @@ public class DatabaseController implements Password {
 		return null;
 
 	}
-	
-	public ResultSet setReceipt(int receiptID, String receiptType, int ticketID, int creditCardNumber, int voucherID, double price ) {
-		
-		 ///ah wait did david add date to receipt?? maybe we can move that to the registered user as some sort of expirary date or something and not store it on the table
+
+	public ResultSet setReceipt(int receiptID, String receiptType, int ticketID, int creditCardNumber, int voucherID,
+			double price) {
+
+		/// ah wait did david add date to receipt?? maybe we can move that to the
+		/// registered user as some sort of expirary date or something and not store it
+		/// on the table
 		try {
 			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
 			// ? AND V.VoucherID = R.VoucherID";
@@ -273,18 +275,17 @@ public class DatabaseController implements Password {
 		}
 		return null;
 
-
 	}
-	
-	//ARgh we need functions for setting up your purchase history as well.
-	
+
+	// ARgh we need functions for setting up your purchase history as well.
+
 	public ResultSet deleteReceipt(int ticketID) {
-		
+
 		try {
 			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
 			// ? AND V.VoucherID = R.VoucherID";
-			String query = "DELETE FROM RECEIPT WHERE TicketID = ?"; //cascade delete voucher i think?
-			
+			String query = "DELETE FROM RECEIPT WHERE TicketID = ?"; // cascade delete voucher i think?
+
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
@@ -296,17 +297,18 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
+
 	}
-	
+
 	public ResultSet getTicket(int ticketID) {
 		try {
 			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
 			// ? AND V.VoucherID = R.VoucherID";
 			String query = "SELECT * FROM TICKET AS T, SHOWTIME AS S, THREATRE AS TH, MOVIE AS M, SEATS AS S WHERE S.ShowTimeID = T.ShowTimeID AND  TH.TheatreName =  T.TheatreName AND "
-					+ " M.MovieName = T.MovieName AND S.SeatNumber = T.SeatNumber AND T.TicketID = ?"; //cascade delete voucher i think?
-			
+					+ " M.MovieName = T.MovieName AND S.SeatNumber = T.SeatNumber AND T.TicketID = ?"; // cascade delete
+																										// voucher i
+																										// think?
+
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
@@ -318,31 +320,35 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 		}
 		return null;
-		
-	}
-	
-	public ResultSet resetTicket(int ticketID ) {
-		
-				try {
-					// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
-					// ? AND V.VoucherID = R.VoucherID";
-					String query = "UPDATE TICKET SET (IsSeatReserved, Paid) VALUES (FALSE, FALSE) WHERE TicketID = ? "; // pick; //cascade delete voucher i think?
-					
-					stmt = conn.prepareStatement(query);
-					stmt.setInt(1, ticketID);
-					stmt.executeUpdate();
-					resultSet = getTicket(ticketID);
-					return resultSet;
 
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return null;
-		
-		
 	}
-	
+
+	public ResultSet resetTicket(int ticketID) {
+
+		try {
+			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
+			// ? AND V.VoucherID = R.VoucherID";
+			String query = "UPDATE TICKET SET (IsSeatReserved, Paid) VALUES (FALSE, FALSE) WHERE TicketID = ? "; // pick;
+																													// //cascade
+																													// delete
+																													// voucher
+																													// i
+																													// think?
+
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, ticketID);
+			stmt.executeUpdate();
+			resultSet = getTicket(ticketID);
+			return resultSet;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
 	public ResultSet getRegisteredUser(String userName) {
 
 		try {
@@ -390,13 +396,13 @@ public class DatabaseController implements Password {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
-		
+
 	}
-	
+
 	public ResultSet getCreditInformation(int creditCardNumber) {
-		
+
 		try {
 			String query = "SELECT * FROM CREDIT_INFORMATION WHERE CreditCardNumber = ?";
 			stmt = conn.prepareStatement(query);
@@ -409,14 +415,16 @@ public class DatabaseController implements Password {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
-		
+
 	}
-	
-	public ResultSet setCreditInformation(int creditCardNumber, String creditCardType) { // check up with mike to see where checking should happen.
+
+	public ResultSet setCreditInformation(int creditCardNumber, String creditCardType) { // check up with mike to see
+																							// where checking should
+																							// happen.
 		;
-		try {		
+		try {
 			String query = "INSERT INTO CREDIT_INFORMATION (CreditCardNumber, CreditCardType) VALUES (?,?)";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, creditCardNumber);
@@ -429,9 +437,9 @@ public class DatabaseController implements Password {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
-		
+
 	}
 
 	public static void main(String[] args) {

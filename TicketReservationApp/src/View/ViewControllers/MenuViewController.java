@@ -13,6 +13,8 @@ public class MenuViewController extends ViewController {
     public MenuViewController(SubView view, PaymentViewController nextController, GuiController guiController) {
         super(view, guiController);
         this.nextController = nextController;
+        MenuView thisView = (MenuView) view;
+        thisView.setToUserView();
         view.registerGuiMenuButton(new MenuListener());
         view.registerButtonListener(new ButtonListener());
     }
@@ -88,5 +90,16 @@ public class MenuViewController extends ViewController {
     protected void clearInfoFields() {
         return;
 
+    }
+
+    public void setUserStatus() {
+        MenuView thisView = (MenuView) view;
+        if (guiController.getIsManager()) {
+            thisView.setToManagerView();
+        } else if (guiController.getIsRegistered()) {
+            thisView.setToRegisteredView();
+        } else {
+            thisView.setToUserView();
+        }
     }
 }

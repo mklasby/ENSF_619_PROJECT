@@ -22,9 +22,7 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
         super(gui, mainPanelKey);
         buildMainPanel();
         registerButtons();
-        // setToUserView();
-        setToRegisteredView();
-        // setToManagerView();
+        setToUserView();
         gui.addCard(mainPanel, mainPanelKey);
     }
 
