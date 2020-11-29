@@ -12,11 +12,15 @@ import CommonMessage.Message;
 import CommonMessage.MessageConstants;
 import Model.TheatreModel.BrowseMovie;
 import Model.TheatreModel.Movie;
+import Model.TheatreModel.SelectSeat;
 import Model.TheatreModel.Ticket;
 import Model.TheatreModel.SelectTheatre;
+import Model.TheatreModel.Theatre;
+import Model.TheatreModel.SelectShowTime;
+import Model.TheatreModel.ShowTime;
 
 public class BossController implements MessageConstants {
-<<<<<<< HEAD
+
 
     private Ticket ticket;
     // private UserManager user;
@@ -25,19 +29,10 @@ public class BossController implements MessageConstants {
         // user = new UserManager();
     }
 
-    }
-=======
-	
-	private Ticket ticket;
-	private UserManager user;
-	
-	
-
-	
 	public BossController() {
 		user = new UserManager();	
 	}
->>>>>>> 675ca49ae3adc908063a7bc0f84f441d3163b3da
+
 
     public Message login(String username, String password) {
         // TODO: Return STATUS=ERROR if login fails
@@ -144,11 +139,8 @@ public class BossController implements MessageConstants {
     public Message selectTheatre(JSONObject theatre) {
         // TODO: Return OK message
         // TODO: Add theatre to ticket
-    	Theatre theatre = new Theatre(theatre);
-    	DatabaseController db = new DatabaseController();
-    	
-    	ticket.
-    	
+    	Theatre selectTheatre = new Theatre(theatre);
+       	ticket.setTheatre(selectTheatre);  	
         return new Message(OK, "Theatre Selected!");
     }
 
@@ -158,7 +150,7 @@ public class BossController implements MessageConstants {
     	SelectShowTime sst = new SelectShowTime();
     	
     	try {
-			Message message = stt.getShowTimeList(db.getShowTimeList(ticket.getMovie().getMovieName(),
+			Message message = sst.getShowTimeList(db.getShowTimeList(ticket.getMovie().getMovieName(),
 																	ticket.getTheatre().getTheatreName()));
 			return message;
 		} catch (SQLException e) {
@@ -167,12 +159,26 @@ public class BossController implements MessageConstants {
 
     public Message selectShowTime(JSONObject showTime) {
         // TODO: Return OK and set this ticket to this showtime
-        return null;
+    	ShowTime selectShowTime = new ShowTime(showTime);
+    	ticket.setShowTime(selectShowTime);
+    	return new Message(OK, "ShowTime Selected!");
     }
 
     public JSONArray getSeatList() {
         // TODO: OK return all seats for this theatre, movie, showtime combo\
         // TODO: Return ERROR if all seats full?
+        DatabaseController db = new DatabaseController();
+        SelectSeat ss = new SelectSeat();
+        try {
+            Message message = ss.getSeatList(db.getSeatList());
+            return message;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return null;
+    	
         return null;
     }
 
