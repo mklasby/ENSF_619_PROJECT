@@ -6,21 +6,35 @@ import javax.swing.*;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
-public class PaymentView extends SubView implements MessageConstants, ViewConstants {
+public class RegisterUserView extends SubView implements MessageConstants, ViewConstants {
+
+    // -usernameField: JTextField
+    // -passwordField: JTextField
+    // -nameField: JTextField
+    // -addressField: JTextField
+    // -cardNumField: JTextField
+    // -cardTypeField: JTextField
+    // -emailField: JTextField
 
     private JLabel mainLabel;
-    private JLabel cartLabel;
+    private JLabel userNameLabel;
+    private JLabel passwordLabel;
+    private JLabel nameLabel;
+    private JLabel addressLabel;
     private JLabel emailLabel;
     private JLabel cardNumLabel;
     private JLabel cardTypeLabel;
-    private JList resultsList;
+    private JTextField userNameField;
+    private JTextField passwordField;
+    private JTextField nameField;
+    private JTextField addressField;
     private JTextField emailField;
     private JTextField cardNumField;
     private JComboBox cardTypeComboBox;
     private JButton submitButton;
     private JButton clearFieldsButton;
 
-    public PaymentView(Gui gui, String mainPanelKey) {
+    public RegisterUserView(Gui gui, String mainPanelKey) {
         super(gui, mainPanelKey);
         buildMainPanel();
         registerButtons();
@@ -35,7 +49,7 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        mainLabel = new JLabel("Please enter your payment information below: ");
+        mainLabel = new JLabel("Please enter your information below: ");
         mainLabel.setFont(SUBTITLE_FONT);
         mainLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         c.gridx = 0;
@@ -45,30 +59,56 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
         c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
         mainPanel.add(mainLabel, c);
 
-        c.insets = new Insets(3, 3, 3, 3); // TOP, RIGHT, BOTTOM LEFT
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
         c.gridy = 1;
-        c.gridwidth = 2;
-        cartLabel = new JLabel("Cart Contents: ");
-        cartLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(cartLabel, c);
-
-        c.gridy = 2;
-        c.gridwidth = 2;
-        c.gridheight = 2;
-        DefaultListModel listModel = new DefaultListModel<String>();
-        resultsList = new JList<String>(listModel);
-        resultsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        resultsList.setLayoutOrientation(JList.VERTICAL);
-        resultsList.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(resultsList);
-        scrollPane.setPreferredSize(new Dimension(500, 100));
-        mainPanel.add(scrollPane, c);
-
-        c.insets = new Insets(20, 3, 3, 3); // TOP, RIGHT, BOTTOM LEFT
         c.gridwidth = 1;
-        c.gridheight = 1;
+        userNameLabel = new JLabel("Username: ");
+        userNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(userNameLabel, c);
+
+        c.gridx = 1;
+        userNameField = new JTextField(15);
+        userNameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(userNameField, c);
+
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
+        c.gridy = 2;
+        c.gridx = 0;
+        passwordLabel = new JLabel("Password: ");
+        passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(passwordLabel, c);
+
+        c.gridx = 1;
+        passwordField = new JTextField(15);
+        passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(passwordField, c);
+
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
+        c.gridy = 3;
+        c.gridx = 0;
+        nameLabel = new JLabel("Name: ");
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(nameLabel, c);
+
+        c.gridx = 1;
+        nameField = new JTextField(15);
+        nameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(nameField, c);
+
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
         c.gridy = 4;
+        c.gridx = 0;
+        addressLabel = new JLabel("Address: ");
+        addressLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(addressLabel, c);
+
+        c.gridx = 1;
+        addressField = new JTextField(15);
+        addressField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(addressField, c);
+
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
+        c.gridy = 5;
         c.gridx = 0;
         emailLabel = new JLabel("Email: ");
         emailLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -79,9 +119,10 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
         emailField.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(emailField, c);
 
-        c.gridy = 5;
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
+        c.gridy = 6;
         c.gridx = 0;
-        cardNumLabel = new JLabel("Card / Voucher Number: ");
+        cardNumLabel = new JLabel("Card Number: ");
         cardNumLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(cardNumLabel, c);
 
@@ -90,14 +131,15 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
         cardNumField.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(cardNumField, c);
 
-        c.gridy = 6;
+        c.insets = new Insets(3, 3, 20, 3); // TOP, RIGHT, BOTTOM LEFT
+        c.gridy = 7;
         c.gridx = 0;
         cardTypeLabel = new JLabel("Card Type: ");
         cardTypeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(cardTypeLabel, c);
 
         c.gridx = 1;
-        String[] cardType = { "Credit", "Debit", "Voucher" };
+        String[] cardType = { "Credit", "Debit" };
         cardTypeComboBox = new JComboBox<String>(cardType);
         mainPanel.add(cardTypeComboBox, c);
 
@@ -118,8 +160,12 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
     @Override
     protected void registerFields() {
         fields = new HashMap<String, JTextField>();
-        fields.put("username", emailField);
-        fields.put("password", cardNumField);
+        fields.put("username", userNameField);
+        fields.put("password", passwordField);
+        fields.put("nameField", nameField);
+        fields.put("addressField", addressField);
+        fields.put("emailField", emailField);
+        fields.put("cardNumField", cardNumField);
     }
 
     @Override

@@ -102,4 +102,8 @@ public class GuiController {
     public Message uploadMovieNews(String fieldText) {
         return null;
     }
+
+    public Message processPayment(String email, String cardNum, String cardType) {
+        return null;
+    }
 }
