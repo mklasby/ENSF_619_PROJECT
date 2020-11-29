@@ -5,9 +5,9 @@ import Controller.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import CommonMessage.Message;
+import CommonMessage.*;
 
-public class GuiController {
+public class GuiController implements MessageConstants {
     public BossController boss;
     public boolean isRegistered = false;
     public boolean isManager = false;
@@ -105,5 +105,23 @@ public class GuiController {
 
     public Message processPayment(String email, String cardNum, String cardType) {
         return null;
+    }
+
+    public JSONArray getCartInfo() {
+        Message response = boss.getCartInfo();
+        if (response.get(STATUS).equals(ERROR)) {
+            return new JSONArray();
+        } else {
+            return response.getJSONArray(DATA);
+        }
+    }
+
+    public JSONObject getPaymentInfo() {
+        Message response = boss.getPaymentInfo();
+        if (response.get(STATUS).equals(ERROR)) {
+            return new JSONObject();
+        } else {
+            return response.getJSONObject(DATA);
+        }
     }
 }

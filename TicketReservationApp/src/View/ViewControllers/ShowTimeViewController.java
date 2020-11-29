@@ -9,6 +9,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.awt.event.*;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.sql.Date;
 
 public class ShowTimeViewController extends ViewController implements MessageConstants {
     int selectedIdx = -1;
@@ -27,6 +30,24 @@ public class ShowTimeViewController extends ViewController implements MessageCon
             showTimes = showTimeMessage.getJSONArray(DATA);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        paintResults();
+    }
+
+    private void paintResults() {
+        HashMap<String, JList> lists = view.getLists();
+        DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
+        for (int i = 0; i < showTimes.length(); i++) {
+            try {
+                JSONObject showTime = showTimes.getJSONObject(i);
+                String date = showTime.get("date").toString();
+                String time = showTime.get("startTime").toString();
+                String prettyString = String.format("%10s, %10s", date, time);
+
+                listModel.add(i, prettyString);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

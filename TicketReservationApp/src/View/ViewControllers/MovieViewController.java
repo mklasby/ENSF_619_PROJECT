@@ -39,7 +39,14 @@ public class MovieViewController extends ViewController implements MessageConsta
         DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
         for (int i = 0; i < movies.length(); i++) {
             try {
-                listModel.add(i, movies.get(i).toString());
+                JSONObject movie = movies.getJSONObject(i);
+                String name = movie.getString("movieName");
+                Double price = movie.getDouble("moviePrice");
+                Boolean isEarlyAccess = movie.getBoolean("isEarlyAccess");
+
+                String prettyString = String.format("%10s, %4f, Early Access movie: %b", name, price, isEarlyAccess);
+
+                listModel.add(i, prettyString);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

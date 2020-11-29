@@ -28,8 +28,22 @@ public class TheatreViewController extends ViewController implements MessageCons
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        // TODO
-        // view.getField("resultsList").setText()
+        paintResults();
+    }
+
+    private void paintResults() {
+        HashMap<String, JList> lists = view.getLists();
+        DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
+        for (int i = 0; i < theatres.length(); i++) {
+            try {
+                JSONObject theatre = theatres.getJSONObject(i);
+                String name = theatre.getString("movieName");
+                String prettyString = String.format("%10s", name);
+                listModel.add(i, prettyString);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

@@ -15,8 +15,12 @@ public class App {
                 BossController boss = new BossController(databaseController, financialController, cart, userManager);
                 Gui gui = new Gui();
                 GuiController guiController = new GuiController(boss);
+
+                PaymentView paymentView = new PaymentView(gui, "paymentPanel");
+                PaymentViewController paymentViewController = new PaymentViewController(paymentView, guiController);
+
                 MenuView menu = new MenuView(gui, "menuPanel");
-                MenuViewController menuController = new MenuViewController(menu, guiController);
+                MenuViewController menuController = new MenuViewController(menu, paymentViewController, guiController);
 
                 LoginView loginView = new LoginView(gui, "loginPanel");
                 LoginViewController loginViewController = new LoginViewController(loginView, guiController);
@@ -36,9 +40,6 @@ public class App {
                 MovieView movieView = new MovieView(gui, "moviePanel");
                 MovieViewController movieViewController = new MovieViewController(movieView, theatreViewController,
                                 guiController);
-
-                PaymentView paymentView = new PaymentView(gui, "paymentPanel");
-                PaymentViewController paymentViewController = new PaymentViewController(paymentView, guiController);
 
                 IssueNewsView issueNewsView = new IssueNewsView(gui, "issueNewsPanel");
                 IssueNewsViewController issueNewsViewController = new IssueNewsViewController(issueNewsView,
