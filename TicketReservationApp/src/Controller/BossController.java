@@ -19,7 +19,7 @@ import Model.UserModel.*;
 public class BossController implements MessageConstants {
 
     private Ticket ticket;
-    // private UserManager user;
+    private UserManager user;
 
     public BossController() {
         user = new UserManager();

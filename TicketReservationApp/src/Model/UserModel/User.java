@@ -25,4 +25,7 @@ public class User {
 	public void setPaymentInfo(PaymentInfo paymentInfo) {
 		this.paymentInfo = paymentInfo;
 	}
+
+	public static void setUser(Object object) {
+	}
 }
