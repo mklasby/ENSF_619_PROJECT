@@ -6,7 +6,7 @@ import Model.TheatreModel.Ticket;
 public class PayTicketFee {
 	private TicketReceipt theReceipt;
 	
-	public PayTicketFee(Ticket , int creditCardNumber) {
+	public PayTicketFee(Ticket theTicket, int creditCardNumber) {
 		theReceipt = new TicketReceipt(theTicket.getTicketID());
 		theReceipt.setAmount(theTicket.getPrice());
 		theReceipt.setReceiptType("Ticket");

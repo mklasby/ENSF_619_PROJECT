@@ -21,9 +21,10 @@ public class PaymentManager {
 	//give back a list of ticket id
 	//flush cart 313 BOSS
 	public void payForTicket(Ticket theTicket){
-		
+		user = new User()
 		for (Ticket t : cart.getCartOfTickets()) {
-			
+			// pay for ticket
+			//add receipt to receipt array list
 		}
 		
 		PayTicketFee ticketPayment = new PayTicketFee(theTicket, );

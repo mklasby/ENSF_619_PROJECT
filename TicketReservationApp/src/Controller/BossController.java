@@ -311,6 +311,7 @@ public class BossController implements MessageConstants {
         if (financialController.checkPaymentData(cardType, cardNum)) {
             // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
             //cart.payAll();
+            paymentManager = new PaymentManager()
         	paymentManager.setCart(cart);
         	
             return new Message(OK, "Success! Thank you for your business!");
