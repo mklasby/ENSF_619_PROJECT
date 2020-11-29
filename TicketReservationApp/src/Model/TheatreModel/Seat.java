@@ -9,34 +9,37 @@ import org.json.JSONObject;
 
 public class Seat extends JSONObject {
 	private int seatNum;
-	
+	private boolean isReserved;
+
 	public Seat(int seatNum) {
 		setSeatNum(seatNum);
 		putFields();
 	}
-	
+
 	public Seat() {
 		setSeatNum(0);
 		putFields();
 	}
-	
-	
+
 	public void putFields() {
 		try {
 			put("seatNum", seatNum);
+			put("isReserved", isReserved);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Seat(ResultSet allSeats) throws SQLException {
-		this.seatNum = allSeats.getInt("seatNum");
+		this.seatNum = allSeats.getInt("SeatNumber");
+		this.isReserved = allSeats.getBoolean("IsSeatReserved");
 		putFields();
 	}
-	
+
 	public Seat(JSONObject jsonObj) throws JSONException {
 		seatNum = jsonObj.getInt("seatNum");
+		isReserved = jsonObj.getBoolean("isReserved");
 		putFields();
 	}
 

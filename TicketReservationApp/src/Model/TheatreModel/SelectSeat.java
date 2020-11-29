@@ -1,4 +1,5 @@
 package Model.TheatreModel;
+
 import CommonMessage.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,21 +10,21 @@ import org.json.JSONObject;
 
 public class SelectSeat implements MessageConstants {
 	private ArrayList<Seat> seatList;
-	
+
 	public SelectSeat() {
-		
+
 	}
-	
+
 	public Message getSeatList(ResultSet allSeats) throws SQLException {
-		
-			boolean isFull = false;
+		seatList = new ArrayList<Seat>();
+		boolean isFull = false;
 		do {
 			Seat thisSeat = new Seat(allSeats);
 			seatList.add(thisSeat);
 		} while (allSeats.next());
 		JSONArray seatData = new JSONArray();
 		for (Seat seat : seatList) {
-			seatData.put(seat.toString());
+			seatData.put(seat);
 		}
 		Message response = new Message(OK, seatData);
 		return response;
@@ -36,8 +37,5 @@ public class SelectSeat implements MessageConstants {
 	public void setSeatList(ArrayList<Seat> seatList) {
 		this.seatList = seatList;
 	}
-	
 
-	
-	
 }

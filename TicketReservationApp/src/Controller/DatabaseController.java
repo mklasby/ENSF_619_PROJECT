@@ -138,13 +138,16 @@ public class DatabaseController implements Password {
 
 	public ResultSet getSeatList(String movieName, String theatreName, int showTimeID) {
 		try {
-			String query = "SELECT  T.SeatNumber, T.isSeatReserved FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
+			String query = "SELECT  T.SeatNumber, T.IsSeatReserved FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, movieName);
-			stmt.setString(1, theatreName);
+			stmt.setString(2, theatreName);
+			stmt.setInt(3, showTimeID);
 			resultSet = stmt.executeQuery();
-			resultSet.next();
-			return resultSet;
+			if (resultSet.next()) {
+				return resultSet;
+			}
+			return null;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

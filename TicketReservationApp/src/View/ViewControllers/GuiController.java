@@ -82,7 +82,7 @@ public class GuiController implements MessageConstants {
     }
 
     public Message selectSeat(JSONObject seat) {
-        return null;
+        return boss.selectSeat(seat);
     }
 
     public Message registerNewUser(String username, String password, String name, String address, String email,
