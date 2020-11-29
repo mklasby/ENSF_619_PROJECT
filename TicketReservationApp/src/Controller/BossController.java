@@ -39,6 +39,7 @@ public class BossController implements MessageConstants {
         // TODO: Return STATUS=OK and DATA="MANAGER"
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
         ResultSet user = databaseController.getRegisteredUser(username);
+        System.out.print("hello world");
 
         if (user == null) { // There is no user with that name
             return new Message(ERROR, "This username does not exists");
@@ -51,15 +52,15 @@ public class BossController implements MessageConstants {
             } else {
 
                 if (user.getString("UserType").equals("M")) {
-                	userManager.setUser(userManager.parseUserSQL(user));
+                    userManager.setUser(userManager.parseUserSQL(user));
                     return new Message(OK, "Manager");
                 } else {
-                	userManager.setUser(userManager.parseUserSQL(user));
+                    userManager.setUser(userManager.parseUserSQL(user));
                     return new Message(OK, "Registered");
 
                 }
             }
-            
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

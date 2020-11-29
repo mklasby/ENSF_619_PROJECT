@@ -23,7 +23,8 @@ public class App {
                 MenuViewController menuController = new MenuViewController(menu, paymentViewController, guiController);
 
                 LoginView loginView = new LoginView(gui, "loginPanel");
-                LoginViewController loginViewController = new LoginViewController(loginView, guiController);
+                LoginViewController loginViewController = new LoginViewController(loginView, menuController,
+                                guiController);
 
                 SeatView seatView = new SeatView(gui, "seatPanel");
                 SeatViewController seatViewController = new SeatViewController(seatView, guiController);
