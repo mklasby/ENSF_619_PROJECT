@@ -26,12 +26,11 @@ public class BossController implements MessageConstants {
     private PaymentManager paymentManager;
     private Cart cart;
 
-    public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart,
-            UserManager userManager, PaymentManager paymentManager) {
+    public BossController(DatabaseController databaseController, FinancialController financialController,
+            UserManager userManager) {
         this.databaseController = databaseController;
         this.financialController = financialController;
-        this.paymentManager = paymentManager;
-        this.cart = cart;
+        this.cart = new Cart();
         this.userManager = userManager;
     }
 
