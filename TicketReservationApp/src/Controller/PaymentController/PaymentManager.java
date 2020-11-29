@@ -9,6 +9,7 @@ import Model.PaymentModel.TicketReceipt;
 import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
+import org.json.JSONArray;
 
 public class PaymentManager {
 	private User user;
@@ -20,21 +21,43 @@ public class PaymentManager {
 	
 	//give back a list of ticket id
 	//flush cart 313 BOSS
-	public void payForTicket(Ticket theTicket){
-		
-		for (Ticket t : cart.getCartOfTickets()) {
-			
+	public JSONArray getCart() {
+
+		JSONArray reply = new JSONArray();
+		for (Ticket t : cartOfTickets) {
+			reply.put(t.toString());
 		}
-		
-		PayTicketFee ticketPayment = new PayTicketFee(theTicket, );
-		TicketReceipt ticketReceipt = ticketPayment.getTheReceipt();
+
+		if (annualFee != null) {
+			reply.put(annualFee.toString());
+		}
+
+		return reply;
+	}
+
+	public JSONArray payForTicket(){
+		JSONArray reply = new JSONArray();
+		for (Ticket t : cart.getCartOfTickets()) {
+			PayTicketFee ticketPayment = new PayTicketFee(t,user.getPaymentInfo().getCardNumber());
+			Receipt thisReceipt = ticketPayment.getTheReceipt();
+			reply.put(thisReceipt);
+		}
+		return reply;
 		// send ticket to user email
 		// send receipt to user email
     }
-	
-    public void payAnnualFee(RegisteredUser theUser, AnnualFee annualFee){
+
+    public JSONArray payForAll(){
+		JSONArray temp = null;
+		if(!cart.getCartOfTickets().isEmpty()){
+			temp = payForTicket();
+		}
+	}
+
+    public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee){
     	PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
     	AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
+    	return annualReceipt;
     }
 
     public void refundTicket(Receipt thereceipt){

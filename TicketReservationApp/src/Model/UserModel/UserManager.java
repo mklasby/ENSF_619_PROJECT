@@ -5,6 +5,10 @@ import java.sql.SQLException;
 
 public class UserManager {
 
+	public User getUser() {
+		return user;
+	}
+
 	User user;
 	boolean isRegisteredUser;
 

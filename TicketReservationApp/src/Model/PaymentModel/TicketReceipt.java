@@ -13,6 +13,7 @@ public class TicketReceipt extends Receipt {
 	
 	public TicketReceipt(int ticketId) {
 		this.ticketId = ticketId;
+		super.setReceiptType("Ticket");
 		putFields();
 	}
 
@@ -30,9 +31,11 @@ public class TicketReceipt extends Receipt {
 		putFields();
 	}
 
-	private void putFields() {
+	protected void putFields() {
 		try {
+			this.setReceiptType("Ticket");
 			put("ticketId", ticketId);
+			super.putFields();
 
 		} catch (JSONException e) {
 			e.printStackTrace();

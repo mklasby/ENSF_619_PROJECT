@@ -11,14 +11,14 @@ public class PayAnnualFee {
 	
 	public PayAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
 		theReceipt = new AnnualReceipt();
+		theReceipt.setCreditCardNumber(theUser.getPaymentInfo().getCardNumber());
+		theReceipt.setReceiptType("Annual");
+		theReceipt.setAmount(annualFee.getAmount());
 		this.annualfee = annualFee;
-	
-		payAnnualFee(theUser);
+		payAnnualFee(theUser); // unnecessary?
 	}
 	
 	public void payAnnualFee(RegisteredUser theUser) {
-		
-		theReceipt.setTheUser(theUser);
 		theUser.setHasPaidDues(true);
 	}
 
