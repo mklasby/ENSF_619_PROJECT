@@ -1,5 +1,8 @@
 package Model.UserModel;
 
+import java.sql.ResultSet;
+import PaymentModel.*;
+
 public class User {
 
 	private String email;
@@ -8,6 +11,9 @@ public class User {
 	public User(String email, PaymentInfo paymentInfo) {
 		setEmail(email);
 		setPaymentInfo(paymentInfo);
+	}
+
+	public User(ResultSet rs) {
 	}
 
 	public String getEmail() {
@@ -27,5 +33,13 @@ public class User {
 	}
 
 	public static void setUser(Object object) {
+	}
+
+	public Object getPassword() {
+		return null;
+	}
+
+	public String getUserType() {
+		return null;
 	}
 }

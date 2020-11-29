@@ -1,5 +1,5 @@
 package Model.TheatreModel;
 
-public class User {
+public class SelectMovie {
 
 }

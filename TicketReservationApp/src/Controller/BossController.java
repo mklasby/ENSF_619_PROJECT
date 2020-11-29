@@ -10,15 +10,8 @@ import org.json.JSONObject;
 
 import CommonMessage.Message;
 import CommonMessage.MessageConstants;
-import Model.TheatreModel.BrowseMovie;
-import Model.TheatreModel.Movie;
-import Model.TheatreModel.SelectSeat;
-import Model.TheatreModel.Ticket;
-import Model.TheatreModel.SelectTheatre;
-import Model.TheatreModel.Seat;
-import Model.TheatreModel.SelectSeat;
+import Model.TheatreModel.*;
 import Model.UserModel.*;
-
 
 public class BossController implements MessageConstants {
 
@@ -33,36 +26,35 @@ public class BossController implements MessageConstants {
         // TODO: Return STATUS=ERROR if login fails
         // TODO: Return STATUS=OK and DATA="MANAGER"
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
-    	
-    	// first search for it
-    	DatabaseController db = new DatabaseController();
-    	User user = new User(db.getRegisteredUser(username));
-    	
-    	//check if there is a match if not error
-    	if(user == null) { //There is no user with that name
-    		return new Message(ERROR, "This username does not exists");
-    	}else {
-    		if(user.getPassword().equals(password)) {//the username and password exist you can log in!
-    			
-    			if(user.getUserType() == "M") {
-    				UserManager.setUser(user);
-    				return new Message(OK, "MANAGER");
-    			}else {
-    				UserManager.setUser(user);
-    				return new Message(OK, "REGISTERED")
-    			}
-    				
-    			}else {
-    			
-    		}
-    		
-    	}
-    	
-    	//then check if the passwords match
-    	
-    	//make sure you indicate the type!
-    	
-    	
+
+        // first search for it
+        DatabaseController db = new DatabaseController();
+        User user = new User(db.getRegisteredUser(username));
+
+        // check if there is a match if not error
+        if (user == null) { // There is no user with that name
+            return new Message(ERROR, "This username does not exists");
+        } else {
+            if (user.getPassword().equals(password)) {// the username and password exist you can log in!
+
+                if (user.getUserType() == "M") {
+                    UserManager.setUser(user);
+                    return new Message(OK, "MANAGER");
+                } else {
+                    UserManager.setUser(user);
+                    return new Message(OK, "REGISTERED");
+                }
+
+            } else {
+
+            }
+
+        }
+
+        // then check if the passwords match
+
+        // make sure you indicate the type!
+
         return new Message(OK, REGISTERED);
     }
 
@@ -118,7 +110,7 @@ public class BossController implements MessageConstants {
     public Message getTheatreList() {
         // TODO: Return OK with list of theatres as JSONArray in DATA
         DatabaseController db = new DatabaseController();
-        SelectTheatre st = new SelectThreatre();
+        SelectTheatre st = new SelectTheatre();
 
         try {
             Message message = st.getTheatreList(db.getTheatreList(ticket.getMovie().getMovieName()));
@@ -161,13 +153,14 @@ public class BossController implements MessageConstants {
     }
 
     public Message getSeatList() {
-    //public JSONArray getSeatList() {
+        // public JSONArray getSeatList() {
         // TODO: OK return all seats for this theatre, movie, showtime combo\
         // TODO: Return ERROR if all seats full?
         DatabaseController db = new DatabaseController();
         SelectSeat ss = new SelectSeat();
         try {
-            Message message = ss.getSeatList(db.getSeatList(ticket.getMovie().getMovieName(), ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID()));
+            Message message = ss.getSeatList(db.getSeatList(ticket.getMovie().getMovieName(),
+                    ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID()));
             return message;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -175,7 +168,7 @@ public class BossController implements MessageConstants {
         }
 
         return null;
-    	
+
     }
 
     public Message registerNewUser(String username, String password, String name, String address, String email,

@@ -11,10 +11,11 @@ import org.json.JSONObject;
 public class SelectTheatre implements MessageConstants {
 	private ArrayList<Theatre> theatreList;
 	private boolean isRegUser;
-    
+
 	public SelectTheatre() {
-		
+
 	}
+
 	public Message getTheatreList(ResultSet allTheatres, boolean isRegUser) throws SQLException {
 		setIsRegUser(isRegUser);
 		do {
@@ -57,4 +58,8 @@ public class SelectTheatre implements MessageConstants {
 		Theatre theatre = parseTheatreList(theatreName);
 		return theatre;
 	}
-}	
+
+	public Message getTheatreList(ResultSet theatreList2) {
+		return null;
+	}
+}
