@@ -203,7 +203,6 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	public ResultSet getVoucher(int voucherID) {
