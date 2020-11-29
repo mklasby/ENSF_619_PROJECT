@@ -1,1 +1,5 @@
+.gitignore
+./src/Controller/Password.java
 /bin/
+./src/module-info.java
+./classpath
