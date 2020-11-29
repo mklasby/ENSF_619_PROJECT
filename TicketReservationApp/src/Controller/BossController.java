@@ -19,23 +19,53 @@ public class BossController implements MessageConstants {
 	
 	private Ticket ticket;
 	private UserManager user;
+	
 
 	
 	public BossController() {
-		user = new UserManager();
-	}
-		
+		user = new UserManager();	
 	}
 
     public Message login(String username, String password) {
         // TODO: Return STATUS=ERROR if login fails
         // TODO: Return STATUS=OK and DATA="MANAGER"
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
+    	
+    	// first search for it
+    	DatabaseController db = new DatabaseController();
+    	User user = new User(db.getRegisteredUser(username));
+    	
+    	//check if there is a match if not error
+    	if(user == null) { //There is no user with that name
+    		return new Message(ERROR, "This username does not exists");
+    	}else {
+    		if(user.getPassword().equals(password)) {//the username and password exist you can log in!
+    			
+    			if(user.getUserType() == "M") {
+    				UserManager.setUser(user);
+    				return new Message(OK, "MANAGER");
+    			}else {
+    				UserManager.setUser(user);
+    				return new Message(OK, "REGISTERED")
+    			}
+    				
+    			}else {
+    			
+    		}
+    		
+    	}
+    	
+    	//then check if the passwords match
+    	
+    	//make sure you indicate the type!
+    	
+    	
         return new Message(OK, REGISTERED);
     }
 
     public void logoutUser() {
         // TODO: Reset user status to normal user
+    	User.setUser(null);
     }
 
     public Message selectMovie(JSONObject movie) {
