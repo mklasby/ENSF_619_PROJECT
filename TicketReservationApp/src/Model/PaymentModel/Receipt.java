@@ -13,28 +13,33 @@ import java.util.Date;
 public class Receipt extends JSONObject {
 	private int receiptId;
 	private double amount;
-	private Date theDate;
+	private String receiptType;
+	private int creditCardNumber;
+	//private Date theDate;
 	
 	public Receipt() {
 		SecureRandom random = new SecureRandom();
-		int num = random.nextInt(100000); // creates random 5 digit Id
-//		String formatted = String.format("%05d", num); 
+		int num = random.nextInt(100000); 
 		setReceiptId(num);
-		theDate = new Date(); // can adjust to make it a String with desired format 
+		setReceiptType("Unassigned");
+		setAmount(0);
+		setCreditCardNumber(0);
 		putFields();
 ;	}
 
 	public Receipt(JSONObject jsonObj) throws JSONException, ParseException {
 		receiptId = jsonObj.getInt("receiptId");
 		amount = jsonObj.getDouble("amount");
-		theDate = DateFormat.getDateInstance().parse(jsonObj.getString("theDate")); //set the string format
+		receiptType = jsonObj.getString("receiptType");
+		creditCardNumber = jsonObj.getInt("creditCardNumber");
 		putFields();
 	}
 
 	public Receipt(ResultSet rs) throws SQLException {
 		setReceiptId(rs.getInt("ReceiptID"));
 		setAmount(rs.getDouble("Price"));
-		setTheDate(rs.getDate("ReceiptDate"));
+		setReceiptType(rs.getString("ReceiptType"));
+		setCreditCardNumber(rs.getInt("CreditCardNumber"));
 		putFields();
 	}
 
@@ -42,7 +47,8 @@ public class Receipt extends JSONObject {
 		try {
 			put("receiptId", receiptId);
 			put("amount", amount);
-			put("theDate", theDate);
+			put("receiptType", receiptType);
+			put("creditCardNumber",creditCardNumber);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -58,13 +64,6 @@ public class Receipt extends JSONObject {
 		
 	}
 
-	public Date getTheDate() {
-		return theDate;
-	}
-
-	public void setTheDate(Date theDate) {
-		this.theDate = theDate;
-	}
 
 	public int getReceiptId() {
 		return receiptId;
@@ -72,6 +71,22 @@ public class Receipt extends JSONObject {
 
 	public void setReceiptId(int receiptId) {
 		this.receiptId = receiptId;
+	}
+
+	public String getReceiptType() {
+		return receiptType;
+	}
+
+	public void setReceiptType(String receiptType) {
+		this.receiptType = receiptType;
+	}
+
+	public int getCreditCardNumber() {
+		return creditCardNumber;
+	}
+
+	public void setCreditCardNumber(int creditCardNumber) {
+		this.creditCardNumber = creditCardNumber;
 	}
 
 	
