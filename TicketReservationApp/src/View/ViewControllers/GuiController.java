@@ -75,4 +75,23 @@ public class GuiController {
     public Message selectSeat(JSONObject seat) {
         return null;
     }
+
+    public Message registerNewUser(String username, String password, String name, String address, String email,
+            String cardNum, String cardType) {
+        Message response = boss.registerNewUser(username, password, name, address, email, cardNum, cardType);
+        return response;
+
+    }
+
+    public boolean isRefundValid(int ticketNum) {
+        return false;
+    }
+
+    public Message refundTicket(int ticketNum) {
+        return boss.refundTicket(ticketNum);
+    }
+
+    public Message uploadMovieNews(String fieldText) {
+        return null;
+    }
 }

@@ -32,9 +32,9 @@ public class App {
         // seatView.display("seatPanel");
         // gui.display();
 
-        // TODO:
         PaymentView paymentView = new PaymentView(gui, "paymentView");
         PaymentViewController paymentViewController = new PaymentViewController(paymentView, guiController);
+        paymentView.display("paymentView");
 
         // MenuView menu = new MenuView();
         // MenuController menuController = new MenuController(gui, "menuPanel");
