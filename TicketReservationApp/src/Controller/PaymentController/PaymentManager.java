@@ -2,6 +2,7 @@ package Controller.PaymentController;
 
 import Model.PaymentModel.AnnualFee;
 import Model.PaymentModel.AnnualReceipt;
+import Model.PaymentModel.Cart;
 import Model.PaymentModel.Coupon;
 import Model.PaymentModel.Receipt;
 import Model.PaymentModel.TicketReceipt;
@@ -10,22 +11,27 @@ import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
 
 public class PaymentManager {
-	public User user;
-	public Cart card;
+	private User user;
+	private Cart cart;
 	
 	public PaymentManager(User user) {
 		setUser(user);
 	}
 	
-	
+	//give back a list of ticket id
+	//flush cart 313 BOSS
 	public void payForTicket(Ticket theTicket){
-		PayTicketFee ticketPayment = new PayTicketFee(theTicket);
+		
+		for (Ticket t : cart.getCartOfTickets()) {
+			
+		}
+		
+		PayTicketFee ticketPayment = new PayTicketFee(theTicket, );
 		TicketReceipt ticketReceipt = ticketPayment.getTheReceipt();
 		// send ticket to user email
 		// send receipt to user email
-
     }
-
+	
     public void payAnnualFee(RegisteredUser theUser, AnnualFee annualFee){
     	PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
     	AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
@@ -43,6 +49,10 @@ public class PaymentManager {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public void setCart(Cart cart) {
+		this.cart= cart;
 	}
 
 }

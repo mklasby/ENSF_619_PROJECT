@@ -15,6 +15,7 @@ import CommonMessage.MessageConstants;
 import Model.TheatreModel.*;
 import Model.UserModel.*;
 import Model.PaymentModel.*;
+import Controller.PaymentController.*;
 
 public class BossController implements MessageConstants {
 
@@ -22,12 +23,14 @@ public class BossController implements MessageConstants {
     private UserManager userManager;
     private DatabaseController databaseController;
     private FinancialController financialController;
+    private PaymentManager paymentManager;
     private Cart cart;
 
     public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart,
-            UserManager userManager) {
+            UserManager userManager, PaymentManager paymentManager) {
         this.databaseController = databaseController;
         this.financialController = financialController;
+        this.paymentManager = paymentManager;
         this.cart = cart;
         this.userManager = userManager;
     }
@@ -307,7 +310,9 @@ public class BossController implements MessageConstants {
         }
         if (financialController.checkPaymentData(cardType, cardNum)) {
             // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
-            cart.payAll();
+            //cart.payAll();
+        	paymentManager.setCart(cart);
+        	
             return new Message(OK, "Success! Thank you for your business!");
         }
         return null;

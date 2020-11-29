@@ -13,6 +13,7 @@ public class Ticket extends JSONObject{
 	private ShowTime showTime;
 	private Seat seat;
 	private int ticketID;
+	private double price;
 	
 	
 	
@@ -27,7 +28,8 @@ public class Ticket extends JSONObject{
 			theatre = new Theatre(allTickets);
 			showTime = new ShowTime(allTickets);
 			seat = new Seat(allTickets);
-			ticketID = allTickets.getInt("TicketID");	
+			ticketID = allTickets.getInt("TicketID");
+			setPrice(allTickets.getDouble("Price"));	
 	}
 	
 	
@@ -75,5 +77,15 @@ public class Ticket extends JSONObject{
 
 	public void setTicketID(int ticketID) {
 		this.ticketID = ticketID;
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }
