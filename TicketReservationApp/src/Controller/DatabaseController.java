@@ -479,6 +479,23 @@ public class DatabaseController implements Password {
 	}
 
 	public boolean isValidVoucher(int cardNum) {
-		return false;
+		try {
+			String query = "SELECT * FROM VOUCHER WHERE VoucherID = ?;";
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, cardNum);
+			resultSet = stmt.executeQuery();
+			if (resultSet.next()) {
+				query = "UPDATE VOUCHER SET VoucherActive=false WHERE VoucherId =?";
+				stmt = conn.prepareStatement(query);
+				stmt.setInt(1, cardNum);
+				stmt.executeUpdate();
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

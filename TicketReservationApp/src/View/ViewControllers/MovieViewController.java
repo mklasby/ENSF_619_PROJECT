@@ -41,10 +41,9 @@ public class MovieViewController extends ViewController implements MessageConsta
             try {
                 JSONObject movie = movies.getJSONObject(i);
                 String name = movie.getString("movieName");
-                Double price = movie.getDouble("moviePrice");
                 Boolean isEarlyAccess = movie.getBoolean("isEarlyAccess");
 
-                String prettyString = String.format("%10s, %4f, Early Access movie: %b", name, price, isEarlyAccess);
+                String prettyString = String.format("%10s, Early Access movie: %b", name, isEarlyAccess);
 
                 listModel.add(i, prettyString);
             } catch (JSONException e) {

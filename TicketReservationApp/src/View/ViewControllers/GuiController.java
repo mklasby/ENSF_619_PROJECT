@@ -97,10 +97,6 @@ public class GuiController implements MessageConstants {
         return boss.uploadMovieNews(fieldText);
     }
 
-    public Message processPayment(String email, String cardNum, String cardType) {
-        return null;
-    }
-
     public JSONArray getCartInfo() {
         try {
             Message response = boss.getCartInfo();
