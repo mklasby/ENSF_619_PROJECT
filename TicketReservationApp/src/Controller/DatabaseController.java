@@ -40,15 +40,11 @@ public class DatabaseController implements Password {
 
 	public DatabaseController() {
 		initializeConnection();
-
 	}
 
 	public void initializeConnection() {
 		try {
 			// JDBC driver name and database URL
-			String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-			String DB_URL = "jdbc:mysql://localhost";
-			// DriverManager.registerDriver(driver);
 			// Open a connection
 			conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 			useTicketRegistrationDatabase();
@@ -266,5 +262,18 @@ public class DatabaseController implements Password {
 	public static void main(String[] args) {
 		DatabaseController dbCtrl = new DatabaseController();
 		System.out.print("Hello world");
+		ResultSet test = dbCtrl.getMoviesList();
+		dbCtrl.printResultSet(test);
+	}
+
+	private void printResultSet(ResultSet test) {
+		try {
+			test.next();
+			do {
+				System.out.println(test.getString("MovieName"));
+			} while (test.next());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
