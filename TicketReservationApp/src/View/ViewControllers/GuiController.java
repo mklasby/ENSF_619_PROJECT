@@ -94,7 +94,7 @@ public class GuiController implements MessageConstants {
     }
 
     public Message uploadMovieNews(String fieldText) {
-        return null;
+        return boss.uploadMovieNews(fieldText);
     }
 
     public Message processPayment(String email, String cardNum, String cardType) {
@@ -132,5 +132,9 @@ public class GuiController implements MessageConstants {
     public Message registerNewUser(String username, String password, String name, String address, String email,
             int cardNum, String cardType) {
         return boss.registerNewUser(false, "R", username, password, name, address, email, cardNum);
+    }
+
+    public void payAnnual() {
+        boss.payAnnual();
     }
 }

@@ -38,8 +38,8 @@ public class MenuViewController extends ViewController {
             } else if (cmd.equals("logout")) {
                 logout();
             } else if (cmd.equals("payAnnual")) {
-                view.display("payAnnualPanel");
-            } else if (cmd.equals("issueMovieNews")) {
+                guiController.payAnnual();
+            } else if (cmd.equals("issueNews")) {
                 view.display("issueMovieNewsPanel");
             } else if (cmd.equals("refund")) {
                 view.display("refundPanel");
