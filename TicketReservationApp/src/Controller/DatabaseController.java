@@ -379,7 +379,7 @@ public class DatabaseController implements Password {
 			String name, String email, int creditCardNumber) {
 
 		try {
-			String query = "INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber) VALUES (?, 'M', 'admin' ,'admin', 'Big Boy', 'bigboy@hotmail.com', 8888 )";
+			String query = "INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			stmt = conn.prepareStatement(query);
 			stmt.setBoolean(1, isMemberPaid);
 			stmt.setString(2, userType);
@@ -400,7 +400,17 @@ public class DatabaseController implements Password {
 		return null;
 
 	}
+	
+	public ResultSet registerMyUser(boolean isMemberPaid, String userType, String username, String userPassword,
+			String name, String email, int creditCardNumber, String creditCardType) {
 
+			this.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, email, creditCardNumber);
+			this.setCreditInformation(creditCardNumber, creditCardType);
+			resultSet = this.getRegisteredUser(username);
+			return resultSet;
+		
+	}
+	
 	public ResultSet getCreditInformation(int creditCardNumber) {
 
 		try {

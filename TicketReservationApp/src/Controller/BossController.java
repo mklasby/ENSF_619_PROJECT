@@ -243,10 +243,20 @@ public class BossController implements MessageConstants {
     	}
 
     }
+    
 
-    public Message registerNewUser(String username, String password, String name, String address, String email,
-            String cardNum, String cardType) {
-        return null;
+    public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name, String email,
+            int creditCardNumber, String creditCardType) {
+    	
+    	ResultSet resultSet = databaseController.getRegisteredUser(username);
+    	if(resultSet == null) {//username exists send error.
+    		return new Message(ERROR, "Username already exist, please choose another one!");
+    	}else {
+    		resultSet = databaseController.registerMyUser(isMemberPaid, userType, username, password, name, email, creditCardNumber, creditCardType);
+    		return new Message(OK, resultSet);
+ 
+    	}
+
     }
 
     public Message getCartInfo() {
