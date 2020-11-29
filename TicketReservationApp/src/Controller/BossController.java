@@ -16,16 +16,26 @@ import Model.UserModel.*;
 public class BossController implements MessageConstants {
 
     private Ticket ticket;
-    private UserManager user;
-
+    private UserManager userManager;
+    private DatabaseController databaseController;
+    private FinancialController financialController;
+    private Cart cart;
     public BossController() {
         user = new UserManager();
+    }
+    
+    public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart, UserManager userManager) {
+    	this.databaseController = databaseController;
+    	this.financialController = financialController;
+    	this.cart = cart;
+    	this.userManager = userManager;
     }
 
     public Message login(String username, String password) {
         // TODO: Return STATUS=ERROR if login fails
         // TODO: Return STATUS=OK and DATA="MANAGER"
         // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
+<<<<<<< HEAD
 
         // first search for it
         DatabaseController db = new DatabaseController();
@@ -55,6 +65,37 @@ public class BossController implements MessageConstants {
 
         // make sure you indicate the type!
 
+=======
+    	
+    	// first search for it
+    	User user = new User(databaseController.getRegisteredUser(username));
+    	
+    	//check if there is a match if not error
+    	if(user == null) { //There is no user with that name
+    		return new Message(ERROR, "This username does not exists");
+    	}else {
+    		if(user.getPassword().equals(password)) {//the username and password exist you can log in!
+    			
+    			if(user.getUserType() == "M") {
+    				UserManager.setUser(user);
+    				return new Message(OK, "MANAGER");
+    			}else {
+    				UserManager.setUser(user);
+    				return new Message(OK, "REGISTERED")
+    			}
+    				
+    			}else {
+    			
+    		}
+    		
+    	}
+    	
+    	//then check if the passwords match
+    	
+    	//make sure you indicate the type!
+    	
+    	
+>>>>>>> a24382b964ad0e4ace7501d7304c29e12732b504
         return new Message(OK, REGISTERED);
     }
 
@@ -94,7 +135,6 @@ public class BossController implements MessageConstants {
 
     public Message getMovieList() {
         // TODO: Return OK with list of movies as JSONArray in DATA
-        DatabaseController db = new DatabaseController();
         BrowseMovie bm = new BrowseMovie();
         try {
             Message message = bm.getMovieList(db.getMoviesList());
@@ -109,8 +149,13 @@ public class BossController implements MessageConstants {
 
     public Message getTheatreList() {
         // TODO: Return OK with list of theatres as JSONArray in DATA
+<<<<<<< HEAD
         DatabaseController db = new DatabaseController();
         SelectTheatre st = new SelectTheatre();
+=======
+
+        SelectTheatre st = new SelectThreatre();
+>>>>>>> a24382b964ad0e4ace7501d7304c29e12732b504
 
         try {
             Message message = st.getTheatreList(db.getTheatreList(ticket.getMovie().getMovieName()));
@@ -127,10 +172,7 @@ public class BossController implements MessageConstants {
         // TODO: Return OK message
         // TODO: Add theatre to ticket
     	Theatre theatre = new Theatre(theatre);
-    	DatabaseController db = new DatabaseController();
-    	
-    	ticket.
-    	
+       	ticket.setTheatre(selectTheatre);  	
         return new Message(OK, "Theatre Selected!");
     }
 
@@ -149,14 +191,16 @@ public class BossController implements MessageConstants {
 
     public Message selectShowTime(JSONObject showTime) {
         // TODO: Return OK and set this ticket to this showtime
-        return null;
+    	ShowTime selectShowTime = new ShowTime(showTime);
+    	ticket.setShowTime(selectShowTime);
+    	return new Message(OK, "ShowTime Selected!");
+
     }
 
     public Message getSeatList() {
         // public JSONArray getSeatList() {
         // TODO: OK return all seats for this theatre, movie, showtime combo\
         // TODO: Return ERROR if all seats full?
-        DatabaseController db = new DatabaseController();
         SelectSeat ss = new SelectSeat();
         try {
             Message message = ss.getSeatList(db.getSeatList(ticket.getMovie().getMovieName(),
@@ -175,6 +219,7 @@ public class BossController implements MessageConstants {
             String cardNum, String cardType) {
         // TODO: return OK if successful, return ERROR If username already exists of if
         // supplied type are bad
+    	
         return null;
     }
 
