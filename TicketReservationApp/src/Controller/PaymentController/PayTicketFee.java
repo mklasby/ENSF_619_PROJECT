@@ -11,6 +11,7 @@ public class PayTicketFee {
 		theReceipt.setAmount(theTicket.getPrice());
 		theReceipt.setReceiptType("Ticket");
 		theReceipt.setCreditCardNumber(creditCardNumber);
+		theReceipt.setTicketId(theTicket.getTicketID());
 		
 //		payForTicket(theTicket);
 	}

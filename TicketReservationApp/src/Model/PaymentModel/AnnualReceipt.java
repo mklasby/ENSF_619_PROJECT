@@ -11,7 +11,7 @@ import java.text.ParseException;
 public class AnnualReceipt extends Receipt {
 
 	public AnnualReceipt() {
-		super.setReceiptType("Annual Dues");
+		super.setReceiptType("Annual");
 	}
 
 	public AnnualReceipt(ResultSet rs) throws SQLException { //to complete, how is annual payment receipt stored in db? linked to userName?
