@@ -347,12 +347,18 @@ public class DatabaseController implements Password {
 
 		try {
 			//Readjust here to get your credit info as well.
-			//String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
-			String query =  "SELECT * FROM REGISTERED_USERS AS R , CREDIT_INFORMATION AS C WHERE R.Username = ? AND R.CreditCardNumber = C.CreditCardNumber";
+			String query = "SELECT * FROM REGISTERED_USERS WHERE Username = ";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			resultSet = stmt.executeQuery();
 			resultSet.next();
+			if(resultSet != null) {
+				query =  "SELECT * FROM REGISTERED_USERS AS R , CREDIT_INFORMATION AS C WHERE R.Username = ? AND R.CreditCardNumber = C.CreditCardNumber";
+				stmt = conn.prepareStatement(query);
+				stmt.setString(1, userName);
+				resultSet = stmt.executeQuery();
+				resultSet.next();
+			}
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -362,6 +368,7 @@ public class DatabaseController implements Password {
 		return null;
 
 	}
+	
 	
 	public ResultSet setRegisteredUser(boolean isMemberPaid, String userType, String username, String userPassword, String name, String email, int creditCardNumber) {
 		

@@ -71,7 +71,7 @@ public class BossController implements MessageConstants {
 
     public void logoutUser() {
         // TODO: Reset user status to normal user
-        User.setUser(null);
+        userManager.logoutUser();
     }
 
     public Message selectMovie(JSONObject movie) {
@@ -218,6 +218,7 @@ public class BossController implements MessageConstants {
 			if (resultSet == null) {
 				return new Message(ERROR,"Username does not exists!");	
 			}
+			
 			return new Message(OK,userManager.parseUserSQL(resultSet));
 		
     }
