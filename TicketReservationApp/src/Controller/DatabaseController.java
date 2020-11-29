@@ -379,7 +379,7 @@ public class DatabaseController implements Password {
 	}
 
 	public ResultSet setRegisteredUser(boolean isMemberPaid, String userType, String username, String userPassword,
-			String name, String email, int creditCardNumber) {
+			String name, String address, String email, int creditCardNumber) {
 
 		try {
 			String query = "INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -471,10 +471,5 @@ public class DatabaseController implements Password {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public ResultSet setRegisteredUser(boolean isMemberPaid, String userType, String username, String userPassword,
-			String name, String address, String email, int creditCardNumber) {
-		return null;
 	}
 }
