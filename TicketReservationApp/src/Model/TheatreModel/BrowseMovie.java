@@ -10,10 +10,10 @@ import org.json.JSONObject;
 
 public class BrowseMovie implements MessageConstants {
 	private ArrayList<Movie> movieList;
-	private boolean isRegUser;
+	//private boolean isRegUser;
 
-	public Message BrowseMovie(ResultSet allMovies, boolean isRegUser) throws SQLException {
-		setIsRegUser(isRegUser);
+	public Message getMovieList(ResultSet allMovies) throws SQLException {
+		//setIsRegUser(isRegUser);
 		do {
 			Movie thisMovie = new Movie(allMovies);
 			movieList.add(thisMovie);
@@ -34,6 +34,7 @@ public class BrowseMovie implements MessageConstants {
 		this.movieList = movieList;
 	}
 
+	/*
 	public boolean isRegUser() {
 		return isRegUser;
 	}
@@ -41,6 +42,7 @@ public class BrowseMovie implements MessageConstants {
 	public void setIsRegUser(boolean isRegUser) {
 		this.isRegUser = isRegUser;
 	}
+	*/
 
 	private Movie parseMovieList(String movieName) { // How is the connection? we already have the array of movies
 		for (Movie movieObj : movieList) { // Changed signature

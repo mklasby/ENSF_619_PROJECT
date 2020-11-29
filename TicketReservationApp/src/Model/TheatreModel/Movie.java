@@ -22,6 +22,7 @@ public class Movie extends JSONObject {
 	private void setMoviePrice(double moviePrice) {
 		this.moviePrice = moviePrice;
 	}
+	
 
 	public double getMoviePrice() {
 		return moviePrice;
