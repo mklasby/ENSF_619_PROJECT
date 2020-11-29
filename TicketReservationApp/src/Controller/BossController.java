@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 
 import org.json.JSONException;
-
+import org.graalvm.compiler.debug.DebugConfig;
 import org.json.JSONArray;
 
 import org.json.JSONObject;
@@ -182,9 +182,14 @@ public class BossController implements MessageConstants {
     }
 
     public Message selectSeat(JSONObject selection) {
-        // TODO: MOVE FUNCTIONALITY TO TICKET CLASS
+        // TODO: MOVE FUNCTIONALITY TO TICKET CLASS?
 
         try {
+            if (databaseController.reservationsRemaining(ticket.getMovie().getMovieName(),
+                    ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID(),
+                    selection.getInt("seatNum"))) {
+                return new Message(ERROR, "Sorry, 10% of seats have already been reserved for this early movie!");
+            }
             Seat seat;
             // TODO: how to check for 10% of tickets reserved for early access movie!
             seat = new Seat(selection);

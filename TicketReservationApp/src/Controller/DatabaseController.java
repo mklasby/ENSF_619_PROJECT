@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.json.JSONObject;
+
 public class DatabaseController implements Password {
 
 	/**
@@ -251,15 +253,9 @@ public class DatabaseController implements Password {
 
 	}
 
-	public ResultSet setReceipt(int receiptID, String receiptType, int ticketID, int creditCardNumber, int voucherID,
+	public void insertReceipt(int receiptID, String receiptType, int ticketID, int creditCardNumber, int voucherID,
 			double price) {
-
-		/// ah wait did david add date to receipt?? maybe we can move that to the
-		/// registered user as some sort of expirary date or something and not store it
-		/// on the table
 		try {
-			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
-			// ? AND V.VoucherID = R.VoucherID";
 			String query = "INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (?, ? , ?, ?, ?, ?)";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, receiptID);
@@ -268,19 +264,28 @@ public class DatabaseController implements Password {
 			stmt.setInt(4, creditCardNumber);
 			stmt.setInt(5, voucherID);
 			stmt.setDouble(6, price);
-			resultSet = stmt.executeQuery();
-			resultSet.next();
-			return resultSet;
+			stmt.executeUpdate();
+
+			if (receiptType.equals("Ticket")) {
+				buyTicket(ticketID);
+			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
 
 	}
 
-	// ARgh we need functions for setting up your purchase history as well.
+	private void buyTicket(int ticketID) {
+		try {
+			String query = "UPDATE TICKET SET Paid = true WHERE TicketID=?;";
+			stmt.setInt(1, ticketID);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ResultSet deleteReceipt(int ticketID) {
 
@@ -301,6 +306,16 @@ public class DatabaseController implements Password {
 		}
 		return null;
 
+	}
+
+	public void payAnnualDues(String userName) {
+		try {
+			String query = "UPDATE REGISTERED_USERS SET isMembershipPaid = true WHERE Username=?;";
+			stmt.setString(1, userName);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ResultSet getTicket(int ticketID) {
@@ -327,17 +342,8 @@ public class DatabaseController implements Password {
 	}
 
 	public ResultSet resetTicket(int ticketID) {
-
 		try {
-			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
-			// ? AND V.VoucherID = R.VoucherID";
-			String query = "UPDATE TICKET SET (IsSeatReserved, Paid) VALUES (FALSE, FALSE) WHERE TicketID = ? "; // pick;
-																													// //cascade
-																													// delete
-																													// voucher
-																													// i
-																													// think?
-
+			String query = "UPDATE TICKET SET (IsSeatReserved, Paid) VALUES (FALSE, FALSE) WHERE TicketID = ? ";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			stmt.executeUpdate();
@@ -497,5 +503,42 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public boolean reservationsRemaining(String movieName, String theatreName, int showTimeID, int seatNumber) {
+		try {
+			String query = "SELECT * FROM TICKET WHERE MovieName=?, TheatreName=?, ShowTimeID=?, SeatNumber= ?;";
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, movieName);
+			stmt.setString(2, theatreName);
+			stmt.setInt(3, showTimeID);
+			stmt.setInt(4, seatNumber);
+			resultSet = stmt.executeQuery();
+			if (!resultSet.next()) {
+				// something wrong in query
+				return false;
+			} else {
+				double unReserved = 0;
+				double reserved = 0;
+				do {
+					if (resultSet.getBoolean("IsSeatReserved")) {
+						reserved++;
+					} else {
+						unReserved++;
+					}
+				} while (resultSet.next());
+
+				if (unReserved / (unReserved + reserved) >= 0.1) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 }

@@ -1,12 +1,16 @@
-## Add .jars to class path before running!
+# ENSF619 - Group 8 - TicketReservationApp
+## Submitted: 2020-11-29
+
+## Before Compiling:
+* **Add `.jars` to classpath before running! See `./lib/`**
+* **Add your local host mySQL credentials to `src/Controller/Password.java`**
+* **Execute `src/SQL/PrelimSQL3.sql` mySQL Workbench to initialize database**
 
 ## Folder Structure
+- `src`: source files
+- `lib`: `.jar dependencies 
 
-The workspace contains two folders by default, where:
+## Deliverables
+* See `jar/InventoryReservationApp.jar` for a `.jar` file for all `.class` files
+* See `tar/InventoryReservationApp.tar` for a `.tar` file of all `.java` files
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).

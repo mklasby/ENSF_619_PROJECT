@@ -12,7 +12,7 @@ public class App {
                 FinancialController financialController = new FinancialController();
                 Cart cart = new Cart();
                 UserManager userManager = new UserManager();
-                BossController boss = new BossController(databaseController, financialController, cart, userManager);
+                BossController boss = new BossController(databaseController, financialController, userManager);
                 Gui gui = new Gui();
                 GuiController guiController = new GuiController(boss);
 

@@ -45,7 +45,13 @@ public class RefundViewController extends ViewController implements MessageConst
             view.flashErrorMessage("Please a ticket number!");
             return;
         } else {
-            int ticketNum = Integer.parseInt(view.getFieldText("ticketNumberField"));
+            int ticketNum;
+            try {
+                ticketNum = Integer.parseInt(view.getFieldText("ticketNumberField"));
+            } catch (NumberFormatException e) {
+                view.flashErrorMessage("Please enter an valid ticket number (integer)");
+                return;
+            }
             Message response = guiController.refundTicket(ticketNum);
             if (isErrorMessage(response)) {
                 return;
