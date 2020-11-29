@@ -13,9 +13,11 @@ import java.awt.event.*;
 import CommonMessage.MessageConstants;
 
 public class LoginViewController extends ViewController implements MessageConstants {
+    MenuViewController nextController;
 
-    public LoginViewController(SubView view, GuiController guiController) {
+    public LoginViewController(SubView view, MenuViewController nextController, GuiController guiController) {
         super(view, guiController);
+        this.nextController = nextController;
         view.registerButtonListener(new ButtonListener());
     }
 
@@ -47,6 +49,7 @@ public class LoginViewController extends ViewController implements MessageConsta
             return;
         } else {
             Message response = guiController.login(view.getFieldText("username"), view.getFieldText("password"));
+            System.out.println(response.toString());
             if (isErrorMessage(response)) {
                 return;
             } else {
@@ -63,8 +66,8 @@ public class LoginViewController extends ViewController implements MessageConsta
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                guiController.setIsRegistered(true);
                 view.clearFields();
+                nextController.setUserStatus();
                 view.display("menuPanel");
 
             }

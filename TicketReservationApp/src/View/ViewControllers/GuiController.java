@@ -3,6 +3,7 @@ package View.ViewControllers;
 import Controller.*;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import CommonMessage.*;
@@ -108,20 +109,30 @@ public class GuiController implements MessageConstants {
     }
 
     public JSONArray getCartInfo() {
-        Message response = boss.getCartInfo();
-        if (response.get(STATUS).equals(ERROR)) {
-            return new JSONArray();
-        } else {
-            return response.getJSONArray(DATA);
+        try {
+            Message response = boss.getCartInfo();
+            if (response.get(STATUS).equals(ERROR)) {
+                return new JSONArray();
+            } else {
+                return response.getJSONArray(DATA);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
     public JSONObject getPaymentInfo() {
-        Message response = boss.getPaymentInfo();
-        if (response.get(STATUS).equals(ERROR)) {
-            return new JSONObject();
-        } else {
-            return response.getJSONObject(DATA);
+        try {
+            Message response = boss.getPaymentInfo();
+            if (response.get(STATUS).equals(ERROR)) {
+                return new JSONObject();
+            } else {
+                return response.getJSONObject(DATA);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

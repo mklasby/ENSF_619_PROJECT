@@ -89,4 +89,14 @@ public class MenuViewController extends ViewController {
         return;
 
     }
+
+    public void setUserStatus() {
+        MenuView thisView = (MenuView) view;
+        if (guiController.getIsManager()) {
+            thisView.setToManagerView();
+        } else if (guiController.getIsRegistered()) {
+            thisView.setToRegisteredView();
+        }
+        thisView.setToUserView();
+    }
 }
