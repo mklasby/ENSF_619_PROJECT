@@ -86,7 +86,7 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
 
         c.gridy = 8;
         issueMovieNewsButton = new JButton("Issue Movie News");
-        issueMovieNewsButton.setActionCommand("Issue Movie News");
+        issueMovieNewsButton.setActionCommand("issueNews");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(issueMovieNewsButton, c);
 
@@ -95,6 +95,7 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
     public void setToManagerView() {
         setToRegisteredView();
         issueMovieNewsButton.setEnabled(true);
+        payAnnualButton.setEnabled(false);
     }
 
     public void setToRegisteredView() {

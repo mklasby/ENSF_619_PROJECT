@@ -56,7 +56,11 @@ public class IssueNewsViewController extends ViewController implements MessageCo
             if (isErrorMessage(response)) {
                 return;
             } else {
-                view.flashSuccessMessage("Success! Movie news file uploaded.");
+                try {
+                    view.flashSuccessMessage(response.getString(DATA));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 view.clearFields();
                 view.display("menuPanel");
             }

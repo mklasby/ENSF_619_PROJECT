@@ -283,4 +283,14 @@ public class BossController implements MessageConstants {
     public Message getPaymentInfo() {
         return null;
     }
+
+    public Message uploadMovieNews(String fieldText) {
+        return new Message(OK, String.format("Success, %s uploaded and emailed to all registered users!", fieldText));
+    }
+
+    public void payAnnual() {
+        // TODO: add annual payment to cart, no need to return message. This call can
+        // only be invoked after log in (guarded on front end already, no need to check
+        // here)
+    }
 }

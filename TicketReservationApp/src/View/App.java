@@ -42,7 +42,7 @@ public class App {
                 MovieViewController movieViewController = new MovieViewController(movieView, theatreViewController,
                                 guiController);
 
-                IssueNewsView issueNewsView = new IssueNewsView(gui, "issueNewsPanel");
+                IssueNewsView issueNewsView = new IssueNewsView(gui, "issueMovieNewsPanel");
                 IssueNewsViewController issueNewsViewController = new IssueNewsViewController(issueNewsView,
                                 guiController);
 
