@@ -15,6 +15,7 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
     private JButton registerUserButton;
     private JButton logoutButton;
     private JButton payAnnualButton;
+    private JButton refundButton;
     private JButton issueMovieNewsButton;
 
     public MenuView(Gui gui, String mainPanelKey) {
@@ -117,10 +118,12 @@ public class MenuView extends SubView implements MessageConstants, ViewConstants
         buttons.put("loginButton", loginButton);
         buttons.put("selectMovieButton", selectMovieButton);
         buttons.put("checkoutButton", checkoutButton);
+        buttons.put("refundButton", refundButton);
         buttons.put("registerUserButton", registerUserButton);
         buttons.put("logoutButton", logoutButton);
         buttons.put("payAnnualButton", payAnnualButton);
         buttons.put("issueMovieNewsButton", issueMovieNewsButton);
+        buttons.put("refundButton", refundButton);
     }
 
     @Override

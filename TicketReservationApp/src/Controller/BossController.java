@@ -3,6 +3,9 @@ package Controller;
 import java.sql.SQLException;
 
 import org.json.JSONException;
+
+import org.json.JSONArray;
+
 import org.json.JSONObject;
 
 import CommonMessage.Message;
@@ -121,19 +124,3 @@ public class BossController implements MessageConstants {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-    	//Here maybe make a message that sends back an error instead??
-        return null;
-    }
-    
-    public Message selectShowTime(JSONObject showTime) {
-        // TODO: Return ok if seats remain available ?
-        // TODO: Add showtime to ticket
-        //
-    	
-    	
-    	
-        return new Message(OK, "Showtime selected!");
-    }
-
-}
