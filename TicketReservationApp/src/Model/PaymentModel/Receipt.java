@@ -15,17 +15,17 @@ public class Receipt extends JSONObject {
 	private double amount;
 	private String receiptType;
 	private int creditCardNumber;
-	//private Date theDate;
-	
+	// private Date theDate;
+
 	public Receipt() {
 		SecureRandom random = new SecureRandom();
-		int num = random.nextInt(100000); 
+		int num = random.nextInt(100000);
 		setReceiptId(num);
 		setReceiptType("Unassigned");
 		setAmount(0);
 		setCreditCardNumber(0);
 		putFields();
-;	}
+	}
 
 	public Receipt(JSONObject jsonObj) throws JSONException, ParseException {
 		receiptId = jsonObj.getInt("receiptId");
@@ -48,12 +48,11 @@ public class Receipt extends JSONObject {
 			put("receiptId", receiptId);
 			put("amount", amount);
 			put("receiptType", receiptType);
-			put("creditCardNumber",creditCardNumber);
+			put("creditCardNumber", creditCardNumber);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	public double getAmount() {
 		return amount;
@@ -61,9 +60,8 @@ public class Receipt extends JSONObject {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
-		
-	}
 
+	}
 
 	public int getReceiptId() {
 		return receiptId;
@@ -88,7 +86,5 @@ public class Receipt extends JSONObject {
 	public void setCreditCardNumber(int creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
 	}
-
-	
 
 }

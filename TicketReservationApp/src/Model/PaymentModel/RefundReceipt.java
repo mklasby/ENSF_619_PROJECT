@@ -6,38 +6,40 @@ import org.json.JSONObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RefundReceipt extends Receipt{
-	int couponId;
+public class RefundReceipt extends Receipt {
+	int voucherId;
 
-	public RefundReceipt(){
+	public RefundReceipt() {
+		super();
+		setVoucherId(-1);
 
 	}
 
 	public RefundReceipt(ResultSet rs) throws SQLException {
-		setCouponId(rs.getInt("VoucherID"));
+		setVoucherId(rs.getInt("VoucherID"));
 		putFields();
 	}
 
 	public RefundReceipt(JSONObject jsonObj) throws JSONException {
-		setCouponId(jsonObj.getInt("couponId"));
+		setVoucherId(jsonObj.getInt("voucherId"));
 		putFields();
 	}
 
-	private void putFields() {
+	protected void putFields() {
 		try {
-			put("couponId", couponId);
+			super.putFields();
+			put("voucherId", voucherId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public int getCouponId() {
-		return couponId;
+	public int getVoucherId() {
+		return voucherId;
 	}
 
-	public void setCouponId(int couponId) {
-		this.couponId = couponId;
+	public void setVoucherId(int voucherId) {
+		this.voucherId = voucherId;
 	}
-	
 
 }
