@@ -9,17 +9,25 @@ import java.text.ParseException;
 
 public class TicketReceipt extends Receipt {
 	private int ticketId;
+	
+	
+	public TicketReceipt(int ticketId) {
+		this.ticketId = ticketId;
+		putFields();
+	}
 
 
 	public TicketReceipt(ResultSet rs) throws SQLException {
 		super(rs);
 		setTicketId(rs.getInt("TicketID"));
+		putFields();
 
 	}
 
 	public TicketReceipt(JSONObject jsonObj) throws JSONException, ParseException {
 		super(jsonObj);
 		setTicketId(jsonObj.getInt("ticketId"));
+		putFields();
 	}
 
 	private void putFields() {

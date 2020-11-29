@@ -21,6 +21,7 @@ public class Receipt extends JSONObject {
 //		String formatted = String.format("%05d", num); 
 		setReceiptId(num);
 		theDate = new Date(); // can adjust to make it a String with desired format 
+		putFields();
 ;	}
 
 	public Receipt(JSONObject jsonObj) throws JSONException, ParseException {

@@ -19,6 +19,7 @@ public class Coupon extends JSONObject {
 		SecureRandom random = new SecureRandom();
 		int num = random.nextInt(100000); // creates random 5 digit Id
 		setCouponId(num);
+		putFields();
 	}
 	public Coupon(JSONObject jsonObj) throws JSONException, ParseException {
 		couponId = jsonObj.getInt("couponId");
