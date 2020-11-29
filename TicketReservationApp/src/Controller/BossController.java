@@ -10,8 +10,6 @@ import org.json.JSONArray;
 
 import org.json.JSONObject;
 
-import com.mysql.cj.protocol.Resultset;
-
 import CommonMessage.Message;
 import CommonMessage.MessageConstants;
 import Model.TheatreModel.*;

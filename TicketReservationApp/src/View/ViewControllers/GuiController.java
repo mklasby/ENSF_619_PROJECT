@@ -85,12 +85,6 @@ public class GuiController implements MessageConstants {
         return boss.selectSeat(seat);
     }
 
-    public Message registerNewUser(String username, String password, String name, String address, String email,
-            int cardNum, String cardType) {
-        Message response = boss.registerNewUser(false, "R", username, password, name, address, email, cardNum);
-        return response;
-    }
-
     public boolean isRefundValid(int ticketNum) {
         return false;
     }
@@ -136,7 +130,7 @@ public class GuiController implements MessageConstants {
     }
 
     public Message registerNewUser(String username, String password, String name, String address, String email,
-            Integer cardNum, String cardType) {
-        return null;
+            int cardNum, String cardType) {
+        return boss.registerNewUser(false, "R", username, password, name, address, email, cardNum);
     }
 }

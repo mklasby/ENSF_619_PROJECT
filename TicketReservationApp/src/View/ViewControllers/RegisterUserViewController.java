@@ -58,9 +58,7 @@ public class RegisterUserViewController extends ViewController implements Messag
                 view.clearFields();
                 view.display("menuPanel");
             }
-
         }
-
     }
 
     @Override
