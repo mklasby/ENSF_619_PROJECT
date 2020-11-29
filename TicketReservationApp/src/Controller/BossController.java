@@ -26,12 +26,11 @@ public class BossController implements MessageConstants {
     private PaymentManager paymentManager;
     private Cart cart;
 
-    public BossController(DatabaseController databaseController, FinancialController financialController, Cart cart,
-            UserManager userManager, PaymentManager paymentManager) {
+    public BossController(DatabaseController databaseController, FinancialController financialController,
+            UserManager userManager) {
         this.databaseController = databaseController;
         this.financialController = financialController;
-        this.paymentManager = paymentManager;
-        this.cart = cart;
+        this.cart = new Cart();
         this.userManager = userManager;
     }
 
@@ -310,9 +309,9 @@ public class BossController implements MessageConstants {
         }
         if (financialController.checkPaymentData(cardType, cardNum)) {
             // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
-            //cart.payAll();
-        	paymentManager.setCart(cart);
-        	
+            // cart.payAll();
+            paymentManager.setCart(cart);
+
             return new Message(OK, "Success! Thank you for your business!");
         }
         return null;
