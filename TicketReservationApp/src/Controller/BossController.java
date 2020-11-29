@@ -18,10 +18,10 @@ import Model.TheatreModel.SelectTheatre;
 public class BossController implements MessageConstants {
 
     private Ticket ticket;
-    private UserManager user;
+    // private UserManager user;
 
     public BossController() {
-        user = new UserManager();
+        // user = new UserManager();
     }
 
     }

@@ -30,11 +30,11 @@ public class App {
         // SeatViewController seatViewController = new SeatViewController(seatView,
         // guiController);
         // seatView.display("seatPanel");
-        // gui.display();
 
         PaymentView paymentView = new PaymentView(gui, "paymentView");
         PaymentViewController paymentViewController = new PaymentViewController(paymentView, guiController);
         paymentView.display("paymentView");
+        gui.display();
 
         // MenuView menu = new MenuView();
         // MenuController menuController = new MenuController(gui, "menuPanel");
