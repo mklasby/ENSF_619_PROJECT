@@ -14,30 +14,16 @@ import Model.TheatreModel.BrowseMovie;
 import Model.TheatreModel.Movie;
 import Model.TheatreModel.Ticket;
 import Model.TheatreModel.SelectTheatre;
+import Model.UserModel.*;
 
 public class BossController implements MessageConstants {
-<<<<<<< HEAD
 
     private Ticket ticket;
     // private UserManager user;
 
     public BossController() {
-        // user = new UserManager();
+        user = new UserManager();
     }
-
-    }
-=======
-	
-	private Ticket ticket;
-	private UserManager user;
-	
-	
-
-	
-	public BossController() {
-		user = new UserManager();	
-	}
->>>>>>> 675ca49ae3adc908063a7bc0f84f441d3163b3da
 
     public Message login(String username, String password) {
         // TODO: Return STATUS=ERROR if login fails
@@ -78,7 +64,7 @@ public class BossController implements MessageConstants {
 
     public void logoutUser() {
         // TODO: Reset user status to normal user
-    	User.setUser(null);
+        User.setUser(null);
     }
 
     public Message selectMovie(JSONObject movie) {
