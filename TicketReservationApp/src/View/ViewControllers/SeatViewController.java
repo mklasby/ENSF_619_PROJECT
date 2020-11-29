@@ -36,7 +36,7 @@ public class SeatViewController extends ViewController {
         try {
             for (int i = 0; i < seats.length(); i++) {
                 JSONObject thisSeat = seats.getJSONObject(i);
-                int seatId = thisSeat.getInt("seatId");
+                int seatId = thisSeat.getInt("seatNum");
                 boolean isReserved = thisSeat.getBoolean("isReserved");
                 thisView.setSeatStatus(seatId, isReserved);
             }
@@ -50,7 +50,7 @@ public class SeatViewController extends ViewController {
         selectedIdx = seatSelected;
         try {
             JSONObject seat = seats.getJSONObject(selectedIdx);
-            Message response = guiController.selectShowTime(seat);
+            Message response = guiController.selectSeat(seat);
             if (isErrorMessage(response)) {
                 return;
             } else {

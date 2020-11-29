@@ -179,15 +179,34 @@ public class BossController implements MessageConstants {
 
     }
 
+    public Message selectSeat(JSONObject selection) {
+        // TODO: MOVE FUNCTIONALITY TO TICKET CLASS
+
+        try {
+            Seat seat;
+            // TODO: how to check for 10% of tickets reserved for early access movie!
+            seat = new Seat(selection);
+            ticket.setSeat(seat);
+            return new Message(OK, "Seat Selected!");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Message getSeatList() {
         // public JSONArray getSeatList() {
         // TODO: OK return all seats for this theatre, movie, showtime combo\
         // TODO: Return ERROR if all seats full?
         SelectSeat ss = new SelectSeat();
         try {
-            Message message = ss.getSeatList(databaseController.getSeatList(ticket.getMovie().getMovieName(),
-                    ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID()));
-            return message;
+            ResultSet seats = databaseController.getSeatList(ticket.getMovie().getMovieName(),
+                    ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID());
+            if (seats == null) {
+                return new Message(ERROR, "No seats found for that showtime!");
+            } else {
+                return ss.getSeatList(seats);
+            }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

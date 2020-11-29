@@ -20,6 +20,7 @@ public class ShowTimeViewController extends ViewController implements MessageCon
 
     public ShowTimeViewController(SubView view, SeatViewController nextController, GuiController guiController) {
         super(view, guiController);
+        this.nextController = nextController;
         view.registerButtonListener(new ButtonListener());
         view.registerListListener(new ResultsListListener());
     }
