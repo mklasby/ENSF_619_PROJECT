@@ -8,12 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegisteredUser extends User{
-	private String firstName;
-	private String lastName;
+	private String name;
 	private String userName;
 	private String userType;
 	private String password; //to fix? 
+	private String address;
 	private boolean hasPaidDues;
+	
 
 	public RegisteredUser(String userName, String email, PaymentInfo paymentInfo) { // gonna fix
 		super(email, paymentInfo);
@@ -22,30 +23,31 @@ public class RegisteredUser extends User{
 
 	public RegisteredUser(JSONObject jsonObject) throws JSONException {
 		super(jsonObject);
-		setFirstName(jsonObject.getString("firstName"));
-		setLastName(jsonObject.getString("lastName"));
+		setName(jsonObject.getString("name"));
 		setUserType(jsonObject.getString("userType"));
 		setUserName(jsonObject.getString("userName"));
 		setPassword(jsonObject.getString("password"));
+		setAddress(jsonObject.getString("address"));
+		
 		putFields();
 	}
 	public RegisteredUser(ResultSet rs) throws SQLException {
 		super(rs);
-		firstName = rs.getString("fName");
-		lastName = rs.getString("lName");
+		name = rs.getString("Name");
 		userName = rs.getString("Username");
 		userType = rs.getString("UserType");
 		password = rs.getString("UserPassword");
+		address = rs.getString("Address");
 		putFields();
 	}
 
 	private void putFields() {
 		try {
-			put("firstName", firstName);
-			put("lastName", lastName);
+			put("name", name);
 			put("userName", userName);
 			put("userType", userType);
 			put("password", password);
+			put("address", address);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -59,22 +61,13 @@ public class RegisteredUser extends User{
 		this.hasPaidDues = hasPaidDues;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 
 	public String getPassword() {
 		return password;
@@ -83,7 +76,6 @@ public class RegisteredUser extends User{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 
 	public String getUserName() {
@@ -100,6 +92,14 @@ public class RegisteredUser extends User{
 
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

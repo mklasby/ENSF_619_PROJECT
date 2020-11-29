@@ -171,13 +171,14 @@ CREATE TABLE REGISTERED_USERS (
   Name      					varchar(25),
   Email      					varchar(25),
   CreditCardNumber      		int,
+  Address						varchar(25),
 
   PRIMARY KEY (Username),
   FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 
-INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber  ) VALUES (True, 'R', 'user' ,'password', 'Sylvester Stallone', 'realrambo@hotmail.com', 9999 ) ;
-INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber  ) VALUES (Null, 'M', 'admin' ,'admin', 'Big Boy', 'bigboy@hotmail.com', 8888 ) ;
+INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber, Address  ) VALUES (True, 'R', 'user' ,'password', 'Sylvester Stallone', 'realrambo@hotmail.com', 9999, "HollyWood" ) ;
+INSERT INTO REGISTERED_USERS (isMembershipPaid, UserType, Username, UserPassword, Name, Email, CreditCardNumber, Address  ) VALUES (Null, 'M', 'admin' ,'admin', 'Big Boy', 'bigboy@hotmail.com', 8888, "Tanzania" ) ;
 
 DROP TABLE IF EXISTS VOUCHER;
 CREATE TABLE VOUCHER (
