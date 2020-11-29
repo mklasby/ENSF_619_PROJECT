@@ -1,9 +1,14 @@
 package Model.UserModel;
 
 import java.sql.ResultSet;
-import PaymentModel.*;
+import java.sql.SQLException;
 
-public class User {
+import Model.PaymentModel.PaymentInfo;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class User extends JSONObject {
 
 	private String email;
 	private PaymentInfo paymentInfo;
@@ -13,7 +18,25 @@ public class User {
 		setPaymentInfo(paymentInfo);
 	}
 
-	public User(ResultSet rs) {
+	public User (JSONObject jsonObj) throws JSONException{
+		email = jsonObj.getString("email");
+		paymentInfo = new PaymentInfo(jsonObj.getInt("cardNumber"), jsonObj.getString("cardType"));
+		putFields();
+	}
+
+	private void putFields() {
+		try {
+			put("email", email);
+			put("paymentInfo", paymentInfo);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public User(ResultSet rs) throws SQLException {
+		setEmail(rs.getString("Email"));
+		setPaymentInfo(new PaymentInfo(rs.getInt("CreditCardNumber"), rs.getString("CreditCardType")));
+		putFields();
 	}
 
 	public String getEmail() {
@@ -35,11 +58,4 @@ public class User {
 	public static void setUser(Object object) {
 	}
 
-	public Object getPassword() {
-		return null;
-	}
-
-	public String getUserType() {
-		return null;
-	}
 }

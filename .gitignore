@@ -1,2 +1,16 @@
 /bin/
 /.metadata/
+.DS_Store
+ActivityDiagrams/.DS_Store
+SequenceDiagrams/.DS_Store
+TicketReservationApp/.DS_Store
+TicketReservationApp/.idea/
+TicketReservationApp/TicketReservationApp.iml
+TicketReservationApp/src/.DS_Store
+TicketReservationApp/src/Controller/.DS_Store
+TicketReservationApp/src/Controller/.idea/
+TicketReservationApp/src/Controller/Controller.iml
+TicketReservationApp/src/Controller/Password.java
+TicketReservationApp/src/Model/.DS_Store
+paymentManager/
+paymentmaager/

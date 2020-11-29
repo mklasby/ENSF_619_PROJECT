@@ -1,4 +1,8 @@
-package paymentManager;
+package Controller.PaymentController;
+
+import Model.PaymentModel.Coupon;
+import Model.PaymentModel.Receipt;
+import Model.PaymentModel.RefundReceipt;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -29,7 +33,7 @@ public class RefundTicket {
 	
 	/**
 	 * creates coupon by setting its refund amount and expiry date 
-	 * @param thereceipt
+	 * @param thereceipt ticket purchase receipt
 	 */
 	public void createCoupon(Receipt thereceipt) {
 		theCoupon = new Coupon();

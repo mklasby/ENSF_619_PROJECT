@@ -1,4 +1,12 @@
-package paymentManager;
+package Controller.PaymentController;
+
+import Model.PaymentModel.AnnualReceipt;
+import Model.PaymentModel.Coupon;
+import Model.PaymentModel.Receipt;
+import Model.PaymentModel.TicketReceipt;
+import Model.TheatreModel.Ticket;
+import Model.UserModel.RegisteredUser;
+import Model.UserModel.User;
 
 public class PaymentManager {
 	public User user;

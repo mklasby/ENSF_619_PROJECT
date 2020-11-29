@@ -4,7 +4,7 @@ public class UserManager {
 	
 	User user;
 
-    public static void setUser(User user) {
+    public void setUser(User user) {
     	this.user = user;
     }
 

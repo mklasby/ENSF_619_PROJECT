@@ -1,8 +1,11 @@
-package paymentManager;
+package Controller.PaymentController;
+
+import Model.PaymentModel.AnnualReceipt;
+import Model.UserModel.RegisteredUser;
 
 public class PayAnnualFee {
 	private double amount;
-	private AnnualReceipt theReceipt; 
+	private AnnualReceipt theReceipt;
 	
 	public PayAnnualFee(RegisteredUser theUser, int year) {
 		theReceipt = new AnnualReceipt(year);
