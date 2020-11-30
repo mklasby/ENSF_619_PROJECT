@@ -1,11 +1,7 @@
 package Controller.PaymentController;
 
-import Model.PaymentModel.AnnualFee;
-import Model.PaymentModel.AnnualReceipt;
-import Model.PaymentModel.Cart;
+import Model.PaymentModel.*;
 import Model.PaymentModel.Coupon;
-import Model.PaymentModel.Receipt;
-import Model.PaymentModel.TicketReceipt;
 import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
@@ -68,7 +64,7 @@ public class PaymentManager {
 
     public void refundTicket(Receipt thereceipt){
     	RefundTicket ticketRefund = new RefundTicket(thereceipt);
-    	Coupon theCoupon = ticketRefund.getTheCoupon();
+    	Voucher theCoupon = ticketRefund.getTheCoupon();
     	//send ticket to user
     }
     

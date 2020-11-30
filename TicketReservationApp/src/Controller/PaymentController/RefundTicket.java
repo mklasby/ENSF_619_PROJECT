@@ -80,7 +80,7 @@ public class RefundTicket {
 	public void setRefundAmount(double refundAmount) {
 		this.refundAmount = refundAmount;
 	}
-	public Coupon getTheCoupon() {
+	public Voucher getTheCoupon() {
 		return theCoupon;
 	}
 	public void setTheCoupon(Coupon theCoupon) {

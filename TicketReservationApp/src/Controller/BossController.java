@@ -305,7 +305,7 @@ public class BossController implements MessageConstants {
         return new Message(OK, "Success, annual dues added to cart");
     }
 
-    public Message processPayment(String email, int cardNum, String cardType) {
+    public Message processPayment(String email, int cardNum, String cardType) throws JSONException {
         if (cardType.equals("Voucher")) {
             if (!databaseController.isValidVoucher(cardNum)) {
                 return new Message(ERROR, "Voucher number not found!");
@@ -321,6 +321,28 @@ public class BossController implements MessageConstants {
 
             PaymentManager paymentManager = new PaymentManager(thisUser);
         	paymentManager.setCart(cart);
+        	JSONArray paymentReceipts = paymentManager.payForAll();
+
+        	for (int i = 0; i < paymentReceipts.length(); i++){
+        	    if(paymentReceipts.getJSONObject(i).getString("receiptType").equals("Annual")){
+        	        RegisteredUser theUser = (RegisteredUser) thisUser;
+        	        databaseController.payAnnualDues(theUser.getUserName());
+                }
+
+                int ticketID;
+                try{
+                    ticketID= paymentReceipts.getJSONObject(i).getInt("ticketID");
+                }catch (JSONException e ){
+                    ticketID = -1;
+                }
+
+                int receiptID= paymentReceipts.getJSONObject(i).getInt("receiptId");
+                String receiptType= paymentReceipts.getJSONObject(i).getString("receiptType");
+                int voucherId = -1;
+                int creditCardNumber= paymentReceipts.getJSONObject(i).getInt("creditCardNumber");
+                double price = paymentReceipts.getJSONObject(i).getDouble("amount");
+        	    databaseController.insertReceipt(receiptID,receiptType,ticketID,creditCardNumber, voucherId, price);
+            }
         	
             return new Message(OK, "Success! Thank you for your business!");
         }
