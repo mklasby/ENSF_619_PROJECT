@@ -160,8 +160,6 @@ public class BossController implements MessageConstants {
     }
 
     public Message selectSeat(JSONObject selection) {
-        // TODO: MOVE FUNCTIONALITY TO TICKET CLASS?
-
         try {
             if (databaseController.reservationsRemaining(ticket.getMovie().getMovieName(),
                     ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID(),
@@ -169,7 +167,6 @@ public class BossController implements MessageConstants {
                 return new Message(ERROR, "Sorry, 10% of seats have already been reserved for this early movie!");
             }
             Seat seat;
-            // TODO: how to check for 10% of tickets reserved for early access movie!
             seat = new Seat(selection);
             ticket.setSeat(seat);
             ticket.encode();
@@ -185,9 +182,6 @@ public class BossController implements MessageConstants {
     }
 
     public Message getSeatList() {
-        // public JSONArray getSeatList() {
-        // TODO: OK return all seats for this theatre, movie, showtime combo\
-        // TODO: Return ERROR if all seats full?
         SelectSeat ss = new SelectSeat();
         try {
             ResultSet seats = databaseController.getSeatList(ticket.getMovie().getMovieName(),
@@ -198,7 +192,6 @@ public class BossController implements MessageConstants {
                 return ss.getSeatList(seats);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -208,8 +201,6 @@ public class BossController implements MessageConstants {
 
     public Message registerNewUser(boolean isMemberPaid, String userType, String username, String userPassword,
             String name, String address, String email, int creditCardNumber) {
-        // TODO: return OK if successful, return ERROR If username already exists of if
-        // supplied type are bad
 
         ResultSet resultSet = databaseController.getRegisteredUser(username);
         if (resultSet != null) {

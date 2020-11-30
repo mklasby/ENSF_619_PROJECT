@@ -56,7 +56,8 @@ public class RefundViewController extends ViewController implements MessageConst
             if (isErrorMessage(response)) {
                 return;
             } else {
-                view.flashSuccessMessage("Success, you have logged in. Returning to main menu...");
+                view.flashSuccessMessage(
+                        "Success, refund accepted! A voucher has been emailed to your account! Returning to main menu...");
                 try {
                     if (response.get(DATA).equals("manager")) {
                         guiController.setIsManager(true);
