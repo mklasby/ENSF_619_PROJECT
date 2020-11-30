@@ -372,7 +372,7 @@ public class DatabaseController implements Password {
 
 	public ResultSet resetTicket(int ticketID) {
 		try {
-			String query = "UPDATE TICKET SET (IsSeatReserved, Paid) VALUES (FALSE, FALSE) WHERE TicketID = ? ";
+			String query = "UPDATE TICKET SET IsSeatReserved=FALSE, Paid=FALSE WHERE TicketID = ? ";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			stmt.executeUpdate();
