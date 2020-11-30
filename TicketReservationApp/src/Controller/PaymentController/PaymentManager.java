@@ -63,7 +63,7 @@ public class PaymentManager {
 		return annualReceipt;
 	}
 
-	public void refundTicket(Receipt thereceipt) {
+	public JSONArray refundTicket(Receipt thereceipt) {
 		try {
 			boolean isReg = false;
 			if (user.getString("userType").equals("M") | user.getString("userType").equals("R")) {
@@ -71,9 +71,16 @@ public class PaymentManager {
 			}
 			RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);
 			Voucher theVoucher = ticketRefund.getTheVoucher();
+			RefundReceipt theRefund = ticketRefund.getRefundReceipt();
+			reply.put(theVoucher);
+			reply.put(theRefund);
+			return reply;
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		
+		return null;
 	}
 
 	public User getUser() {

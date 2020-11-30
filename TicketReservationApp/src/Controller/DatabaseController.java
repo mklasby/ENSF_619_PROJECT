@@ -1,11 +1,13 @@
 package Controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import org.json.JSONObject;
 
@@ -161,15 +163,36 @@ public class DatabaseController implements Password {
 
 	// Dont really need this????????
 
-	public ResultSet searchTicket(String movieName, String theatreName, int ShowTimeID, int SeatNumber) {
+//	public ResultSet searchTicket(String movieName, String theatreName, int ShowTimeID, int SeatNumber) {
+//
+//		try {
+//			String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
+//			stmt = conn.prepareStatement(query);
+//			stmt.setString(1, movieName);
+//			stmt.setString(2, theatreName);
+//			resultSet = stmt.executeQuery();
+//			resultSet.next();
+//			return resultSet;
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//
+//	}
 
+	public ResultSet setVoucher(int voucherID, double voucherValue, String voucherExp, boolean voucherActive) {
+		
 		try {
-			String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
+			String query = "INSERT INTO VOUCHER (VoucherID, VoucherValue, VoucherExpiraryDate, VoucherActive) VALUES (?, ?, ?, ?)";
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, movieName);
-			stmt.setString(1, theatreName);
-			resultSet = stmt.executeQuery();
-			resultSet.next();
+			stmt.setInt(1, voucherID);
+			stmt.setDouble(2, voucherValue);
+			stmt.setString(3, voucherExp);
+			stmt.setBoolean(4, voucherActive);
+			stmt.executeUpdate();
+			resultSet = this.getVoucher(voucherID);
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -177,9 +200,10 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 		}
 		return null;
-
+		
+		
 	}
-
+	
 	public ResultSet getVoucher(String userName) {
 
 		try {
