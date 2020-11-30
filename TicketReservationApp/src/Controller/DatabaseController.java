@@ -33,13 +33,11 @@ public class DatabaseController implements Password {
 	 * query
 	 */
 	private ResultSet resultSet;
-							
 
 	/**
 	 * Name of the database that stores all the tool shop information
 	 */
 	private String databaseName = "ticketRegistrationDatabase";
-
 
 	public DatabaseController() {
 		initializeConnection();
@@ -160,8 +158,6 @@ public class DatabaseController implements Password {
 
 	}
 
-
-
 	public ResultSet setVoucher(int voucherID, double voucherValue, String voucherExp, boolean voucherActive) {
 
 		try {
@@ -203,7 +199,7 @@ public class DatabaseController implements Password {
 	public ResultSet getVoucher(int voucherID) {
 
 		try {
-			String query = "SELECT * FROM Voucher WHERE VoucherID = ? ";
+			String query = "SELECT * FROM VOUCHER WHERE VoucherID = ? ";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, voucherID);
 			resultSet = stmt.executeQuery();
@@ -490,7 +486,10 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, cardNum);
 			resultSet = stmt.executeQuery();
-//			resultSet.getInt("VoucherID");
+			if (resultSet.getTimestamp("VoucherExpiraryDate").before(new Timestamp(System.currentTimeMillis()))) {
+				return false;
+			}
+			// voucher is valid and set to paid
 			if (resultSet.next()) {
 				query = "UPDATE VOUCHER SET VoucherActive=false WHERE VoucherId =?";
 				stmt = conn.prepareStatement(query);

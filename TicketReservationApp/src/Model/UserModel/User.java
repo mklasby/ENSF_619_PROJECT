@@ -14,6 +14,8 @@ public class User extends JSONObject {
 	private String userType;
 
 	public User() {
+		paymentInfo = new PaymentInfo(-999, "D");
+		userType = "Unregistered";
 	};
 
 	public User(String email, PaymentInfo paymentInfo) {

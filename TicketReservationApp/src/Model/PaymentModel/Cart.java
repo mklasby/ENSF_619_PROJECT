@@ -24,11 +24,11 @@ public class Cart extends JSONObject {
 		for (Ticket t : cartOfTickets) {
 			t.encode();
 			System.out.print(t.toString());
-			reply.put(t.toString());
+			reply.put(t);
 		}
 
 		if (annualFee != null) {
-			reply.put(annualFee.toString());
+			reply.put(annualFee);
 		}
 
 		return reply;
@@ -73,7 +73,7 @@ public class Cart extends JSONObject {
 	}
 
 	public void payAll() {
-		
+
 		clearCart();
 	}
 

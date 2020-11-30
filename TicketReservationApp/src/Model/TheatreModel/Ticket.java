@@ -31,6 +31,7 @@ public class Ticket extends JSONObject {
 			put("movieName", movie.getMovieName());
 			put("seatNumber", seat.getSeatNum());
 			put("showTimeId", showTime.getShowTimeID());
+			put("showTime", showTime.getStartTime().toString());
 			put("theatreName", theatre.getTheatreName());
 			put("price", price);
 		} catch (JSONException e) {

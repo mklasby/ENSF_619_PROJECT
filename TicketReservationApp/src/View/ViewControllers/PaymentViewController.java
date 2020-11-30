@@ -20,6 +20,7 @@ public class PaymentViewController extends ViewController implements MessageCons
     public PaymentViewController(SubView view, GuiController guiController) {
         super(view, guiController);
         view.registerButtonListener(new ButtonListener());
+        view.registerGuiMenuButton(new ButtonListener());
     }
 
     public class ButtonListener implements ActionListener {
@@ -33,6 +34,8 @@ public class PaymentViewController extends ViewController implements MessageCons
                 submit();
             } else if (cmd == "clearFields") {
                 clearFields();
+            } else {
+                clearLists();
             }
         }
 
@@ -64,6 +67,7 @@ public class PaymentViewController extends ViewController implements MessageCons
                         "Success, payment received. You have been emailed a copy of your Ticket and Receipt. Returning to main menu...");
                 view.clearFields();
                 view.display("menuPanel");
+                clearLists();
             }
 
         }
@@ -76,12 +80,36 @@ public class PaymentViewController extends ViewController implements MessageCons
         DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
         for (int i = 0; i < cartContents.length(); i++) {
             try {
-                // TODO: Pretty print
-                listModel.add(i, cartContents.get(i).toString());
+                System.out.print(cartContents.get(i).toString());
+
+                String prettyText = new String();
+                // check if a ticket
+                try {
+                    JSONObject thisObject = cartContents.getJSONObject(i);
+                    String movieName = thisObject.getString("movieName");
+                    int seatNumber = thisObject.getInt("seatNumber");
+                    String showTime = thisObject.getString("showTime");
+                    String theatreName = thisObject.getString("theatreName");
+                    double price = thisObject.getDouble("price");
+                    prettyText = String.format("%10s, %15s, %15s, %2d, %4.2f", movieName, theatreName, showTime,
+                            seatNumber, price);
+                } catch (JSONException e) {
+                    System.out.println("Not a ticket");
+                }
+                try {
+                    JSONObject thisObject = cartContents.getJSONObject(i);
+                    String name = thisObject.getString("name");
+                    double amount = thisObject.getDouble("amount");
+                    prettyText = String.format("%10s, %4.2f", name, amount);
+                } catch (JSONException e) {
+                    System.out.println("Not a pay annual");
+                }
+                listModel.add(i, prettyText);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void setPaymentInfo(JSONObject user) {

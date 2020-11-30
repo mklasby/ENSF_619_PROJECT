@@ -19,7 +19,6 @@ public class PaymentManager {
 		reply = new JSONArray();
 	}
 
-
 	public JSONArray getCart() {
 
 		JSONArray reply = new JSONArray();
@@ -40,7 +39,6 @@ public class PaymentManager {
 			TicketReceipt thisReceipt = ticketPayment.getTheReceipt();
 			reply.put(thisReceipt);
 		}
-
 
 	}
 
@@ -70,7 +68,6 @@ public class PaymentManager {
 				isReg = true;
 			}
 
-
 		} catch (JSONException e) {
 
 			System.out.println("The user is not registered");
@@ -78,7 +75,7 @@ public class PaymentManager {
 		RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);
 		Voucher theVoucher = ticketRefund.getTheVoucher();
 		RefundReceipt theRefund = ticketRefund.getRefundReceipt();
-		theRefund.setCreditCardNumber(user.getPaymentInfo().getCardNumber());
+		// theRefund.setCreditCardNumber(user.getPaymentInfo().getCardNumber());
 		theRefund.putFields();
 		reply.put(theVoucher);
 		reply.put(theRefund);

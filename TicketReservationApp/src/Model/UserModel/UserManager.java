@@ -21,13 +21,12 @@ public class UserManager {
 		this.user = user;
 	}
 
-	public void loginUser(ResultSet resultSetUser) { 
-
+	public void loginUser(ResultSet resultSetUser) {
 
 		try {
 			this.user = new User(resultSetUser);
 		} catch (SQLException e) {
-		
+
 			e.printStackTrace();
 		}
 		this.isRegisteredUser = true;
@@ -54,7 +53,7 @@ public class UserManager {
 			User user = new User(resultSet);
 			return user;
 		} catch (SQLException e) {
-		
+
 			e.printStackTrace();
 		}
 		return null;

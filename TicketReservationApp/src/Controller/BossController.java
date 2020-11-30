@@ -45,7 +45,7 @@ public class BossController implements MessageConstants {
                 return new Message(ERROR, "This username does not exists");
             }
             if (!user.getString("UserPassword").equals(password)) {
-               
+
                 return new Message(ERROR, "Password does not match");
 
             } else {
@@ -238,16 +238,15 @@ public class BossController implements MessageConstants {
             return new Message(ERROR, "Username already exists");
         }
         resultSet = databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, address,
-                email, creditCardNumber); 
-        return new Message(OK, userManager.parseUserSQL(resultSet)); 
-                                                                     
+                email, creditCardNumber);
+        return new Message(OK, userManager.parseUserSQL(resultSet));
 
     }
 
     public Message getRegisteredUser(String username) {
 
-        ResultSet resultSet = databaseController.getRegisteredUser(username); 
-                                                                              
+        ResultSet resultSet = databaseController.getRegisteredUser(username);
+
         if (resultSet == null) {
             return new Message(ERROR, "Username does not exists!");
         }
@@ -277,12 +276,11 @@ public class BossController implements MessageConstants {
                 TicketReceipt ticketReceipt = new TicketReceipt(resultSetReceipt);
                 System.out.println(resultSetReceipt.getInt("TicketID"));
                 JSONArray voucherAndReceipt = paymentManager.refundTicket(ticketReceipt);
-                
 
                 try {
 
                     Voucher voucher = new Voucher(voucherAndReceipt.getJSONObject(0));
-                   
+
                     databaseController.setVoucher(voucher.getInt("voucherId"), voucher.getDouble("amount"),
                             voucher.getString("expiryDate"), true);
 
@@ -294,7 +292,7 @@ public class BossController implements MessageConstants {
                             refundReceipt.getDouble("amount"));
 
                     databaseController.resetTicket(ticketNum);
-                    
+
                     return new Message(OK, "Successfully Refunded");
 
                 } catch (JSONException | ParseException e) {
@@ -310,7 +308,6 @@ public class BossController implements MessageConstants {
         return new Message(ERROR, "Ticket number doesn't exist");
 
     }
-
 
     public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name,
             String address, String email, int creditCardNumber, String creditCardType) {
@@ -343,10 +340,6 @@ public class BossController implements MessageConstants {
     }
 
     public Message payAnnual() {
-        // TODO: Add logic to check if we have already paid? return STATUS=ERROR if so?
-        // TODO: add annual payment to cart. This call can
-        // only be invoked after log in (guarded on front end already, no need to check
-        // here)
         cart.addAnnualFee(new AnnualFee());
         return new Message(OK, "Success, annual dues added to cart");
     }
@@ -354,12 +347,10 @@ public class BossController implements MessageConstants {
     public Message processPayment(String email, int cardNum, String cardType) throws JSONException {
         if (cardType.equals("Voucher")) {
             if (!databaseController.isValidVoucher(cardNum)) {
-                return new Message(ERROR, "Voucher number not found!");
+                return new Message(ERROR, "Voucher number not found OR voucher expired!");
             }
         }
         if (financialController.checkPaymentData(cardType, cardNum)) {
-            // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
-         
             PaymentInfo paymentInfo = new PaymentInfo(cardNum, cardType);
             User thisUser = userManager.getUser();
             thisUser.setEmail(email);
