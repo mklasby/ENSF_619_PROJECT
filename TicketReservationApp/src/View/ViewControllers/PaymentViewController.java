@@ -15,6 +15,7 @@ import java.awt.event.*;
 import CommonMessage.MessageConstants;
 
 public class PaymentViewController extends ViewController implements MessageConstants {
+    JSONArray cartContents;
 
     public PaymentViewController(SubView view, GuiController guiController) {
         super(view, guiController);
@@ -40,6 +41,9 @@ public class PaymentViewController extends ViewController implements MessageCons
     public void submit() {
         if (areFieldsEmpty()) {
             view.flashErrorMessage("Please enter info into all fields!");
+            return;
+        } else if (cartContents.length() == 0) {
+            view.flashErrorMessage("Error! No items in cart!");
             return;
         } else {
             String email = view.getFieldText("email");
@@ -67,6 +71,7 @@ public class PaymentViewController extends ViewController implements MessageCons
     }
 
     public void setCartInfo(JSONArray cartContents) {
+        this.cartContents = cartContents;
         HashMap<String, JList> lists = view.getLists();
         DefaultListModel listModel = (DefaultListModel) lists.get("resultsList").getModel();
         for (int i = 0; i < cartContents.length(); i++) {

@@ -57,7 +57,7 @@ CREATE TABLE SHOWTIME (
   PRIMARY KEY (ShowTimeID)
 );
 
-INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (1, '2021-01-01 07:00:00', '2021-01-01 08:40:00');
+INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (1, '2020-12-01 07:00:00', '2021-01-01 08:40:00');
 INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (2, '2021-01-01 09:00:00', '2021-01-01 10:40:00');
 
 
@@ -73,7 +73,9 @@ CREATE TABLE SHOWINGS (
 );
 
 INSERT INTO SHOWINGS (ShowTimeID ,TheatreName, MovieName ) VALUES (1, 'Country Hills Theatres', 'Die Hard');
+INSERT INTO SHOWINGS (ShowTimeID ,TheatreName, MovieName ) VALUES (2, 'Country Hills Theatres', 'Die Hard');
 INSERT INTO SHOWINGS (ShowTimeID ,TheatreName, MovieName ) VALUES (2, 'Country Hills Theatres', 'Rambo III');
+INSERT INTO SHOWINGS (ShowTimeID ,TheatreName, MovieName ) VALUES (1, 'Country Hills Theatres', 'Rambo III');
 
 
 
@@ -131,10 +133,10 @@ INSERT INTO TICKET VALUES
 (12, 2, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
 (13, 3, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
 (14, 4, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
-(15, 5, true, 1, "Country Hills Theatres", "Rambo III", true, 8.99),
-(16, 6, true, 1, "Country Hills Theatres", "Rambo III", true, 8.99),
-(17, 7, true, 1, "Country Hills Theatres", "Rambo III", true, 8.99),
-(18, 8, true, 1, "Country Hills Theatres", "Rambo III", true, 8.99),
+(15, 5, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
+(16, 6, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
+(17, 7, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
+(18, 8, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
 (19, 9, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
 (20, 10, false, 1, "Country Hills Theatres", "Rambo III", false, 8.99),
 (21, 1, false, 2, "Country Hills Theatres", "Die Hard", false, 8.99),
@@ -208,6 +210,11 @@ CREATE TABLE RECEIPT (
 --   FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (1, 'Ticket' , 1, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (2, 'Ticket' , 34, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (3, 'Ticket' , 35, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (4, 'Ticket' , 36, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (5, 'Ticket' , 37, 9999, null, 8.99) ;
+
 
 DROP TABLE IF EXISTS TICKET_PURCHASES;
 CREATE TABLE TICKET_PURCHASES (

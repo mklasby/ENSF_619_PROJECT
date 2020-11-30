@@ -16,9 +16,6 @@ public class Ticket extends JSONObject {
 	private int ticketID;
 	private double price;
 
-
-
-	?
 	public Ticket(ResultSet allTickets) throws SQLException {
 
 		movie = new Movie(allTickets);
@@ -37,12 +34,12 @@ public class Ticket extends JSONObject {
 			put("theatreName", theatre.getTheatreName());
 			put("price", price);
 		} catch (JSONException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
 
-	public Ticket(Movie selectedMovie) { 
+	public Ticket(Movie selectedMovie) {
 		this.setMovie(selectedMovie);
 	}
 
@@ -81,7 +78,6 @@ public class Ticket extends JSONObject {
 	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}
-
 
 	public int getTicketID() {
 		return ticketID;
