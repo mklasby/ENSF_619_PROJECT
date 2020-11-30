@@ -194,6 +194,7 @@ public class BossController implements MessageConstants {
             // TODO: how to check for 10% of tickets reserved for early access movie!
             seat = new Seat(selection);
             ticket.setSeat(seat);
+            cart.addTicketToCart(ticket);
             return new Message(OK, "Seat Selected!");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -249,64 +250,60 @@ public class BossController implements MessageConstants {
         return new Message(OK, userManager.parseUserSQL(resultSet));
 
     }
-    
-    public Message refundTicket(int ticketNum) {
-    	
-    	
-    	try {
-    		
-        	ResultSet resultSetReceipt = databaseController.getReceipt(ticketNum);
-        	if(resultSetReceipt == null) {
-        		return new Message(ERROR, "Ticket Number not found");
-        	}else {
 
-        		//here we need to check if we are near 72 hours
-        		ResultSet resultSetTicket = databaseController.getTicket(ticketNum);
-        		Timestamp startTime = resultSetTicket.getTimestamp("startTime");
-        		Timestamp sqlTimestamp = new Timestamp(System.currentTimeMillis());
-        		
-        		if( (startTime.getTime() - sqlTimestamp.getTime() ) < ( 2.592 * Math.pow(10, 8) ) ) {
-        			return new Message(ERROR, "Sorry, no refunds within 72 hours of a showtime");
-        		}
-        		
-        		PaymentManager paymentManager = new PaymentManager(userManager.getUser());
-        		TicketReceipt ticketReceipt = new TicketReceipt(resultSetReceipt);
-        		JSONArray voucherAndReceipt = paymentManager.refundTicket(ticketReceipt);
-        		//do we need to do checking?
-       	
-        		try {
-        			
-					Voucher voucher = new Voucher(voucherAndReceipt.getJSONObject(0));
-					//Check if string works when moving around time/dates
-					databaseController.setVoucher(voucher.getInt("voucherID"), voucher.getDouble("amount"), voucher.getString("expiryDate"), true );
-					
-					RefundReceipt refundReceipt = new RefundReceipt(voucherAndReceipt.getJSONObject(1));
-					
-					databaseController.insertReceipt(refundReceipt.getInt("receiptID"), refundReceipt.getString("receiptType"), refundReceipt.getInt("ticketID"),
-							refundReceipt.getInt("creditCardNumber"), refundReceipt.getInt("voucherID"), refundReceipt.getDouble("price"));
-					
-					databaseController.resetTicket(refundReceipt.getInt("ticketID"));
-					//Whats the logic here.
-					return new Message(OK, "Successfully Refunded");
-					
-				} catch (JSONException | ParseException e ) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        		
-        		
-    		
-        	}
-    		
-    		
-    		
-    	}catch(SQLException e) {
-    		e.printStackTrace();
-    	}
-		return new Message(ERROR, "Should be unreachable");
-	   	
-    	
-    	
+    public Message refundTicket(int ticketNum) {
+
+        try {
+
+            ResultSet resultSetReceipt = databaseController.getReceipt(ticketNum);
+            if (resultSetReceipt == null) {
+                return new Message(ERROR, "Ticket Number not found");
+            } else {
+
+                // here we need to check if we are near 72 hours
+                ResultSet resultSetTicket = databaseController.getTicket(ticketNum);
+                Timestamp startTime = resultSetTicket.getTimestamp("startTime");
+                Timestamp sqlTimestamp = new Timestamp(System.currentTimeMillis());
+
+                if ((startTime.getTime() - sqlTimestamp.getTime()) < (2.592 * Math.pow(10, 8))) {
+                    return new Message(ERROR, "Sorry, no refunds within 72 hours of a showtime");
+                }
+
+                PaymentManager paymentManager = new PaymentManager(userManager.getUser());
+                TicketReceipt ticketReceipt = new TicketReceipt(resultSetReceipt);
+                JSONArray voucherAndReceipt = paymentManager.refundTicket(ticketReceipt);
+                // do we need to do checking?
+
+                try {
+
+                    Voucher voucher = new Voucher(voucherAndReceipt.getJSONObject(0));
+                    // Check if string works when moving around time/dates
+                    databaseController.setVoucher(voucher.getInt("voucherID"), voucher.getDouble("amount"),
+                            voucher.getString("expiryDate"), true);
+
+                    RefundReceipt refundReceipt = new RefundReceipt(voucherAndReceipt.getJSONObject(1));
+
+                    databaseController.insertReceipt(refundReceipt.getInt("receiptID"),
+                            refundReceipt.getString("receiptType"), refundReceipt.getInt("ticketID"),
+                            refundReceipt.getInt("creditCardNumber"), refundReceipt.getInt("voucherID"),
+                            refundReceipt.getDouble("price"));
+
+                    databaseController.resetTicket(refundReceipt.getInt("ticketID"));
+                    // Whats the logic here.
+                    return new Message(OK, "Successfully Refunded");
+
+                } catch (JSONException | ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Message(ERROR, "Should be unreachable");
+
     }
 
     // public Message refundTicket(int ticketNum) { //hold up ticket num != receipt
