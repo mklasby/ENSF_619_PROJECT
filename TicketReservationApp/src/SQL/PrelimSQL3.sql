@@ -57,8 +57,8 @@ CREATE TABLE SHOWTIME (
   PRIMARY KEY (ShowTimeID)
 );
 
-INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (1, '2008-01-01 07:00:00', '2008-01-01 08:40:00');
-INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (2, '2008-01-01 09:00:00', '2008-01-01 10:40:00');
+INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (1, '2020-12-01 07:00:00', '2008-01-01 08:40:00');
+INSERT INTO SHOWTIME (ShowTimeID ,StartTime, EndTime ) VALUES (2, '2021-01-01 09:00:00', '2008-01-01 10:40:00');
 
 
 DROP TABLE IF EXISTS SHOWINGS;
@@ -208,6 +208,12 @@ CREATE TABLE RECEIPT (
 --   FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (1, 'Ticket' , 1, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (2, 'Ticket' , 15, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (3, 'Ticket' , 16, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (4, 'Ticket' , 17, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (5, 'Ticket' , 18, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (6, 'Ticket' , 37, 9999, null, 8.99) ;
+
 
 DROP TABLE IF EXISTS TICKET_PURCHASES;
 CREATE TABLE TICKET_PURCHASES (

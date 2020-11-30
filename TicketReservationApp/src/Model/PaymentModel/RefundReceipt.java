@@ -17,6 +17,7 @@ public class RefundReceipt extends Receipt {
 	}
 
 	public RefundReceipt(ResultSet rs) throws SQLException {
+
 		setVoucherId(rs.getInt("VoucherID"));
 		setReceiptType("Refund");
 		putFields();

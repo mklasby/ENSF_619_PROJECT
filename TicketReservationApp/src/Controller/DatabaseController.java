@@ -349,13 +349,8 @@ public class DatabaseController implements Password {
 
 	public ResultSet getTicket(int ticketID) {
 		try {
-			// String query = "SELECT * FROM RECEIPT AS R, VOUCHER AS V, WHERE R.ReceiptID =
-			// ? AND V.VoucherID = R.VoucherID";
-			String query = "SELECT * FROM TICKET AS T, SHOWTIME AS SH, THEATRE AS TH, MOVIE AS M, SEATS AS S WHERE SH.ShowTimeID = T.ShowTimeID AND  TH.TheatreName =  T.TheatreName AND "
-					+ " M.MovieName = T.MovieName AND S.SeatNumber = T.SeatNumber AND T.TicketID = ?"; // cascade delete
-																										// voucher i
-																										// think?
-
+			String query = "SELECT * FROM TICKET AS T, SHOWTIME AS SH, THEATRE AS TH, MOVIE AS M, SEATS AS S WHERE SH.ShowTimeID = T.ShowTimeID AND TH.TheatreName= T.TheatreName AND M.MovieName = T.MovieName AND S.SeatNumber = T.SeatNumber AND T.TicketID = ?;";
+			// String query = "SELECT * FROM TICKET WHERE TicketID=?;";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
