@@ -43,6 +43,7 @@ public class RefundTicket {
 		c.add(Calendar.YEAR, 1);
 		Date expiryDate = c.getTime();
 		theVoucher.setExpiryDate(expiryDate); // sets expiry date of coupon
+		theVoucher.putFields();
 	}
 
 	/**
@@ -52,6 +53,7 @@ public class RefundTicket {
 		refundReceipt = new RefundReceipt();
 		refundReceipt.setVoucherId(theVoucher.getVoucherId());
 		refundReceipt.setAmount(refundAmount);
+		refundReceipt.putFields();
 	}
 
 	/**

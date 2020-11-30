@@ -36,7 +36,7 @@ public class Voucher extends JSONObject {
 		putFields();
 	}
 
-	private void putFields() {
+	public void putFields() {
 		try {
 			put("voucherId", voucherId);
 			put("amount", amount);

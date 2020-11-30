@@ -11,6 +11,7 @@ public class User extends JSONObject {
 
 	private String email;
 	private PaymentInfo paymentInfo;
+	private String userType;
 
 	public User() {
 	};
@@ -26,10 +27,11 @@ public class User extends JSONObject {
 		putFields();
 	}
 
-	private void putFields() {
+	public void putFields() {
 		try {
 			put("email", email);
 			put("paymentInfo", paymentInfo);
+			put("userType", userType);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -58,6 +60,14 @@ public class User extends JSONObject {
 	}
 
 	public static void setUser(Object object) {
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 }

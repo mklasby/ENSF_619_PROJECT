@@ -43,7 +43,7 @@ public class Receipt extends JSONObject {
 		putFields();
 	}
 
-	protected void putFields() {
+	public void putFields() {
 		try {
 			put("receiptId", receiptId);
 			put("amount", amount);

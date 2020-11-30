@@ -25,7 +25,7 @@ public class RefundReceipt extends Receipt {
 		putFields();
 	}
 
-	protected void putFields() {
+	public void putFields() {
 		try {
 			super.putFields();
 			put("voucherId", voucherId);

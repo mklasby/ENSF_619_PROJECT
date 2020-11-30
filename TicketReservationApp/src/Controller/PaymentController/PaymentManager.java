@@ -67,7 +67,7 @@ public class PaymentManager {
 	public JSONArray refundTicket(Receipt thereceipt) {
 		try {
 			boolean isReg = false;
-			if (user.getString("userType").equals("M") | user.getString("userType").equals("R")) {
+			if (user.getString("userType").equals("M") || user.getString("userType").equals("R")) {
 				isReg = true;
 			}
 			RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);

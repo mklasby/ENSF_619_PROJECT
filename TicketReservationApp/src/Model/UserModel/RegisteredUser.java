@@ -41,7 +41,7 @@ public class RegisteredUser extends User{
 		putFields();
 	}
 
-	private void putFields() {
+	public void putFields() {
 		try {
 			put("name", name);
 			put("userName", userName);
