@@ -13,7 +13,7 @@ public class UserManager {
 	boolean isRegisteredUser;
 
 	public UserManager() {
-		this.user = null;
+		this.user = new User();
 		isRegisteredUser = false;
 	}
 

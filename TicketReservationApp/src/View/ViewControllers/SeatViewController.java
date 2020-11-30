@@ -47,9 +47,11 @@ public class SeatViewController extends ViewController {
 
     private void selectSeat(String cmd) {
         int seatSelected = Integer.parseInt(cmd);
+        System.out.println("Seat selected: " + seatSelected);
+
         selectedIdx = seatSelected;
         try {
-            JSONObject seat = seats.getJSONObject(selectedIdx);
+            JSONObject seat = seats.getJSONObject(selectedIdx - 1);
             Message response = guiController.selectSeat(seat);
             if (isErrorMessage(response)) {
                 return;
