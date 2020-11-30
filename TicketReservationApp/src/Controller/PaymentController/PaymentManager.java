@@ -5,6 +5,9 @@ import Model.PaymentModel.Voucher;
 import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
+
+import com.mysql.cj.xdevapi.JsonArray;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -15,7 +18,7 @@ public class PaymentManager {
 
 	public PaymentManager(User user) {
 		setUser(user);
-		reply = null;
+		reply = new JSONArray();
 	}
 
 	// give back a list of ticket id
@@ -51,14 +54,14 @@ public class PaymentManager {
 			payForTicket();
 		}
 		if (cart.getAnnualFee() != null) {
-			AnnualReceipt annualreceipt = payAnnualFee((RegisteredUser) user, cart.getAnnualFee());
+			AnnualReceipt annualreceipt = payAnnualFee(user, cart.getAnnualFee());
 			reply.put(annualreceipt);
 		}
 		return reply;
 	}
 
-	public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
-		PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
+	public AnnualReceipt payAnnualFee(User user2, AnnualFee annualFee) {
+		PayAnnualFee annualPayment = new PayAnnualFee(user2, annualFee);
 		AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
 		return annualReceipt;
 	}
@@ -75,11 +78,11 @@ public class PaymentManager {
 			reply.put(theVoucher);
 			reply.put(theRefund);
 			return reply;
-			
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 

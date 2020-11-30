@@ -116,6 +116,7 @@ CREATE TABLE TICKET (
 );
 
 INSERT INTO TICKET VALUES 
+(-1, 1, false, 1, "Country Hills Theatres", "Die Hard", false, 8.99),
 (1, 1, false, 1, "Country Hills Theatres", "Die Hard", false, 8.99), 
 (2, 2, false, 1, "Country Hills Theatres", "Die Hard", false, 8.99), 
 (3, 3, false, 1, "Country Hills Theatres", "Die Hard", false, 8.99),
@@ -189,6 +190,7 @@ CREATE TABLE VOUCHER (
   PRIMARY KEY (VoucherID)
 );
 INSERT INTO VOUCHER (VoucherID, VoucherValue, VoucherExpiraryDate, VoucherActive) VALUES (1, 8.99, '2009-01-01 10:40:00',True);
+INSERT INTO VOUCHER (VoucherID, VoucherValue, VoucherExpiraryDate, VoucherActive) VALUES (-1, 8.99, '2009-01-01 10:40:00',false);
 
 
 DROP TABLE IF EXISTS RECEIPT;
@@ -215,10 +217,10 @@ CREATE TABLE TICKET_PURCHASES (
   CreditCardNumber      	int,
   ReceiptID					int,
 
-  PRIMARY KEY (TicketID, CreditCardNumber, ReceiptID),
-  FOREIGN KEY (TicketID) REFERENCES TICKET(TicketID),
-  FOREIGN KEY (ReceiptID) REFERENCES RECEIPT(ReceiptID),
-  FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
+  PRIMARY KEY (TicketID, CreditCardNumber, ReceiptID)
+--   FOREIGN KEY (TicketID) REFERENCES TICKET(TicketID),
+--   FOREIGN KEY (ReceiptID) REFERENCES RECEIPT(ReceiptID),
+--   FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO TICKET_PURCHASES (PurchaseID, TicketID, VoucherID, CreditCardNumber, ReceiptID  ) VALUES (1, 1 , null, 9999, 1) ;
 
