@@ -95,5 +95,9 @@ public class RefundTicket {
 	public void setTheVoucher(Voucher theVoucher) {
 		this.theVoucher = theVoucher;
 	}
+	
+	public RefundReceipt getRefundReceipt() {
+		return this.refundReceipt;
+	}
 
 }
