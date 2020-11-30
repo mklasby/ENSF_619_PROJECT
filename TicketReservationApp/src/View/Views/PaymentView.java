@@ -33,6 +33,7 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
         registerButtons();
         registerFields();
         registerComboBoxes();
+        registerLabels();
         gui.addCard(mainPanel, mainPanelKey);
     }
 
@@ -150,7 +151,8 @@ public class PaymentView extends SubView implements MessageConstants, ViewConsta
 
     @Override
     protected void registerLists() {
-        // TODO Auto-generated method stub
+        lists = new HashMap<String, JList>();
+        lists.put("resultsList", resultsList);
 
     }
 

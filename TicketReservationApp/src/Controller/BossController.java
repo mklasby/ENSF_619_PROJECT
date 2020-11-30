@@ -287,7 +287,7 @@ public class BossController implements MessageConstants {
     }
 
     public Message getCartInfo() {
-        return null;
+        return new Message(OK, cart.getCart());
     }
 
     public Message getPaymentInfo() {

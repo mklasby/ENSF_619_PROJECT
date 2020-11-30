@@ -53,7 +53,7 @@ public class App {
                 RegisterUserViewController registerUserViewController = new RegisterUserViewController(registerUserView,
                                 guiController);
 
-                paymentView.display("refundPanel");
+                paymentView.display("menuPanel");
                 gui.display();
 
                 // MenuView menu = new MenuView();
