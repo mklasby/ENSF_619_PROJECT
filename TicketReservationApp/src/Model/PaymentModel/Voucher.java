@@ -13,7 +13,7 @@ import java.util.Date;
 public class Voucher extends JSONObject {
 	private int voucherId;
 	private double amount;
-	private Date expiryDate;
+	private String expiryDate;
 
 	public Voucher() {
 		SecureRandom random = new SecureRandom();
@@ -25,14 +25,14 @@ public class Voucher extends JSONObject {
 	public Voucher(JSONObject jsonObj) throws JSONException, ParseException {
 		voucherId = jsonObj.getInt("voucherId");
 		amount = jsonObj.getDouble("amount");
-		expiryDate = DateFormat.getDateInstance().parse(jsonObj.getString("expiryDate")); // set the string format
+		expiryDate = jsonObj.getString("expiryDate"); // set the string format
 		putFields();
 	}
 
 	public Voucher(ResultSet rs) throws SQLException {
 		setVoucherId(rs.getInt("VoucherID"));
 		setAmount(rs.getDouble("VoucherValue"));
-		setExpiryDate(rs.getDate("VoucherExpiraryDate")); // fix typo in database
+		setExpiryDate(rs.getString("VoucherExpiraryDate")); // fix typo in database
 		putFields();
 	}
 
@@ -54,11 +54,11 @@ public class Voucher extends JSONObject {
 		this.amount = amount;
 	}
 
-	public Date getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(Date expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 

@@ -281,7 +281,7 @@ public class BossController implements MessageConstants {
 
                     Voucher voucher = new Voucher(voucherAndReceipt.getJSONObject(0));
                     // Check if string works when moving around time/dates
-                    databaseController.setVoucher(voucher.getInt("voucherID"), voucher.getDouble("amount"),
+                    databaseController.setVoucher(voucher.getInt("voucherId"), voucher.getDouble("amount"),
                             voucher.getString("expiryDate"), true);
 
                     RefundReceipt refundReceipt = new RefundReceipt(voucherAndReceipt.getJSONObject(1));
