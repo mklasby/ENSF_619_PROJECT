@@ -8,6 +8,6 @@ public interface Password {
 	// ENTER YOUR USERNAME HERE!
 	static final String USERNAME = "root";
 	// ENTER YOUR PASSWORD HERE!
-	static final String PASSWORD = "Hikehigh00";
+	static final String PASSWORD = "KowabungaPizza2!";
 
 }
