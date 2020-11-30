@@ -22,6 +22,8 @@ public class Cart extends JSONObject {
 
 		JSONArray reply = new JSONArray();
 		for (Ticket t : cartOfTickets) {
+			t.encode();
+			System.out.print(t.toString());
 			reply.put(t.toString());
 		}
 
@@ -42,7 +44,6 @@ public class Cart extends JSONObject {
 	}
 
 	public void addTicketToCart(Ticket ticket) {
-
 		this.cartOfTickets.add(ticket);
 	}
 

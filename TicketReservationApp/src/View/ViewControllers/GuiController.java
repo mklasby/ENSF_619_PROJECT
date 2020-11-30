@@ -114,8 +114,8 @@ public class GuiController implements MessageConstants {
     public JSONObject getPaymentInfo() {
         try {
             Message response = boss.getPaymentInfo();
-            if (response.get(STATUS).equals(ERROR)) {
-                return new JSONObject();
+            if (response == null) {
+                return null;
             } else {
                 return response.getJSONObject(DATA);
             }

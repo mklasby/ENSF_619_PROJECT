@@ -80,6 +80,9 @@ public class PaymentViewController extends ViewController implements MessageCons
     }
 
     public void setPaymentInfo(JSONObject user) {
+        if (user == null) {
+            return;
+        }
         try {
             System.out.print(user.toString());
 

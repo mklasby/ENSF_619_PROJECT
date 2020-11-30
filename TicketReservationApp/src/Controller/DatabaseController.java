@@ -163,27 +163,29 @@ public class DatabaseController implements Password {
 
 	// Dont really need this????????
 
-//	public ResultSet searchTicket(String movieName, String theatreName, int ShowTimeID, int SeatNumber) {
-//
-//		try {
-//			String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND T.TheatreName = ? AND T.ShowTimeID = ? ";
-//			stmt = conn.prepareStatement(query);
-//			stmt.setString(1, movieName);
-//			stmt.setString(2, theatreName);
-//			resultSet = stmt.executeQuery();
-//			resultSet.next();
-//			return resultSet;
-//
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//
-//	}
+	// public ResultSet searchTicket(String movieName, String theatreName, int
+	// ShowTimeID, int SeatNumber) {
+	//
+	// try {
+	// String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND
+	// T.TheatreName = ? AND T.ShowTimeID = ? ";
+	// stmt = conn.prepareStatement(query);
+	// stmt.setString(1, movieName);
+	// stmt.setString(2, theatreName);
+	// resultSet = stmt.executeQuery();
+	// resultSet.next();
+	// return resultSet;
+	//
+	// } catch (SQLException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// return null;
+	//
+	// }
 
 	public ResultSet setVoucher(int voucherID, double voucherValue, String voucherExp, boolean voucherActive) {
-		
+
 		try {
 			String query = "INSERT INTO VOUCHER (VoucherID, VoucherValue, VoucherExpiraryDate, VoucherActive) VALUES (?, ?, ?, ?)";
 			stmt = conn.prepareStatement(query);
@@ -200,10 +202,9 @@ public class DatabaseController implements Password {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
+
 	}
-	
+
 	public ResultSet getVoucher(String userName) {
 
 		try {
@@ -531,7 +532,7 @@ public class DatabaseController implements Password {
 
 	public boolean reservationsRemaining(String movieName, String theatreName, int showTimeID, int seatNumber) {
 		try {
-			String query = "SELECT * FROM TICKET WHERE MovieName=?, TheatreName=?, ShowTimeID=?, SeatNumber= ?;";
+			String query = "SELECT * FROM TICKET WHERE MovieName=? AND TheatreName=? AND ShowTimeID=? AND SeatNumber=?;";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, movieName);
 			stmt.setString(2, theatreName);
