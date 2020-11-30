@@ -6,8 +6,6 @@ import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
 
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -40,7 +38,7 @@ public class PaymentManager {
 	public void payForTicket() {
 		for (Ticket t : cart.getCartOfTickets()) {
 			PayTicketFee ticketPayment = new PayTicketFee(t, user.getPaymentInfo().getCardNumber());
-			Receipt thisReceipt = ticketPayment.getTheReceipt();
+			TicketReceipt thisReceipt = ticketPayment.getTheReceipt();
 			reply.put(thisReceipt);
 		}
 

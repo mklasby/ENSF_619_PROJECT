@@ -7,18 +7,20 @@ import Model.PaymentModel.PaymentInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 public class User extends JSONObject {
 
 	private String email;
 	private PaymentInfo paymentInfo;
+
+	public User() {
+	};
 
 	public User(String email, PaymentInfo paymentInfo) {
 		setEmail(email);
 		setPaymentInfo(paymentInfo);
 	}
 
-	public User (JSONObject jsonObj) throws JSONException{
+	public User(JSONObject jsonObj) throws JSONException {
 		email = jsonObj.getString("email");
 		paymentInfo = new PaymentInfo(jsonObj.getInt("cardNumber"), jsonObj.getString("cardType"));
 		putFields();

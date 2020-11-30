@@ -9,14 +9,13 @@ import java.text.ParseException;
 
 public class TicketReceipt extends Receipt {
 	private int ticketId;
-	
-	
-	public TicketReceipt(int ticketId) {
+
+	public TicketReceipt(int ticketId, int creditCardNumber) {
 		this.ticketId = ticketId;
+		super.setCreditCardNumber(creditCardNumber);
 		super.setReceiptType("Ticket");
 		putFields();
 	}
-
 
 	public TicketReceipt(ResultSet rs) throws SQLException {
 		super(rs);
@@ -49,7 +48,5 @@ public class TicketReceipt extends Receipt {
 	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
 	}
-	
-	
 
 }

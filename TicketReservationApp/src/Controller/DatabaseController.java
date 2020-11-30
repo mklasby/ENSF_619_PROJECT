@@ -9,7 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import Model.TheatreModel.Ticket;
 
 public class DatabaseController implements Password {
 
@@ -304,7 +307,8 @@ public class DatabaseController implements Password {
 
 	private void buyTicket(int ticketID) {
 		try {
-			String query = "UPDATE TICKET SET Paid = true WHERE TicketID=?;";
+			String query = "UPDATE TICKET SET Paid=TRUE, IsSeatReserved=TRUE WHERE TicketID=?;";
+			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, ticketID);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -565,5 +569,29 @@ public class DatabaseController implements Password {
 			return false;
 		}
 
+	}
+
+	public int getTicketId(JSONObject ticket) {
+		try {
+			String movieName = ticket.getString("movieName");
+			String theatreName = ticket.getString("theatreName");
+			int showTimeId = ticket.getInt("showTimeId");
+			int seatNumber = ticket.getInt("seatNumber");
+			String query = "SELECT TicketID FROM TICKET WHERE MovieName=? AND TheatreName=? AND ShowTimeID=? AND SeatNumber=?;";
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, movieName);
+			stmt.setString(2, theatreName);
+			stmt.setInt(3, showTimeId);
+			stmt.setInt(4, seatNumber);
+			resultSet = stmt.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt("TicketID");
+			} else {
+				return -10;
+			}
+		} catch (SQLException | JSONException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

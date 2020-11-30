@@ -194,6 +194,9 @@ public class BossController implements MessageConstants {
             // TODO: how to check for 10% of tickets reserved for early access movie!
             seat = new Seat(selection);
             ticket.setSeat(seat);
+            ticket.encode();
+            ticket.setTicketID(databaseController.getTicketId(ticket));
+            ticket.encode();
             cart.addTicketToCart(ticket);
             return new Message(OK, "Seat Selected!");
         } catch (JSONException e) {
@@ -394,7 +397,7 @@ public class BossController implements MessageConstants {
 
                 int ticketID;
                 try {
-                    ticketID = paymentReceipts.getJSONObject(i).getInt("ticketID");
+                    ticketID = paymentReceipts.getJSONObject(i).getInt("ticketId");
                 } catch (JSONException e) {
                     ticketID = -1;
                 }
