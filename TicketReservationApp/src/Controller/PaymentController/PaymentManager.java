@@ -1,11 +1,7 @@
 package Controller.PaymentController;
 
-import Model.PaymentModel.AnnualFee;
-import Model.PaymentModel.AnnualReceipt;
-import Model.PaymentModel.Cart;
+import Model.PaymentModel.*;
 import Model.PaymentModel.Voucher;
-import Model.PaymentModel.Receipt;
-import Model.PaymentModel.TicketReceipt;
 import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
@@ -60,6 +56,8 @@ public class PaymentManager {
 		return reply;
 	}
 
+	<<<<<<<HEAD
+
 	public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
 		PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
 		AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
@@ -73,6 +71,22 @@ public class PaymentManager {
 	}
 
 	public User getUser() {
+=======
+
+	public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
+		PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
+		AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
+		return annualReceipt;
+	}
+
+	public void refundTicket(Receipt thereceipt) {
+		RefundTicket ticketRefund = new RefundTicket(thereceipt);
+		Voucher theCoupon = ticketRefund.getTheCoupon();
+		// send ticket to user
+	}
+
+	public User getUser() {
+>>>>>>> 48e6c8eeae3c4ad27d7a746ab354cfc9e60fed0d
 		return user;
 	}
 

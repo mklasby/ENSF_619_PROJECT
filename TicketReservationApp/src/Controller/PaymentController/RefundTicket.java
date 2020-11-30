@@ -88,7 +88,7 @@ public class RefundTicket {
 		return theVoucher;
 	}
 
-	public void setTheCoupon(Voucher theVoucher) {
+	public void setTheVoucher(Voucher theVoucher) {
 		this.theVoucher = theVoucher;
 	}
 
