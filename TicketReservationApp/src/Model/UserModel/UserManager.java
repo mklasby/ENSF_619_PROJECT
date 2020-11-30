@@ -45,13 +45,16 @@ public class UserManager {
 		return isRegisteredUser;
 	}
 
-	public void setIsRegistered(boolean status) {
+	public void setIsRegistered(boolean status, String type) {
 		this.isRegisteredUser = status;
+		this.getUser().setUserType(type);
+		this.getUser().putFields();
 	}
 
 	public User parseUserSQL(ResultSet resultSet) {
 		try {
-			return new User(resultSet);
+			User user = new User(resultSet);
+			return user;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

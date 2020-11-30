@@ -31,7 +31,7 @@ public class TicketReceipt extends Receipt {
 		putFields();
 	}
 
-	protected void putFields() {
+	public void putFields() {
 		try {
 			this.setReceiptType("Ticket");
 			put("ticketId", ticketId);
