@@ -202,10 +202,10 @@ CREATE TABLE RECEIPT (
   VoucherID					int,
   Price						double,
 
-  PRIMARY KEY (ReceiptID),
-  FOREIGN KEY (TicketID) REFERENCES TICKET(TicketID),
-  FOREIGN KEY (VoucherID) REFERENCES VOUCHER(VoucherID),
-  FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
+  PRIMARY KEY (ReceiptID)
+--   FOREIGN KEY (TicketID) REFERENCES TICKET(TicketID),
+--   FOREIGN KEY (VoucherID) REFERENCES VOUCHER(VoucherID),
+--   FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (1, 'Ticket' , 1, 9999, null, 8.99) ;
 
