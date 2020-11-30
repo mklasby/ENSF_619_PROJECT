@@ -6,7 +6,7 @@ import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
 
-import com.mysql.cj.xdevapi.JsonArray;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
