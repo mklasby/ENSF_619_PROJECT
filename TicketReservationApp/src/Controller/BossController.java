@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.sql.Time;
 
 import org.json.JSONException;
-import org.graalvm.compiler.debug.DebugConfig;
 import org.json.JSONArray;
 
 import org.json.JSONObject;
@@ -249,35 +248,38 @@ public class BossController implements MessageConstants {
 
     }
 
-//    public Message refundTicket(int ticketNum) { //hold up ticket num != receipt num can still make it work tho
-//        // TODO: Return OK if refund is processed with description of Voucher or refund
-//        // TODO: Return ERROR with DATA == "Sorry, no refunds within 72 hours of a
-//        // showtime!" OR
-//        // DATA == "Ticket Number not found"
-//    	ResultSet resultSet = databaseController.getReceipt(ticketNum);
-//    	if(resultSet == null) {// if receipt is not found
-//    		return new Message(ERROR, "Ticket Number not Found");
-//
-//    	}else {
-//    		if(databaseController.getTicket(ticketNum).getStartTime()-whatever time is it now < 72 hours) {
-//    			return new Message(ERROR, "Sorry, no refunds within 72 hours of showtime");
-//    		}
-//
-//    		RefundReceipt refundReceipt = PaymentManager.refund(????);
-//    		return new Message(OK, refundReceipt);
-//    	}
-//
-//    }
+    // public Message refundTicket(int ticketNum) { //hold up ticket num != receipt
+    // num can still make it work tho
+    // // TODO: Return OK if refund is processed with description of Voucher or
+    // refund
+    // // TODO: Return ERROR with DATA == "Sorry, no refunds within 72 hours of a
+    // // showtime!" OR
+    // // DATA == "Ticket Number not found"
+    // ResultSet resultSet = databaseController.getReceipt(ticketNum);
+    // if(resultSet == null) {// if receipt is not found
+    // return new Message(ERROR, "Ticket Number not Found");
+    //
+    // }else {
+    // if(databaseController.getTicket(ticketNum).getStartTime()-whatever time is it
+    // now < 72 hours) {
+    // return new Message(ERROR, "Sorry, no refunds within 72 hours of showtime");
+    // }
+    //
+    // RefundReceipt refundReceipt = PaymentManager.refund(????);
+    // return new Message(OK, refundReceipt);
+    // }
+    //
+    // }
 
-    public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name, String address,
-            String email, int creditCardNumber, String creditCardType) {
+    public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name,
+            String address, String email, int creditCardNumber, String creditCardType) {
 
         ResultSet resultSet = databaseController.getRegisteredUser(username);
         if (resultSet == null) {// username exists send error.
             return new Message(ERROR, "Username already exist, please choose another one!");
         } else {
-            resultSet = databaseController.registerMyUser(isMemberPaid, userType, username, password, name, address, email,
-                    creditCardNumber, creditCardType);
+            resultSet = databaseController.registerMyUser(isMemberPaid, userType, username, password, name, address,
+                    email, creditCardNumber, creditCardType);
             return new Message(OK, resultSet);
 
         }
@@ -313,15 +315,15 @@ public class BossController implements MessageConstants {
         }
         if (financialController.checkPaymentData(cardType, cardNum)) {
             // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
-            //cart.payAll();
-            PaymentInfo paymentInfo = new PaymentInfo(cardNum,cardType);
+            // cart.payAll();
+            PaymentInfo paymentInfo = new PaymentInfo(cardNum, cardType);
             User thisUser = userManager.getUser();
             thisUser.setEmail(email);
             thisUser.setPaymentInfo(paymentInfo);
 
             PaymentManager paymentManager = new PaymentManager(thisUser);
-        	paymentManager.setCart(cart);
-        	
+            paymentManager.setCart(cart);
+
             return new Message(OK, "Success! Thank you for your business!");
         }
         return null;

@@ -7,6 +7,13 @@ import java.awt.*;
 
 import CommonMessage.MessageConstants;
 
+/**
+ * Class for main menu view
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
+ */
 public class MenuView extends SubView implements MessageConstants, ViewConstants {
     private JLabel menuLabel;
     private JButton loginButton;

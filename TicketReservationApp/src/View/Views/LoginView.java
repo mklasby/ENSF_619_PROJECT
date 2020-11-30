@@ -6,8 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
+/**
+ * Class to login as a user
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
+ */
 public class LoginView extends SubView implements MessageConstants, ViewConstants {
-
     private JLabel mainLabel;
     private JLabel userNameLabel;
     private JLabel passwordLabel;

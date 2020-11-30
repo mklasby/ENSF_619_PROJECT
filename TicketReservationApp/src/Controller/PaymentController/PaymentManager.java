@@ -3,7 +3,7 @@ package Controller.PaymentController;
 import Model.PaymentModel.AnnualFee;
 import Model.PaymentModel.AnnualReceipt;
 import Model.PaymentModel.Cart;
-import Model.PaymentModel.Coupon;
+import Model.PaymentModel.Voucher;
 import Model.PaymentModel.Receipt;
 import Model.PaymentModel.TicketReceipt;
 import Model.TheatreModel.Ticket;
@@ -15,14 +15,14 @@ public class PaymentManager {
 	private User user;
 	private Cart cart;
 	private JSONArray reply;
-	
+
 	public PaymentManager(User user) {
 		setUser(user);
 		reply = null;
 	}
-	
-	//give back a list of ticket id
-	//flush cart 313 BOSS
+
+	// give back a list of ticket id
+	// flush cart 313 BOSS
 	public JSONArray getCart() {
 
 		JSONArray reply = new JSONArray();
@@ -37,51 +37,51 @@ public class PaymentManager {
 		return reply;
 	}
 
-	public void payForTicket(){
+	public void payForTicket() {
 		for (Ticket t : cart.getCartOfTickets()) {
-			PayTicketFee ticketPayment = new PayTicketFee(t,user.getPaymentInfo().getCardNumber());
+			PayTicketFee ticketPayment = new PayTicketFee(t, user.getPaymentInfo().getCardNumber());
 			Receipt thisReceipt = ticketPayment.getTheReceipt();
 			reply.put(thisReceipt);
 		}
 
 		// send ticket to user email
 		// send receipt to user email
-    }
+	}
 
-    public JSONArray payForAll(){
+	public JSONArray payForAll() {
 
-		if(!cart.getCartOfTickets().isEmpty()){
+		if (!cart.getCartOfTickets().isEmpty()) {
 			payForTicket();
 		}
-		if (cart.getAnnualFee()!= null){
+		if (cart.getAnnualFee() != null) {
 			AnnualReceipt annualreceipt = payAnnualFee((RegisteredUser) user, cart.getAnnualFee());
 			reply.put(annualreceipt);
 		}
 		return reply;
 	}
 
-    public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee){
-    	PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
-    	AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
-    	return annualReceipt;
-    }
+	public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
+		PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
+		AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
+		return annualReceipt;
+	}
 
-    public void refundTicket(Receipt thereceipt){
-    	RefundTicket ticketRefund = new RefundTicket(thereceipt);
-    	Coupon theCoupon = ticketRefund.getTheCoupon();
-    	//send ticket to user
-    }
-    
-    public User getUser() {
+	public void refundTicket(Receipt thereceipt) {
+		RefundTicket ticketRefund = new RefundTicket(thereceipt);
+		Voucher theVoucher = ticketRefund.getTheVoucher();
+		// send ticket to user
+	}
+
+	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public void setCart(Cart cart) {
-		this.cart= cart;
+		this.cart = cart;
 	}
 
 }

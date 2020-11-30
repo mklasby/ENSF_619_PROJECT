@@ -6,6 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
+/**
+ * Class to select showtimes
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
+ */
 public class ShowTimeView extends SubView implements MessageConstants, ViewConstants {
     private JLabel mainLabel;
     private JList resultsList;

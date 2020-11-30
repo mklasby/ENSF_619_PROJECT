@@ -10,6 +10,13 @@ import org.json.JSONObject;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
+/**
+ * Class to select seats
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
+ */
 public class SeatView extends SubView implements MessageConstants, ViewConstants {
     private JLabel mainLabel;
     private JButton submitButton;

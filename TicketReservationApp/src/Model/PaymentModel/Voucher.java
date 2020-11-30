@@ -18,7 +18,7 @@ public class Voucher extends JSONObject {
 	public Voucher() {
 		SecureRandom random = new SecureRandom();
 		int num = random.nextInt(100000); // creates random 5 digit Id
-		setCouponId(num);
+		setVoucherId(num);
 		putFields();
 	}
 
@@ -30,7 +30,7 @@ public class Voucher extends JSONObject {
 	}
 
 	public Voucher(ResultSet rs) throws SQLException {
-		setCouponId(rs.getInt("VoucherID"));
+		setVoucherId(rs.getInt("VoucherID"));
 		setAmount(rs.getDouble("VoucherValue"));
 		setExpiryDate(rs.getDate("VoucherExpiraryDate")); // fix typo in database
 		putFields();
@@ -62,12 +62,12 @@ public class Voucher extends JSONObject {
 		this.expiryDate = expiryDate;
 	}
 
-	public int getCouponId() {
-		return couponId;
+	public int getVoucherId() {
+		return voucherId;
 	}
 
-	public void setCouponId(int couponId) {
-		this.couponId = couponId;
+	public void setVoucherId(int voucherId) {
+		this.voucherId = voucherId;
 	}
 
 }

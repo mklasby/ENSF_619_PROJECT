@@ -12,7 +12,7 @@ public class RefundReceipt extends Receipt {
 	public RefundReceipt() {
 		super();
 		setVoucherId(-1);
-
+		setReceiptType("Refund");
 	}
 
 	public RefundReceipt(ResultSet rs) throws SQLException {

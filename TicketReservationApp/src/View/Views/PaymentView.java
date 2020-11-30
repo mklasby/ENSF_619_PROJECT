@@ -6,6 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
+/**
+ * Class to checkout cart and enter payment info
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
+ */
 public class PaymentView extends SubView implements MessageConstants, ViewConstants {
 
     private JLabel mainLabel;

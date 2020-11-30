@@ -3,7 +3,11 @@ package View.Views;
 import java.awt.*;
 
 /**
- * Constants to manipulate size of components and typical fonts
+ * Interface to hold gui constants
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
  */
 public interface ViewConstants {
     public static final Dimension FRAME_DIMENSION = new Dimension(1000, 1000);

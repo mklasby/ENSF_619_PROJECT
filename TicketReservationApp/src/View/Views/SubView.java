@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Base class for JPanel window sub views
  * 
- * @author Mike Lasby
+ * @author 619 group 8
  * @since Nov. 25, 2020
  * @version 1.1
  */

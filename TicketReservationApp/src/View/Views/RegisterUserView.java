@@ -6,16 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import CommonMessage.MessageConstants;
 
+/**
+ * Class to select register a new user
+ * 
+ * @version 1.0
+ * @since Nov 29, 2020
+ * @author 619 Group 8
+ */
 public class RegisterUserView extends SubView implements MessageConstants, ViewConstants {
-
-    // -usernameField: JTextField
-    // -passwordField: JTextField
-    // -nameField: JTextField
-    // -addressField: JTextField
-    // -cardNumField: JTextField
-    // -cardTypeField: JTextField
-    // -emailField: JTextField
-
     private JLabel mainLabel;
     private JLabel userNameLabel;
     private JLabel passwordLabel;
