@@ -196,10 +196,11 @@ public class BossController implements MessageConstants {
             ticket.setSeat(seat);
             ticket.encode();
             ticket.setTicketID(databaseController.getTicketId(ticket));
+            ticket.setPrice(databaseController.getTicket(ticket.getTicketID()).getDouble("Price"));
             ticket.encode();
             cart.addTicketToCart(ticket);
             return new Message(OK, "Seat Selected!");
-        } catch (JSONException e) {
+        } catch (JSONException | SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -290,7 +291,7 @@ public class BossController implements MessageConstants {
 
                     databaseController.insertReceipt(refundReceipt.getInt("receiptId"),
                             refundReceipt.getString("receiptType"), ticketNum,
-                            refundReceipt.getInt("creditCardNumber"), refundReceipt.getInt("voucherId"),
+                            userManager.getUser().getPaymentInfo().getCardNumber(), refundReceipt.getInt("voucherId"),
                             refundReceipt.getDouble("amount"));
 
                     databaseController.resetTicket(ticketNum);

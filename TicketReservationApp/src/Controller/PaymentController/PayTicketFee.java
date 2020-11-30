@@ -9,10 +9,10 @@ public class PayTicketFee {
 	public PayTicketFee(Ticket theTicket, int creditCardNumber) {
 		theReceipt = new TicketReceipt(theTicket.getTicketID(), creditCardNumber);
 		theReceipt.setAmount(theTicket.getPrice());
+		System.out.println("This is the price of the ticket " + theTicket.getPrice());
 		theReceipt.setReceiptType("Ticket");
 		theReceipt.setCreditCardNumber(creditCardNumber);
 		theReceipt.setTicketId(theTicket.getTicketID());
-
 		theReceipt.putFields();
 	}
 

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class RefundReceipt extends Receipt {
 	int voucherId;
@@ -17,13 +18,14 @@ public class RefundReceipt extends Receipt {
 	}
 
 	public RefundReceipt(ResultSet rs) throws SQLException {
-
+		super(rs);
 		setVoucherId(rs.getInt("VoucherID"));
 		setReceiptType("Refund");
 		putFields();
 	}
 
-	public RefundReceipt(JSONObject jsonObj) throws JSONException {
+	public RefundReceipt(JSONObject jsonObj) throws JSONException, ParseException {
+		super(jsonObj);
 		setVoucherId(jsonObj.getInt("voucherId"));
 		setReceiptType("Refund");
 		putFields();

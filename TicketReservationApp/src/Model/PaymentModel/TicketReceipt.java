@@ -19,6 +19,7 @@ public class TicketReceipt extends Receipt {
 
 	public TicketReceipt(ResultSet rs) throws SQLException {
 		super(rs);
+		super.setAmount(rs.getDouble("Price"));
 		setTicketId(rs.getInt("TicketID"));
 		putFields();
 
