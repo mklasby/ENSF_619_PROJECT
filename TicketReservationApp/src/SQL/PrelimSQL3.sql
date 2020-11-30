@@ -208,7 +208,12 @@ CREATE TABLE RECEIPT (
 --   FOREIGN KEY (CreditCardNumber) REFERENCES CREDIT_INFORMATION(CreditCardNumber)
 );
 INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (1, 'Ticket' , 1, 9999, null, 8.99) ;
-INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (2, 'Ticket' , 35, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (2, 'Ticket' , 15, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (3, 'Ticket' , 16, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (4, 'Ticket' , 17, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (5, 'Ticket' , 18, 9999, null, 8.99) ;
+INSERT INTO RECEIPT (ReceiptID, ReceiptType, TicketID, CreditCardNumber, VoucherID, Price  ) VALUES (6, 'Ticket' , 37, 9999, null, 8.99) ;
+
 
 DROP TABLE IF EXISTS TICKET_PURCHASES;
 CREATE TABLE TICKET_PURCHASES (
