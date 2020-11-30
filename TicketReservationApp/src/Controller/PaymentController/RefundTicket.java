@@ -4,6 +4,7 @@ import Model.PaymentModel.Voucher;
 import Model.PaymentModel.Receipt;
 import Model.PaymentModel.RefundReceipt;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -42,7 +43,9 @@ public class RefundTicket {
 		Date today = c.getTime();
 		c.add(Calendar.YEAR, 1);
 		Date expiryDate = c.getTime();
-		theVoucher.setExpiryDate(expiryDate); // sets expiry date of coupon
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String formattedDate = df.format(expiryDate);
+		theVoucher.setExpiryDate(formattedDate); // sets expiry date of coupon
 		theVoucher.putFields();
 	}
 
