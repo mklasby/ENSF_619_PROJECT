@@ -13,15 +13,18 @@ public class RefundReceipt extends Receipt {
 		super();
 		setVoucherId(-1);
 		setReceiptType("Refund");
+		putFields();
 	}
 
 	public RefundReceipt(ResultSet rs) throws SQLException {
 		setVoucherId(rs.getInt("VoucherID"));
+		setReceiptType("Refund");
 		putFields();
 	}
 
 	public RefundReceipt(JSONObject jsonObj) throws JSONException {
 		setVoucherId(jsonObj.getInt("voucherId"));
+		setReceiptType("Refund");
 		putFields();
 	}
 

@@ -274,6 +274,8 @@ public class BossController implements MessageConstants {
 
                 PaymentManager paymentManager = new PaymentManager(userManager.getUser());
                 TicketReceipt ticketReceipt = new TicketReceipt(resultSetReceipt);
+//                System.out.println("This is the ticketId in refund ticket!! " + ticket.getTicketID());
+                System.out.println(resultSetReceipt.getInt("TicketID"));
                 JSONArray voucherAndReceipt = paymentManager.refundTicket(ticketReceipt);
                 // do we need to do checking?
 
@@ -286,12 +288,12 @@ public class BossController implements MessageConstants {
 
                     RefundReceipt refundReceipt = new RefundReceipt(voucherAndReceipt.getJSONObject(1));
 
-                    databaseController.insertReceipt(refundReceipt.getInt("receiptID"),
-                            refundReceipt.getString("receiptType"), refundReceipt.getInt("ticketID"),
-                            refundReceipt.getInt("creditCardNumber"), refundReceipt.getInt("voucherID"),
-                            refundReceipt.getDouble("price"));
+                    databaseController.insertReceipt(refundReceipt.getInt("receiptId"),
+                            refundReceipt.getString("receiptType"), ticketNum,
+                            refundReceipt.getInt("creditCardNumber"), refundReceipt.getInt("voucherId"),
+                            refundReceipt.getDouble("amount"));
 
-                    databaseController.resetTicket(refundReceipt.getInt("ticketID"));
+                    databaseController.resetTicket(ticketNum);
                     // Whats the logic here.
                     return new Message(OK, "Successfully Refunded");
 

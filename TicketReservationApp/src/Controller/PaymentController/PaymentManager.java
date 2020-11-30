@@ -73,6 +73,8 @@ public class PaymentManager {
 			RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);
 			Voucher theVoucher = ticketRefund.getTheVoucher();
 			RefundReceipt theRefund = ticketRefund.getRefundReceipt();
+			theRefund.setCreditCardNumber(user.getPaymentInfo().getCardNumber());
+			theRefund.putFields();
 			reply.put(theVoucher);
 			reply.put(theRefund);
 			return reply;
