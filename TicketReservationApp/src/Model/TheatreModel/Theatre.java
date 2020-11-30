@@ -9,8 +9,8 @@ import org.json.JSONObject;
 public class Theatre extends JSONObject {
 	private String theatreName;
 
-	public Theatre(String theatreName) { // what is the parameter ResultSet for?
-		setTheatreName(theatreName); // how come theatre has no seats
+	public Theatre(String theatreName) { 
+		setTheatreName(theatreName);
 		putFields();
 	}
 

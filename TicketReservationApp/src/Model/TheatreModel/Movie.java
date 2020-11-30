@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public class Movie extends JSONObject {
 	private String movieName;
 	private double moviePrice;
-	private boolean isEarlyAccess; // what is the point in a movie object having this
+	private boolean isEarlyAccess; 
 	private ArrayList<Theatre> theatreList;
 
 	public Movie(String movieName, double moviePrice, boolean earlyAccess) {
@@ -40,7 +40,7 @@ public class Movie extends JSONObject {
 		movieName = jsonObj.getString("movieName");
 		moviePrice = jsonObj.getDouble("moviePrice");
 		isEarlyAccess = jsonObj.getBoolean("isEarlyAccess");
-		putFields();//did we miss this?
+		putFields();
 	}
 
 	private void setMoviePrice(double moviePrice) {

@@ -20,7 +20,7 @@ public class DatabaseController implements Password {
 	 * Object of type Connection, the jdbc connection used to make
 	 * PreparedStatements
 	 */
-	private Connection conn;// Object of type connection from the JDBC class that deals with connecting to
+	private Connection conn;
 
 	/**
 	 * Object of type PreparedStatement from JDBC class that enables the creation of
@@ -32,18 +32,14 @@ public class DatabaseController implements Password {
 	 * Object of type ResultSet from the JDBC class that stores the result of the
 	 * query
 	 */
-	private ResultSet resultSet;// object of type ResultSet from the JDBC class that stores the result of the
-								// query
+	private ResultSet resultSet;
+							
 
 	/**
 	 * Name of the database that stores all the tool shop information
 	 */
 	private String databaseName = "ticketRegistrationDatabase";
-	// Unused Code
-	// the database
-	// private Statement stmt; //object of type statement from JDBC class that
-	// enables the creation "Query
-	// statements"
+
 
 	public DatabaseController() {
 		initializeConnection();
@@ -164,28 +160,7 @@ public class DatabaseController implements Password {
 
 	}
 
-	// Dont really need this????????
 
-	// public ResultSet searchTicket(String movieName, String theatreName, int
-	// ShowTimeID, int SeatNumber) {
-	//
-	// try {
-	// String query = "SELECT * FROM TICKET AS T WHERE T.MovieName = ? AND
-	// T.TheatreName = ? AND T.ShowTimeID = ? ";
-	// stmt = conn.prepareStatement(query);
-	// stmt.setString(1, movieName);
-	// stmt.setString(2, theatreName);
-	// resultSet = stmt.executeQuery();
-	// resultSet.next();
-	// return resultSet;
-	//
-	// } catch (SQLException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// return null;
-	//
-	// }
 
 	public ResultSet setVoucher(int voucherID, double voucherValue, String voucherExp, boolean voucherActive) {
 

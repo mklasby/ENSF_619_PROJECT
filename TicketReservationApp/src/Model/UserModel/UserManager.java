@@ -21,15 +21,13 @@ public class UserManager {
 		this.user = user;
 	}
 
-	public void loginUser(ResultSet resultSetUser) { // i changed it so it not static anymore
+	public void loginUser(ResultSet resultSetUser) { 
 
-		// I am assuming that the user to give to me is not null
-		// Mike said it would be a good idea to have user instantiate in User Manager ==
-		// less coupling == more lonely
+
 		try {
 			this.user = new User(resultSetUser);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		this.isRegisteredUser = true;
@@ -56,7 +54,7 @@ public class UserManager {
 			User user = new User(resultSet);
 			return user;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		return null;

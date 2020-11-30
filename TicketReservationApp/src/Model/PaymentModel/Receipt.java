@@ -35,7 +35,7 @@ public class Receipt extends JSONObject {
 		putFields();
 	}
 
-	// will recieve a ticket result set
+
 	public Receipt(ResultSet rs) throws SQLException {
 		setReceiptId(rs.getInt("ReceiptID"));
 		setAmount(rs.getDouble("Price"));

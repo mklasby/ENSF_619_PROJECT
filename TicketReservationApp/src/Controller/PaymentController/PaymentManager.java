@@ -19,8 +19,7 @@ public class PaymentManager {
 		reply = new JSONArray();
 	}
 
-	// give back a list of ticket id
-	// flush cart 313 BOSS
+
 	public JSONArray getCart() {
 
 		JSONArray reply = new JSONArray();
@@ -42,8 +41,7 @@ public class PaymentManager {
 			reply.put(thisReceipt);
 		}
 
-		// send ticket to user email
-		// send receipt to user email
+
 	}
 
 	public JSONArray payForAll() {
@@ -74,7 +72,7 @@ public class PaymentManager {
 
 
 		} catch (JSONException e) {
-//			e.printStackTrace();
+
 			System.out.println("The user is not registered");
 		}
 		RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);

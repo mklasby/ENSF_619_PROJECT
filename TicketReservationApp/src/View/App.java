@@ -56,17 +56,7 @@ public class App {
                 paymentView.display("menuPanel");
                 gui.display();
 
-                // MenuView menu = new MenuView();
-                // MenuController menuController = new MenuController(gui, "menuPanel");
 
-                // MenuView menu = new MenuView();
-                // MenuController menuController = new MenuController(gui, "menuPanel");
-
-                // CustomerView custView = new CustomerView(gui, "customerPanel");
-                // ClientController clientCtrl = new ClientController("localhost", 4444);
-                // CustomerController custCtrl = new CustomerController(custView, clientCtrl);
-                // InventoryView invView = new InventoryView(gui, "inventoryPanel");
-                // InventoryController invCtrl = new InventoryController(invView, clientCtrl);
 
         }
 }

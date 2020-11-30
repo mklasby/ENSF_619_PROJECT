@@ -16,13 +16,11 @@ public class Ticket extends JSONObject {
 	private int ticketID;
 	private double price;
 
-	// private User owner; //user and ticket should be 2 way association
 
-	// do we need this even?
+
+	?
 	public Ticket(ResultSet allTickets) throws SQLException {
-		// oh jeez i remember doing this now, I need to bascially do an sql query
-		// where we left join a bunch of tables, but basically have enough columns
-		// to create the movie theatre show time and seats!!
+
 		movie = new Movie(allTickets);
 		theatre = new Theatre(allTickets);
 		showTime = new ShowTime(allTickets);
@@ -39,12 +37,12 @@ public class Ticket extends JSONObject {
 			put("theatreName", theatre.getTheatreName());
 			put("price", price);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 
-	public Ticket(Movie selectedMovie) { // from state ticket state transition
+	public Ticket(Movie selectedMovie) { 
 		this.setMovie(selectedMovie);
 	}
 
@@ -83,10 +81,7 @@ public class Ticket extends JSONObject {
 	public void setSeat(Seat seat) {
 		this.seat = seat;
 	}
-	/*
-	 * public User getOwner() { return owner; } public void setOwner(User owner) {
-	 * this.owner = owner; }
-	 */
+
 
 	public int getTicketID() {
 		return ticketID;

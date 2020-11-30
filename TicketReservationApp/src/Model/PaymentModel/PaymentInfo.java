@@ -10,8 +10,7 @@ public class PaymentInfo extends JSONObject {
 
     private int cardNumber;
     private String creditCardType;
-    // do i need a private username here to track? nah
-
+    
     public PaymentInfo(int cardNumber, String cardType) {
         setCardNumber(cardNumber);
         setCreditCardType(cardType);
@@ -39,7 +38,7 @@ public class PaymentInfo extends JSONObject {
     public PaymentInfo(JSONObject jsonObj) throws JSONException {
         cardNumber = jsonObj.getInt("cardNumber");
         creditCardType = jsonObj.getString("creditCardType");
-        putFields();// did we miss this?
+        putFields();
     }
 
     public int getCardNumber() {

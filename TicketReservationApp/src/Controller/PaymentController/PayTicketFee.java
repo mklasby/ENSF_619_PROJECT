@@ -16,13 +16,6 @@ public class PayTicketFee {
 		theReceipt.putFields();
 	}
 
-	// public void payForTicket(Ticket theTicket) {
-	// double amount = theTicket.getPrice();
-	// int ticketNumber = theTicket.getTicketId();
-	// theReceipt.setAmount(amount);
-	// theReceipt.setTicketId(ticketNumber);
-	// theTicket.setPaidfor(true);
-	// }
 
 	public TicketReceipt getTheReceipt() {
 		return theReceipt;

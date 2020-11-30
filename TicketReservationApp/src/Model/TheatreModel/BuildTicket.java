@@ -3,7 +3,7 @@ package Model.TheatreModel;
 public class BuildTicket {
 	private Ticket ticket;
 	
-	public BuildTicket() {                //why no parameter. what is the use then
+	public BuildTicket() {             
 	}
 
 	public Ticket getTicket() {
@@ -14,8 +14,5 @@ public class BuildTicket {
 		this.ticket = ticket;
 	} 
 	
-//	public JsonObject getTicket() {       // should implement encode? check the return
-//		return encode(ticket);            // No BuildTicket class in main detailed uml
-//	}
-	
+
 }

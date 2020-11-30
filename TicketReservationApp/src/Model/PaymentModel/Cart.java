@@ -73,7 +73,7 @@ public class Cart extends JSONObject {
 	}
 
 	public void payAll() {
-		// DONT THINK WE NEED LOGIC HERE? TBD
+		
 		clearCart();
 	}
 

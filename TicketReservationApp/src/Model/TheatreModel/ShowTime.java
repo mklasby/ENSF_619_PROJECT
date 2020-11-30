@@ -18,12 +18,6 @@ public class ShowTime extends JSONObject {
 	private Timestamp startTime;
 	private Timestamp endTime;
 
-	// I really dont think we need date, because shouldnt time already have date??
-	// We could just have these two things, using sql Timestamp type. I think its a
-	// wrapper?
-
-	// private Timestamp startTime;
-	// private Timestamp endTime;
 
 	public ShowTime(int showTimeID, Timestamp startTime, Timestamp endTime) {
 		setShowTimeID(showTimeID);
@@ -38,7 +32,7 @@ public class ShowTime extends JSONObject {
 			put("startTime", startTime);
 			put("endTime", endTime);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 	}
@@ -64,11 +58,11 @@ public class ShowTime extends JSONObject {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
 			Date parsedDate;
 			parsedDate = (Date) dateFormat.parse(jsonObj.getString(timeName));
-			// Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+			
 			Time timestamp = new Time(parsedDate.getTime());
 			return timestamp;
 		} catch (ParseException | JSONException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

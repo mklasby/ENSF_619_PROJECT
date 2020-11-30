@@ -44,8 +44,8 @@ public class BossController implements MessageConstants {
             if (user == null) { // There is no user with that name
                 return new Message(ERROR, "This username does not exists");
             }
-            if (!user.getString("UserPassword").equals(password)) {// the username and password exist you can log in!
-                // UserManager.setUser(user); // Here SEND THE RESULT SET TO GET FIXED
+            if (!user.getString("UserPassword").equals(password)) {
+               
                 return new Message(ERROR, "Password does not match");
 
             } else {
@@ -238,16 +238,16 @@ public class BossController implements MessageConstants {
             return new Message(ERROR, "Username already exists");
         }
         resultSet = databaseController.setRegisteredUser(isMemberPaid, userType, username, userPassword, name, address,
-                email, creditCardNumber); // No matter what happens this shouldnt bounce!
-        return new Message(OK, userManager.parseUserSQL(resultSet)); // wait shuold i return the user or should i just
-                                                                     // say "New User has been registered"
+                email, creditCardNumber); 
+        return new Message(OK, userManager.parseUserSQL(resultSet)); 
+                                                                     
 
     }
 
     public Message getRegisteredUser(String username) {
 
-        ResultSet resultSet = databaseController.getRegisteredUser(username); // this should have all user information
-                                                                              // along with payment information
+        ResultSet resultSet = databaseController.getRegisteredUser(username); 
+                                                                              
         if (resultSet == null) {
             return new Message(ERROR, "Username does not exists!");
         }
@@ -275,15 +275,14 @@ public class BossController implements MessageConstants {
 
                 PaymentManager paymentManager = new PaymentManager(userManager.getUser());
                 TicketReceipt ticketReceipt = new TicketReceipt(resultSetReceipt);
-//                System.out.println("This is the ticketId in refund ticket!! " + ticket.getTicketID());
                 System.out.println(resultSetReceipt.getInt("TicketID"));
                 JSONArray voucherAndReceipt = paymentManager.refundTicket(ticketReceipt);
-                // do we need to do checking?
+                
 
                 try {
 
                     Voucher voucher = new Voucher(voucherAndReceipt.getJSONObject(0));
-                    // Check if string works when moving around time/dates
+                   
                     databaseController.setVoucher(voucher.getInt("voucherId"), voucher.getDouble("amount"),
                             voucher.getString("expiryDate"), true);
 
@@ -295,7 +294,7 @@ public class BossController implements MessageConstants {
                             refundReceipt.getDouble("amount"));
 
                     databaseController.resetTicket(ticketNum);
-                    // Whats the logic here.
+                    
                     return new Message(OK, "Successfully Refunded");
 
                 } catch (JSONException | ParseException e) {
@@ -312,28 +311,6 @@ public class BossController implements MessageConstants {
 
     }
 
-    // public Message refundTicket(int ticketNum) { //hold up ticket num != receipt
-    // num can still make it work tho
-    // // TODO: Return OK if refund is processed with description of Voucher or
-    // refund
-    // // TODO: Return ERROR with DATA == "Sorry, no refunds within 72 hours of a
-    // // showtime!" OR
-    // // DATA == "Ticket Number not found"
-    // ResultSet resultSet = databaseController.getReceipt(ticketNum);
-    // if(resultSet == null) {// if receipt is not found
-    // return new Message(ERROR, "Ticket Number not Found");
-    //
-    // }else {
-    // if(databaseController.getTicket(ticketNum).getStartTime()-whatever time is it
-    // now < 72 hours) {
-    // return new Message(ERROR, "Sorry, no refunds within 72 hours of showtime");
-    // }
-    //
-    // RefundReceipt refundReceipt = PaymentManager.refund(????);
-    // return new Message(OK, refundReceipt);
-    // }
-    //
-    // }
 
     public Message registerNewUser(boolean isMemberPaid, String userType, String username, String password, String name,
             String address, String email, int creditCardNumber, String creditCardType) {
@@ -382,7 +359,7 @@ public class BossController implements MessageConstants {
         }
         if (financialController.checkPaymentData(cardType, cardNum)) {
             // TODO: ADD PAYMENT TYPE TO USERMGMT / RECIEPT
-            // cart.payAll();
+         
             PaymentInfo paymentInfo = new PaymentInfo(cardNum, cardType);
             User thisUser = userManager.getUser();
             thisUser.setEmail(email);
