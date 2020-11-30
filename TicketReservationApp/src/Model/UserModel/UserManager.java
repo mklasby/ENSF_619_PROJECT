@@ -36,8 +36,8 @@ public class UserManager {
 	}
 
 	public void logoutUser() {
-		this.user = null;
-		this.isRegisteredUser = false;
+		this.user = new User();
+		isRegisteredUser = false;
 
 	}
 

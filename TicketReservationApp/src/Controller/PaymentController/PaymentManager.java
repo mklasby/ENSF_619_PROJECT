@@ -65,25 +65,27 @@ public class PaymentManager {
 	}
 
 	public JSONArray refundTicket(Receipt thereceipt) {
+		boolean isReg = false;
 		try {
-			boolean isReg = false;
+
 			if (user.getString("userType").equals("M") || user.getString("userType").equals("R")) {
 				isReg = true;
 			}
-			RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);
-			Voucher theVoucher = ticketRefund.getTheVoucher();
-			RefundReceipt theRefund = ticketRefund.getRefundReceipt();
-			theRefund.setCreditCardNumber(user.getPaymentInfo().getCardNumber());
-			theRefund.putFields();
-			reply.put(theVoucher);
-			reply.put(theRefund);
-			return reply;
+
 
 		} catch (JSONException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("The user is not registered");
 		}
+		RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);
+		Voucher theVoucher = ticketRefund.getTheVoucher();
+		RefundReceipt theRefund = ticketRefund.getRefundReceipt();
+		theRefund.setCreditCardNumber(user.getPaymentInfo().getCardNumber());
+		theRefund.putFields();
+		reply.put(theVoucher);
+		reply.put(theRefund);
+		return reply;
 
-		return null;
 	}
 
 	public User getUser() {

@@ -308,7 +308,7 @@ public class BossController implements MessageConstants {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Message(ERROR, "Should be unreachable");
+        return new Message(ERROR, "Ticket number doesn't exist");
 
     }
 
@@ -412,7 +412,7 @@ public class BossController implements MessageConstants {
                 double price = paymentReceipts.getJSONObject(i).getDouble("amount");
                 databaseController.insertReceipt(receiptID, receiptType, ticketID, creditCardNumber, voucherId, price);
             }
-
+            cart.clearCart();
             return new Message(OK, "Success! Thank you for your business!");
         }
         return null;

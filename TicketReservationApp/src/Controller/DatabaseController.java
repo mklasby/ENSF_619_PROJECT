@@ -271,6 +271,7 @@ public class DatabaseController implements Password {
 			stmt.setInt(1, ticketID);
 			resultSet = stmt.executeQuery();
 			resultSet.next();
+			resultSet.getInt("TicketID");
 			return resultSet;
 
 		} catch (SQLException e) {
@@ -510,10 +511,11 @@ public class DatabaseController implements Password {
 
 	public boolean isValidVoucher(int cardNum) {
 		try {
-			String query = "SELECT * FROM VOUCHER WHERE VoucherID = ?;";
+			String query = "SELECT * FROM VOUCHER WHERE VoucherID = ? AND VoucherActive = true ;";
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, cardNum);
 			resultSet = stmt.executeQuery();
+//			resultSet.getInt("VoucherID");
 			if (resultSet.next()) {
 				query = "UPDATE VOUCHER SET VoucherActive=false WHERE VoucherId =?";
 				stmt = conn.prepareStatement(query);
