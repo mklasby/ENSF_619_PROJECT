@@ -70,6 +70,8 @@ public class Cart extends JSONObject {
 	}
 
 	public void clearCart() {
+		cartOfTickets.clear();
+		annualFee = null;
 	}
 
 	public void payAll() {

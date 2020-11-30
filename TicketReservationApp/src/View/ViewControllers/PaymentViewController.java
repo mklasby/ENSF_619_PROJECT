@@ -65,7 +65,6 @@ public class PaymentViewController extends ViewController implements MessageCons
             } else {
                 view.flashSuccessMessage(
                         "Success, payment received. You have been emailed a copy of your Ticket and Receipt. Returning to main menu...");
-                view.clearFields();
                 view.display("menuPanel");
                 clearLists();
             }

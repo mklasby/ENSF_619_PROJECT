@@ -507,12 +507,11 @@ public class DatabaseController implements Password {
 
 	public boolean reservationsRemaining(String movieName, String theatreName, int showTimeID, int seatNumber) {
 		try {
-			String query = "SELECT * FROM TICKET WHERE MovieName=? AND TheatreName=? AND ShowTimeID=? AND SeatNumber=?;";
+			String query = "SELECT * FROM TICKET WHERE MovieName=? AND TheatreName=? AND ShowTimeID=?;";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, movieName);
 			stmt.setString(2, theatreName);
 			stmt.setInt(3, showTimeID);
-			stmt.setInt(4, seatNumber);
 			resultSet = stmt.executeQuery();
 			if (!resultSet.next()) {
 				// something wrong in query

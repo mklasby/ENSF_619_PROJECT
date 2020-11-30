@@ -161,7 +161,7 @@ public class BossController implements MessageConstants {
 
     public Message selectSeat(JSONObject selection) {
         try {
-            if (databaseController.reservationsRemaining(ticket.getMovie().getMovieName(),
+            if (!databaseController.reservationsRemaining(ticket.getMovie().getMovieName(),
                     ticket.getTheatre().getTheatreName(), ticket.getShowTime().getShowTimeID(),
                     selection.getInt("seatNum"))) {
                 return new Message(ERROR, "Sorry, 10% of seats have already been reserved for this early movie!");
