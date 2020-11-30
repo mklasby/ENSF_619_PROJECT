@@ -35,9 +35,6 @@ public class BossController implements MessageConstants {
     }
 
     public Message login(String username, String password) {
-        // TODO: Return STATUS=ERROR if login fails
-        // TODO: Return STATUS=OK and DATA="MANAGER"
-        // TODO: RETURN STATUS=OK AND DATA="REGISTERED"
         ResultSet user = databaseController.getRegisteredUser(username);
         System.out.print("hello world");
         try {
@@ -63,7 +60,6 @@ public class BossController implements MessageConstants {
             }
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
@@ -76,10 +72,6 @@ public class BossController implements MessageConstants {
     }
 
     public Message selectMovie(JSONObject movie) {
-        // TODO: check if user is permitted to book this movie, return ERROR if not
-        // TODO: If user can select ticket, return OK message.
-        // TODO: Create ticket object and add this movie to it.
-
         try {
             Movie selectedMovie = new Movie(movie);
             ticket = new Ticket(selectedMovie);
@@ -105,7 +97,6 @@ public class BossController implements MessageConstants {
     }
 
     public Message getMovieList() {
-        // TODO: Return OK with list of movies as JSONArray in DATA
         BrowseMovie bm = new BrowseMovie();
         try {
             Message message = bm.getMovieList(databaseController.getMoviesList());
@@ -113,7 +104,6 @@ public class BossController implements MessageConstants {
 
             return message;
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -121,9 +111,7 @@ public class BossController implements MessageConstants {
     }
 
     public Message getTheatreList() {
-        // TODO: Return OK with list of theatres as JSONArray in DATA
         ResultSet result = databaseController.getTheatreList(ticket.getMovie().getMovieName());
-        // todo: SET ST THEATRE LIST BEFORE ASKING FOR ONE!
         SelectTheatre st = new SelectTheatre(result);
         JSONArray data = st.getTheatreList();
         System.out.print(data.toString());
@@ -131,16 +119,12 @@ public class BossController implements MessageConstants {
     }
 
     public Message selectTheatre(JSONObject theatre) {
-        // TODO: Return OK message
-        // TODO: Add theatre to ticket
-
         try {
             Theatre selectedTheatre;
             selectedTheatre = new Theatre(theatre);
             ticket.setTheatre(selectedTheatre);
             return new Message(OK, "Theatre Selected!");
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -148,15 +132,12 @@ public class BossController implements MessageConstants {
     }
 
     public Message getShowTimeList() {
-        // TODO: Return OK with list of theatres as JSONArray in DATA
         SelectShowTime sst = new SelectShowTime();
-
         try {
             Message message = sst.getShowTimeList(databaseController.getShowTimeList(ticket.getMovie().getMovieName(),
                     ticket.getTheatre().getTheatreName()));
             return message;
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -165,15 +146,12 @@ public class BossController implements MessageConstants {
     }
 
     public Message selectShowTime(JSONObject showTime) {
-        // TODO: Return OK and set this ticket to this showtime
-
         try {
             ShowTime selectShowTime;
             selectShowTime = new ShowTime(showTime);
             ticket.setShowTime(selectShowTime);
             return new Message(OK, "ShowTime Selected!");
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
