@@ -6,6 +6,7 @@ import Model.TheatreModel.Ticket;
 import Model.UserModel.RegisteredUser;
 import Model.UserModel.User;
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class PaymentManager {
 	private User user;
@@ -22,12 +23,12 @@ public class PaymentManager {
 	public JSONArray getCart() {
 
 		JSONArray reply = new JSONArray();
-		for (Ticket t : cartOfTickets) {
+		for (Ticket t : cart.getCartOfTickets()) {
 			reply.put(t.toString());
 		}
 
-		if (annualFee != null) {
-			reply.put(annualFee.toString());
+		if (cart.getAnnualFee() != null) {
+			reply.put(cart.getAnnualFee().toString());
 		}
 
 		return reply;
@@ -56,8 +57,6 @@ public class PaymentManager {
 		return reply;
 	}
 
-	<<<<<<<HEAD
-
 	public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
 		PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
 		AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
@@ -65,28 +64,19 @@ public class PaymentManager {
 	}
 
 	public void refundTicket(Receipt thereceipt) {
-		RefundTicket ticketRefund = new RefundTicket(thereceipt);
-		Voucher theVoucher = ticketRefund.getTheVoucher();
-		// send ticket to user
+		try {
+			boolean isReg = false;
+			if (user.getString("userType").equals("M") | user.getString("userType").equals("R")) {
+				isReg = true;
+			}
+			RefundTicket ticketRefund = new RefundTicket(thereceipt, isReg);
+			Voucher theVoucher = ticketRefund.getTheVoucher();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public User getUser() {
-=======
-
-	public AnnualReceipt payAnnualFee(RegisteredUser theUser, AnnualFee annualFee) {
-		PayAnnualFee annualPayment = new PayAnnualFee(theUser, annualFee);
-		AnnualReceipt annualReceipt = annualPayment.getTheReceipt();
-		return annualReceipt;
-	}
-
-	public void refundTicket(Receipt thereceipt) {
-		RefundTicket ticketRefund = new RefundTicket(thereceipt);
-		Voucher theCoupon = ticketRefund.getTheCoupon();
-		// send ticket to user
-	}
-
-	public User getUser() {
->>>>>>> 48e6c8eeae3c4ad27d7a746ab354cfc9e60fed0d
 		return user;
 	}
 

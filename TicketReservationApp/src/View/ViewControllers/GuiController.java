@@ -135,7 +135,11 @@ public class GuiController implements MessageConstants {
     }
 
     public Message processPayment(String email, int cardNum, String cardType) {
-        return boss.processPayment(email, cardNum, cardType);
-
+        try {
+            return boss.processPayment(email, cardNum, cardType);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

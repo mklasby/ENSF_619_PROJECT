@@ -8,15 +8,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class RefundTicket {
-	private double adminFeeRate = 0.15;
+	private double adminFeeRate = 0.85;
 	private double ticketPrice;
 	double refundAmount;
 	private Voucher theVoucher;
 	private RefundReceipt refundReceipt;
 
-	public RefundTicket(Receipt thereceipt) {
+	public RefundTicket(Receipt thereceipt, boolean isReg) {
 		ticketPrice = thereceipt.getAmount();
-		calculateRefund(thereceipt); // instantiates refundAmount
+		calculateRefund(thereceipt, isReg); // instantiates refundAmount
 		refundTicket(thereceipt);
 	}
 
@@ -50,7 +50,7 @@ public class RefundTicket {
 	 */
 	public void createRefundReceipt() {
 		refundReceipt = new RefundReceipt();
-		refundReceipt.setCouponId(theVoucher.getCouponId());
+		refundReceipt.setVoucherId(theVoucher.getVoucherId());
 		refundReceipt.setAmount(refundAmount);
 	}
 
@@ -58,10 +58,14 @@ public class RefundTicket {
 	 * sets the refund amount
 	 * 
 	 * @param thereceipt
+	 * @param isReg
 	 */
-	private void calculateRefund(Receipt thereceipt) {
-		ticketPrice = thereceipt.getAmount();
-		refundAmount = ticketPrice * adminFeeRate;
+	private void calculateRefund(Receipt thereceipt, boolean isReg) {
+		if (!isReg) {
+			refundAmount = adminFeeRate * thereceipt.getAmount();
+		} else {
+			refundAmount = thereceipt.getAmount();
+		}
 	}
 
 	public double getAdminFeeRate() {
