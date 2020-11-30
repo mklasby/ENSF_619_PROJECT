@@ -291,6 +291,9 @@ public class BossController implements MessageConstants {
     }
 
     public Message getPaymentInfo() {
+        if (userManager.getIsRegisteredUser()) {
+            return new Message(OK, userManager.getUser());
+        }
         return null;
     }
 

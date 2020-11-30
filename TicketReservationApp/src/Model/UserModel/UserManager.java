@@ -59,4 +59,8 @@ public class UserManager {
 		return null;
 	}
 
+	public boolean getIsRegisteredUser() {
+		return isRegisteredUser;
+	}
+
 }

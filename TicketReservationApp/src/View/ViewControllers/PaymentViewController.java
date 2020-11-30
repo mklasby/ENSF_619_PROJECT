@@ -45,7 +45,7 @@ public class PaymentViewController extends ViewController implements MessageCons
             String email = view.getFieldText("email");
             int cardNum;
             try {
-                cardNum = Integer.parseInt(view.getFieldText("cardNum"));
+                cardNum = Integer.parseInt(view.getFieldText("cardNumField"));
             } catch (NumberFormatException e) {
                 view.flashErrorMessage("Please enter credit card info as an Integer!");
                 return;
@@ -79,21 +79,24 @@ public class PaymentViewController extends ViewController implements MessageCons
         }
     }
 
-    public void setPaymentInfo(JSONObject paymentInfo) {
+    public void setPaymentInfo(JSONObject user) {
         try {
-            String cardNum = paymentInfo.getString("cardNum");
-            String cardType = paymentInfo.getString("cardType");
-            String email = paymentInfo.getString("email");
+            System.out.print(user.toString());
+
+            JSONObject paymentInfo = user.getJSONObject("paymentInfo");
+            int cardNum = paymentInfo.getInt("cardNumber");
+            String cardType = paymentInfo.getString("creditCardType");
+            String email = user.getString("email");
             HashMap<String, JTextField> fields = view.getFields();
             for (String key : fields.keySet()) {
                 if (key.equals("cardNumField")) {
-                    fields.get(key).setText(cardNum);
+                    fields.get(key).setText("" + cardNum);
                 } else if (key.equals("email")) {
-                    fields.get(key).setText(cardNum);
+                    fields.get(key).setText(email);
                 }
             }
             JComboBox comboBox = view.getComboBox("cardTypeComboBox");
-            if (cardType.equals("Credit")) {
+            if (cardType.equals("C")) {
                 comboBox.setSelectedIndex(0);
             } else {
                 comboBox.setSelectedIndex(1);
