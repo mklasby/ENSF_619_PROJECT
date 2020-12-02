@@ -15,5 +15,5 @@
 
 ## Deliverables
 * See `jar/InventoryReservationApp.jar` for a `.jar` file for all `.class` files
-* See `tar/InventoryReservationApp.tar` for a `.tar` file of all `.java` files
+* See `tar/src.tar` for a `.tar` file of all `.java` files
 
