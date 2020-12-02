@@ -8,6 +8,7 @@ import javax.swing.event.*;
 import org.json.JSONException;
 
 import CommonMessage.Message;
+import Controller.BossController;
 
 import java.awt.event.*;
 import View.Views.*;
