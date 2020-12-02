@@ -6,6 +6,9 @@
 * **Add your local host mySQL credentials to `src/Controller/Password.java`**
 * **Execute `src/SQL/PrelimSQL3.sql` mySQL Workbench to initialize database**
 
+## To run the program: 
+* Compile and execute `/bin/View/Views/App.class`
+
 ## Folder Structure
 - `src`: source files
 - `lib`: `.jar dependencies 
