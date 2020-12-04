@@ -527,7 +527,7 @@ public class DatabaseController implements Password {
 					}
 				} while (resultSet.next());
 
-				if (unReserved / (unReserved + reserved) >= 0.1) {
+				if (reserved / (unReserved + reserved) >= 0.1) {
 					return false;
 				} else {
 					return true;

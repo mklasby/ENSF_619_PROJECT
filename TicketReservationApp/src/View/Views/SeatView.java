@@ -66,6 +66,8 @@ public class SeatView extends SubView implements MessageConstants, ViewConstants
         JButton seat = seatButtons.get(seatId);
         if (isReserved) {
             seat.setEnabled(false);
+        } else {
+            seat.setEnabled(true);
         }
     }
 
