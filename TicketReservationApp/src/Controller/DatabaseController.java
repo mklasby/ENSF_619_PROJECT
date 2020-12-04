@@ -486,11 +486,11 @@ public class DatabaseController implements Password {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, cardNum);
 			resultSet = stmt.executeQuery();
-			if (resultSet.getTimestamp("VoucherExpiraryDate").before(new Timestamp(System.currentTimeMillis()))) {
-				return false;
-			}
 			// voucher is valid and set to paid
 			if (resultSet.next()) {
+				if (resultSet.getTimestamp("VoucherExpiraryDate").before(new Timestamp(System.currentTimeMillis()))) {
+					return false;
+				}
 				query = "UPDATE VOUCHER SET VoucherActive=false WHERE VoucherId =?";
 				stmt = conn.prepareStatement(query);
 				stmt.setInt(1, cardNum);
